@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw1fyp63ld3kf"]
+
+[ext_resource type="PackedScene" uid="uid://djmjrikkun6gd" path="res://assets/objects/slix/slix.tscn" id="1_gpnvh"]
+
+[sub_resource type="Environment" id="Environment_hpu5o"]
+background_mode = 3
+glow_levels/3 = 8.0
+glow_intensity = 2.15
+glow_strength = 1.5
+glow_blend_mode = 0
+fog_light_energy = 0.0
+
+[node name="main" type="Node2D"]
+
+[node name="env" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hpu5o")
+
+[node name="objects" type="Node2D" parent="."]
+
+[node name="slix" parent="objects" instance=ExtResource("1_gpnvh")]
+position = Vector2(1011, 506)
