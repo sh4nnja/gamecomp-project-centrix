@@ -1,13 +1,15 @@
 # ******************************************************************************
-#  keybind.gd
+# slix.gd
 # ******************************************************************************
 #                             This file is part of
 #                                   Centrix
 # ******************************************************************************
 # Copyright (c) 2024-present University of Cabuyao
 # 
-# Developer 
+# Developers
 # Shannja Ashley Malelang
+# Miccael Jasper Tayas
+# Jhovic Cortel
 #
 # Advisers
 # Paulo Edrozo
@@ -33,8 +35,18 @@ const ROLL_SPEED_MULT: float = 2
 # Current velocity.
 var _vel: Vector2 = Vector2.ZERO
 
+# SKILLS ***********************************************************************
 # Facilitates rolling.
 var _enabled_roll: bool = false
+
+# Devour.
+var _enabled_devour: bool = false
+
+# Lash.
+var _enabled_lash: bool = false
+
+# Goowave.
+var _enabled_goo: bool = false
 
 # VIRTUAL **********************************************************************
 func _ready() -> void:
@@ -44,6 +56,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	_manage_movement(_delta)
 	_manage_animation()
+	_manage_skills()
 	_manage_effects()
 
 # CUSTOM ***********************************************************************
@@ -70,6 +83,20 @@ func _manage_movement(_delta: float) -> void:
 	
 	move_and_slide()
 
+# Skills handler.
+func _manage_skills() -> void:
+	# Lash.
+	if Input.is_action_just_pressed("lash"):
+		_enabled_lash = true
+	
+	# Devour.
+	elif Input.is_action_just_pressed("devour"):
+		_enabled_devour = true
+	
+	# Goowave.
+	elif Input.is_action_just_pressed("goowave"):
+		_enabled_goo = true
+
 # Animation handler.
 func _manage_animation() -> void:
 	# Movement and Idle.
@@ -86,6 +113,26 @@ func _manage_animation() -> void:
 	# Transform to roll.
 	if _enabled_roll:
 		_anim_blend.get("parameters/playback").travel("rolling")
+	
+	# ******************************************************************************
+	# Make sure that the animations will not play when rolling.
+	if not _enabled_roll:
+		# Devour animation.
+		if _enabled_devour:
+			_anim_blend.get("parameters/playback").travel("devour")
+			_anim_blend.set("parameters/devour/blend_position", Vector2(get_global_mouse_position() - global_position).normalized())
+			_enabled_devour = false
+		
+		# Lash animation.
+		if _enabled_lash:
+			_anim_blend.get("parameters/playback").travel("lash")
+			_anim_blend.set("parameters/lash/blend_position", Vector2(get_global_mouse_position() - global_position).normalized())
+			_enabled_lash = false
+		
+		# Goowave animation.
+		if _enabled_goo:
+			_anim_blend.get("parameters/playback").travel("goowave")
+			_enabled_goo = false
 
 # Effect handler.
 func _manage_effects() -> void:

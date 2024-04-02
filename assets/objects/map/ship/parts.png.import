@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt00ngiias4f1"
-path="res://.godot/imported/roll.png-8bebaa0e3cc6a5cec11172f23e0afb88.ctex"
+uid="uid://bhvh5n2phneid"
+path="res://.godot/imported/parts.png-172d28fd1d632c9d847f367a2d08c9e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/slix/textures/roll/roll.png"
-dest_files=["res://.godot/imported/roll.png-8bebaa0e3cc6a5cec11172f23e0afb88.ctex"]
+source_file="res://assets/objects/map/ship/parts.png"
+dest_files=["res://.godot/imported/parts.png-172d28fd1d632c9d847f367a2d08c9e6.ctex"]
 
 [params]
 
