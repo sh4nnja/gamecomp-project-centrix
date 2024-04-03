@@ -13,8 +13,6 @@
 #
 # Advisers
 # Paulo Edrozo
-# Benjamin Delos Santos
-# Albert Alforja
 # ******************************************************************************
 
 extends CharacterBody2D
@@ -119,20 +117,20 @@ func _manage_animation() -> void:
 	if not _enabled_roll:
 		# Devour animation.
 		if _enabled_devour:
+			_enabled_devour = false
 			_anim_blend.get("parameters/playback").travel("devour")
 			_anim_blend.set("parameters/devour/blend_position", Vector2(get_global_mouse_position() - global_position).normalized())
-			_enabled_devour = false
 		
 		# Lash animation.
 		if _enabled_lash:
+			_enabled_lash = false
 			_anim_blend.get("parameters/playback").travel("lash")
 			_anim_blend.set("parameters/lash/blend_position", Vector2(get_global_mouse_position() - global_position).normalized())
-			_enabled_lash = false
 		
 		# Goowave animation.
 		if _enabled_goo:
-			_anim_blend.get("parameters/playback").travel("goowave")
 			_enabled_goo = false
+			_anim_blend.get("parameters/playback").travel("goowave")
 
 # Effect handler.
 func _manage_effects() -> void:

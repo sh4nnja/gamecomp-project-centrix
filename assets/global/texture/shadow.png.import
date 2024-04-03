@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfycojdhkxtqn"
-path="res://.godot/imported/crystal.png-6489c4a57394e7ffcd4d35b841da3268.ctex"
+uid="uid://dkkeu1onwtsxc"
+path="res://.godot/imported/shadow.png-f9eeda83da186b1b14a5a4faa5d4d152.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/resources/crystal.png"
-dest_files=["res://.godot/imported/crystal.png-6489c4a57394e7ffcd4d35b841da3268.ctex"]
+source_file="res://assets/global/texture/shadow.png"
+dest_files=["res://.godot/imported/shadow.png-f9eeda83da186b1b14a5a4faa5d4d152.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkkeu1onwtsxc"
-path="res://.godot/imported/shadow.png-f2006abd9563aab1141b83c3bd2d3e73.ctex"
+uid="uid://duobw1hy55ld1"
+path="res://.godot/imported/radiocomm.png-db3adfa161d83b6fe6ec9dcc37f88555.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/slix/textures/shadow.png"
-dest_files=["res://.godot/imported/shadow.png-f2006abd9563aab1141b83c3bd2d3e73.ctex"]
+source_file="res://assets/objects/radiocomm/radiocomm.png"
+dest_files=["res://.godot/imported/radiocomm.png-db3adfa161d83b6fe6ec9dcc37f88555.ctex"]
 
 [params]
 

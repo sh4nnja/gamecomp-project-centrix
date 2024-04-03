@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5aaj4xay4b1x"
-path="res://.godot/imported/slimeMonster.png-7df488a9155fc09807cd3feed3674370.ctex"
+uid="uid://c0mfxiynspj7t"
+path="res://.godot/imported/smoke.png-9a92fc2e88aeaa232f4e162d53328d35.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/test/slimeMonster.png"
-dest_files=["res://.godot/imported/slimeMonster.png-7df488a9155fc09807cd3feed3674370.ctex"]
+source_file="res://assets/global/texture/smoke.png"
+dest_files=["res://.godot/imported/smoke.png-9a92fc2e88aeaa232f4e162d53328d35.ctex"]
 
 [params]
 

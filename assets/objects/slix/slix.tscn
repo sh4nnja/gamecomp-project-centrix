@@ -1,18 +1,19 @@
-[gd_scene load_steps=176 format=3 uid="uid://djmjrikkun6gd"]
+[gd_scene load_steps=178 format=3 uid="uid://djmjrikkun6gd"]
 
 [ext_resource type="Script" path="res://assets/objects/slix/slix.gd" id="1_56pfa"]
 [ext_resource type="Texture2D" uid="uid://ckgqvp0c6ra6r" path="res://assets/objects/slix/textures/idle & walk/left/idle_l.png" id="2_rsfkk"]
 [ext_resource type="Texture2D" uid="uid://b8rnc7no7truj" path="res://assets/objects/slix/textures/idle & walk/right/idle_r.png" id="3_7fjd6"]
+[ext_resource type="Texture2D" uid="uid://c0mfxiynspj7t" path="res://assets/global/texture/smoke.png" id="3_jghpd"]
 [ext_resource type="Texture2D" uid="uid://blayfcmlafu0h" path="res://assets/objects/slix/textures/skills/devour/devour_l.png" id="3_lo21s"]
 [ext_resource type="Texture2D" uid="uid://ce26u80ou7u0u" path="res://assets/objects/slix/textures/skills/devour/devour_r.png" id="3_pvso4"]
 [ext_resource type="Texture2D" uid="uid://dx7sq5l21cgop" path="res://assets/objects/slix/textures/idle & walk/left/running_l.png" id="4_1gdwl"]
+[ext_resource type="Texture2D" uid="uid://dkkeu1onwtsxc" path="res://assets/global/texture/shadow.png" id="4_imbjd"]
 [ext_resource type="Texture2D" uid="uid://dt00ngiias4f1" path="res://assets/objects/slix/textures/skills/roll/roll.png" id="4_pu201"]
 [ext_resource type="Texture2D" uid="uid://62o2hsu1x85d" path="res://assets/objects/slix/textures/skills/goowave/goowave.png" id="5_d8h7i"]
 [ext_resource type="Texture2D" uid="uid://bpx88m4im3w5" path="res://assets/objects/slix/textures/idle & walk/right/running_r.png" id="5_p384v"]
 [ext_resource type="Texture2D" uid="uid://byf7yxbq6kpg" path="res://assets/objects/slix/textures/skills/roll/transform_roll.png" id="6_5abuj"]
 [ext_resource type="Texture2D" uid="uid://ch8kio606nf63" path="res://assets/objects/slix/textures/skills/lash/lash_l.png" id="7_wlbpk"]
 [ext_resource type="Texture2D" uid="uid://cbwca31pxr6mo" path="res://assets/objects/slix/textures/skills/lash/lash_r.png" id="8_bi4pc"]
-[ext_resource type="Texture2D" uid="uid://dkkeu1onwtsxc" path="res://assets/objects/slix/textures/shadow.png" id="13_afrrx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3phau"]
 size = Vector2(16, 12)
@@ -23,6 +24,12 @@ region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="Gradient" id="Gradient_p4iio"]
 colors = PackedColorArray(1, 1, 1, 0.196078, 1, 1, 1, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_15ewq"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = true
 
 [sub_resource type="Curve" id="Curve_y0fpd"]
 _data = [Vector2(0.292593, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -1720,6 +1727,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-117, 63.2687)
 
 [node name="slix" type="CharacterBody2D"]
+collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_56pfa")
 
@@ -1727,6 +1735,8 @@ script = ExtResource("1_56pfa")
 zoom = Vector2(3, 3)
 process_callback = 0
 position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+editor_draw_drag_margin = true
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3phau")
@@ -1742,23 +1752,27 @@ gravity = Vector2(0, 0)
 color_ramp = SubResource("Gradient_p4iio")
 
 [node name="trail" type="CPUParticles2D" parent="roll_fx"]
+material = SubResource("CanvasItemMaterial_15ewq")
 emitting = false
 amount = 16
 lifetime = 0.5
+texture = ExtResource("3_jghpd")
 emission_shape = 1
 emission_sphere_radius = 6.0
 gravity = Vector2(0, 0)
 angle_min = -720.0
 angle_max = 720.0
-scale_amount_max = 2.0
+scale_amount_min = 0.1
 scale_amount_curve = SubResource("Curve_y0fpd")
 color_initial_ramp = SubResource("Gradient_hpkt0")
+anim_speed_max = 1.0
+anim_offset_max = 1.0
 
 [node name="shadow" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.235294)
 position = Vector2(0.5, -2)
 scale = Vector2(0.791667, 1.235)
-texture = ExtResource("13_afrrx")
+texture = ExtResource("4_imbjd")
 
 [node name="texture" type="AnimatedSprite2D" parent="."]
 z_index = 1

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqgaa7oqbuopu"]
+
+[ext_resource type="Texture2D" uid="uid://duobw1hy55ld1" path="res://assets/objects/radiocomm/radiocomm.png" id="1_3j75k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_do03r"]
+size = Vector2(22, 9)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j0xg2"]
+radius = 28.0
+
+[node name="radiocomm" type="StaticBody2D"]
+
+[node name="texture" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("1_3j75k")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_do03r")
+
+[node name="interactor" type="Area2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="interactor"]
+shape = SubResource("CircleShape2D_j0xg2")

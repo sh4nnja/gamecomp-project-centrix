@@ -13,8 +13,6 @@
 #
 # Advisers
 # Paulo Edrozo
-# Benjamin Delos Santos
-# Albert Alforja
 # ******************************************************************************
 
 extends StaticBody2D
@@ -24,9 +22,8 @@ extends StaticBody2D
 @onready var _shape: CollisionShape2D = get_node("shape")
 
 # RESOURCE TYPES ***************************************************************
-# Current max number of resource types. 
-# Always max number - 1 because it starts at 0.
-var _max_res_types: int = 3
+# High value resource chance.
+var _high_tier_chance: int = 5
 
 # Type of the resource.
 # A single object that contains all the types of resources are finalized to save time.
@@ -37,13 +34,21 @@ var _resource_values: Array[Vector2] = [
 	
 ]
 
+# Value.
+var value: Array = []
+
 # COLLISION SIZE ***************************************************************
 # Preset collision size and position for the resources.
 var _collision_sizes: Array[Array] = [
 	[Vector2(21, 5), Vector2(-0.5, 9.5)],
 	[Vector2(15, 4), Vector2(-0.5, 8)],
 	[Vector2(16, 3), Vector2(0, 4.5)],
-	[Vector2(17, 4), Vector2(-0.5, 9)]
+	[Vector2(17, 4), Vector2(-0.5, 9)],
+	[Vector2(20, 10), Vector2(0, 6)],
+	[Vector2(20, 10), Vector2(0, 6)],
+	[Vector2(20, 10), Vector2(0, 6)],
+	[Vector2(20, 10), Vector2(0, 6)],
+	[Vector2(20, 10), Vector2(0, 6)]
 ]
 
 # VIRTUAL **********************************************************************
@@ -67,5 +72,9 @@ func _randomize_resource() -> int:
 	var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	_rng.randomize()
 	
-	_output = _rng.randi_range(0, _max_res_types)
+	if _rng.randi_range(0, _high_tier_chance) == _high_tier_chance:
+		_output = _rng.randi_range(0, 3)
+	else:
+		_output = _rng.randi_range(4, 8)
+	
 	return _output

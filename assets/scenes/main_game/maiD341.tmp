@@ -1,0 +1,171 @@
+[gd_scene load_steps=25 format=3 uid="uid://cw1fyp63ld3kf"]
+
+[ext_resource type="PackedScene" uid="uid://djmjrikkun6gd" path="res://assets/objects/slix/slix.tscn" id="1_gpnvh"]
+[ext_resource type="Script" path="res://assets/scenes/main_game/main_game.gd" id="1_grsym"]
+[ext_resource type="Texture2D" uid="uid://bj6f450r06s7y" path="res://assets/objects/map/tiles/map_texture.png" id="1_miquc"]
+[ext_resource type="Texture2D" uid="uid://bhvh5n2phneid" path="res://assets/objects/map/ship/parts.png" id="2_p46mb"]
+[ext_resource type="Texture2D" uid="uid://c0mfxiynspj7t" path="res://assets/objects/map/ship/ship_smoke.png" id="4_a47ae"]
+
+[sub_resource type="Environment" id="Environment_hpu5o"]
+background_mode = 3
+tonemap_mode = 3
+tonemap_exposure = 0.35
+glow_enabled = true
+glow_levels/5 = 1.5
+glow_levels/6 = 2.0
+glow_bloom = 1.0
+glow_blend_mode = 0
+fog_light_energy = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xsoci"]
+texture = ExtResource("1_miquc")
+texture_region_size = Vector2i(32, 32)
+2:0/0 = 0
+7:0/0 = 0
+2:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+7:4/0 = 0
+2:5/0 = 0
+7:5/0 = 0
+2:6/0 = 0
+2:7/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+2:11/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hntoy"]
+texture = ExtResource("1_miquc")
+texture_region_size = Vector2i(32, 32)
+2:0/0 = 0
+2:1/0 = 0
+2:3/0 = 0
+4:3/0 = 0
+3:2/0 = 0
+7:0/0 = 0
+7:1/0 = 0
+7:2/0 = 0
+7:3/0 = 0
+7:4/0 = 0
+7:5/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+6:1/0 = 0
+8:1/0 = 0
+6:3/0 = 0
+8:3/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+2:11/0 = 0
+2:7/0 = 0
+2:2/0 = 0
+1:2/0 = 0
+1:3/0 = 0
+0:3/0 = 0
+3:3/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+2:5/0 = 0
+1:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_jprr4"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_hntoy")
+sources/0 = SubResource("TileSetAtlasSource_xsoci")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qhaed"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srlm1"]
+atlas = ExtResource("2_p46mb")
+region = Rect2(0, 32, 32, 32)
+margin = Rect2(0, 0.06, 0, 0)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_05yte"]
+load_path = "res://.godot/imported/parts.png-172d28fd1d632c9d847f367a2d08c9e6.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvhec"]
+atlas = SubResource("CompressedTexture2D_05yte")
+region = Rect2(0, 32, 32, 32)
+margin = Rect2(0, 0.06, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q4b7"]
+atlas = SubResource("CompressedTexture2D_05yte")
+region = Rect2(31, 65, 31, 26)
+margin = Rect2(0, 0.06, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ep4l6"]
+atlas = SubResource("CompressedTexture2D_05yte")
+region = Rect2(32, 0, 32, 32)
+margin = Rect2(0, 0.06, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_of17u"]
+atlas = SubResource("CompressedTexture2D_05yte")
+region = Rect2(0, 96, 32, 32)
+margin = Rect2(0, 0.06, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k35i1"]
+atlas = SubResource("CompressedTexture2D_05yte")
+region = Rect2(32, 65, 30, 26)
+margin = Rect2(0, 0.06, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2snf"]
+atlas = SubResource("CompressedTexture2D_05yte")
+region = Rect2(0, 66, 28, 28)
+margin = Rect2(0, 0.06, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r26ir"]
+atlas = SubResource("CompressedTexture2D_05yte")
+region = Rect2(2, 95, 33, 32)
+margin = Rect2(0, 0.06, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kehai"]
+atlas = SubResource("CompressedTexture2D_05yte")
+region = Rect2(34, 65, 27, 27)
+margin = Rect2(0, 0.06, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buik4"]
+atlas = SubResource("CompressedTexture2D_05yte")
+region = Rect2(-1, 93, 35, 35)
+margin = Rect2(0, 0.06, 0, 0)
+
+[sub_r
