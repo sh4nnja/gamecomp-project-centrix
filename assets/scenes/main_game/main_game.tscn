@@ -1,12 +1,12 @@
 [gd_scene load_steps=28 format=3 uid="uid://cw1fyp63ld3kf"]
 
-[ext_resource type="PackedScene" uid="uid://djmjrikkun6gd" path="res://assets/objects/slix/slix.tscn" id="1_gpnvh"]
+[ext_resource type="PackedScene" uid="uid://djmjrikkun6gd" path="res://assets/objects/player/slix/slix.tscn" id="1_gpnvh"]
 [ext_resource type="Script" path="res://assets/scenes/main_game/main_game.gd" id="1_grsym"]
 [ext_resource type="Texture2D" uid="uid://bj6f450r06s7y" path="res://assets/objects/map/tiles/map_texture.png" id="1_miquc"]
 [ext_resource type="Texture2D" uid="uid://bhvh5n2phneid" path="res://assets/objects/map/ship/parts.png" id="2_p46mb"]
 [ext_resource type="Texture2D" uid="uid://c0mfxiynspj7t" path="res://assets/global/texture/smoke.png" id="4_a47ae"]
-[ext_resource type="PackedScene" uid="uid://cu3uvqgciebvf" path="res://assets/objects/byte/byte.tscn" id="5_nj3ef"]
-[ext_resource type="PackedScene" uid="uid://bqgaa7oqbuopu" path="res://assets/objects/radiocomm/radiocomm.tscn" id="7_pjgw3"]
+[ext_resource type="PackedScene" uid="uid://cu3uvqgciebvf" path="res://assets/objects/player/byte/byte.tscn" id="5_nj3ef"]
+[ext_resource type="PackedScene" uid="uid://bqgaa7oqbuopu" path="res://assets/objects/map/radiocomm/radiocomm.tscn" id="7_pjgw3"]
 
 [sub_resource type="Environment" id="Environment_hpu5o"]
 background_mode = 3
@@ -688,6 +688,7 @@ texture = SubResource("AtlasTexture_k35i1")
 [node name="smoke_effect" type="Node2D" parent="world/ship_parts"]
 
 [node name="ship_smoke" type="CPUParticles2D" parent="world/ship_parts/smoke_effect"]
+z_index = 2
 material = SubResource("CanvasItemMaterial_i3w5r")
 position = Vector2(-710, 1123)
 amount = 200
@@ -713,6 +714,7 @@ anim_speed_max = 2.0
 anim_offset_max = 1.0
 
 [node name="ship_smoke2" type="CPUParticles2D" parent="world/ship_parts/smoke_effect"]
+z_index = 2
 material = SubResource("CanvasItemMaterial_i3w5r")
 position = Vector2(-659, 1154)
 amount = 15
@@ -738,6 +740,7 @@ anim_speed_max = 2.0
 anim_offset_max = 1.0
 
 [node name="ship_smoke3" type="CPUParticles2D" parent="world/ship_parts/smoke_effect"]
+z_index = 2
 material = SubResource("CanvasItemMaterial_i3w5r")
 position = Vector2(-643, 1057)
 amount = 10
@@ -763,6 +766,7 @@ anim_speed_max = 2.0
 anim_offset_max = 1.0
 
 [node name="ship_smoke4" type="CPUParticles2D" parent="world/ship_parts/smoke_effect"]
+z_index = 2
 material = SubResource("CanvasItemMaterial_i3w5r")
 position = Vector2(-781, 1123)
 amount = 5
@@ -788,6 +792,7 @@ anim_speed_max = 2.0
 anim_offset_max = 1.0
 
 [node name="ship_smoke7" type="CPUParticles2D" parent="world/ship_parts/smoke_effect"]
+z_index = 2
 material = SubResource("CanvasItemMaterial_i3w5r")
 position = Vector2(-790, 1045)
 amount = 5
@@ -813,6 +818,7 @@ anim_speed_max = 2.0
 anim_offset_max = 1.0
 
 [node name="ship_smoke8" type="CPUParticles2D" parent="world/ship_parts/smoke_effect"]
+z_index = 2
 material = SubResource("CanvasItemMaterial_i3w5r")
 position = Vector2(-732, 1028)
 amount = 5
@@ -838,6 +844,7 @@ anim_speed_max = 2.0
 anim_offset_max = 1.0
 
 [node name="ship_smoke9" type="CPUParticles2D" parent="world/ship_parts/smoke_effect"]
+z_index = 2
 material = SubResource("CanvasItemMaterial_i3w5r")
 position = Vector2(-609, 1000)
 amount = 5
@@ -863,6 +870,7 @@ anim_speed_max = 2.0
 anim_offset_max = 1.0
 
 [node name="ship_smoke10" type="CPUParticles2D" parent="world/ship_parts/smoke_effect"]
+z_index = 2
 material = SubResource("CanvasItemMaterial_i3w5r")
 position = Vector2(-609, 1161)
 amount = 5
@@ -888,6 +896,7 @@ anim_speed_max = 2.0
 anim_offset_max = 1.0
 
 [node name="ship_smoke5" type="CPUParticles2D" parent="world/ship_parts/smoke_effect"]
+z_index = 2
 material = SubResource("CanvasItemMaterial_i3w5r")
 position = Vector2(-684, 1041)
 amount = 200
@@ -913,6 +922,7 @@ anim_speed_max = 2.0
 anim_offset_max = 1.0
 
 [node name="ship_smoke6" type="CPUParticles2D" parent="world/ship_parts/smoke_effect"]
+z_index = 2
 material = SubResource("CanvasItemMaterial_i3w5r")
 position = Vector2(-748, 1070)
 amount = 50
@@ -938,6 +948,7 @@ anim_speed_max = 2.0
 anim_offset_max = 1.0
 
 [node name="ship_smoke11" type="CPUParticles2D" parent="world/ship_parts/smoke_effect"]
+z_index = 2
 material = SubResource("CanvasItemMaterial_i3w5r")
 position = Vector2(-875, 937)
 amount = 200
@@ -962,13 +973,17 @@ anim_speed_min = 1.0
 anim_speed_max = 2.0
 anim_offset_max = 1.0
 
+[node name="enable_fx" type="VisibleOnScreenEnabler2D" parent="world/ship_parts/smoke_effect"]
+position = Vector2(-750.5, 989.5)
+scale = Vector2(18.85, 19.95)
+
 [node name="objects" type="Node2D" parent="."]
-
-[node name="slix" parent="objects" instance=ExtResource("1_gpnvh")]
-position = Vector2(-766, 1032)
-
-[node name="byte" parent="objects" instance=ExtResource("5_nj3ef")]
-position = Vector2(-742, 1009)
 
 [node name="radiocomm" parent="objects" instance=ExtResource("7_pjgw3")]
 position = Vector2(-804, 1077)
+
+[node name="slix" parent="objects" instance=ExtResource("1_gpnvh")]
+position = Vector2(-617, 1052)
+
+[node name="byte" parent="objects" instance=ExtResource("5_nj3ef")]
+position = Vector2(-650, 1041)

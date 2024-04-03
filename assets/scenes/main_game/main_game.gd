@@ -19,17 +19,25 @@ extends Node2D
 
 # RESOURCE TYPES ***************************************************************
 # Resource object.
-var _resource: Resource = load("res://assets/objects/resources/base_resource.tscn")
+var _resource: Resource = load("res://assets/objects/map/resources/base_resource.tscn")
+var _false_resource: Resource = load("res://assets/objects/enemies/arachnoxenomorph/arachnoxenomorph.tscn")
 
-# Enum to know that the cell can spawn on this particular cell.
+# Enum to know where the cell can spawn on this particular cell.
 enum {
 	CELL_CAN_SPAWN = 0,
 	CELL_TOXIC = 2
 }
 
+# Enum to know what kind of stone will it spawn, a false stone or an actual resource stone.
+enum {
+	FALSE_RESOURCE = 0,
+	TRUE_RESOURCE = 150
+}
+
 # Chance of the resource to spawn. Example, there are 1 in 20 chance of spawning.
-# Favorable outcome / Resource Spawn Chance = Chance of spawning.
-var _resource_spawn_chance: int = 20
+# Amount of favorable outcome / Amount of all outcomes = Chance.
+# Don't make this lower than 10, it will go just fine, but slow loading.
+var _resource_spawn_chance: int = TRUE_RESOURCE
 
 # NODES ************************************************************************
 @onready var _map: TileMap = get_node("world/map")
@@ -47,7 +55,7 @@ func _physics_process(_delta) -> void:
 
 # CUSTOM ***********************************************************************
 # Resource spawning manager.
-func _manage_resources() -> void:
+func _manage_resources():
 	# Loop through each tile.
 	for _tile in _map.get_used_cells(1):
 		if _check_spawn_valid(_tile):
@@ -67,8 +75,16 @@ func _spawn_resources(_tile_pos: Vector2i) -> void:
 	_rng.randomize()
 	
 	# 0 is the favorable outcome.
-	if _rng.randi_range(0, _resource_spawn_chance) == 0:
+	if _rng.randi_range(0, _resource_spawn_chance) == TRUE_RESOURCE:
 		var _res_obj: Object = _resource.instantiate()
+		
+		# Add the resource object to the game.
+		_objects.add_child(_res_obj, true)
+		_res_obj.set_global_position(to_global(_map.map_to_local(_tile_pos)))
+	
+	# Spawn the Arachnoxenomorph.
+	elif _rng.randi_range(0, _resource_spawn_chance) == FALSE_RESOURCE:
+		var _res_obj: Object = _false_resource.instantiate()
 		
 		# Add the resource object to the game.
 		_objects.add_child(_res_obj, true)
