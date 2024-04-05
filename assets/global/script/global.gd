@@ -17,8 +17,15 @@
 
 extends Node
 
+# Color of Slix based on life.
 var slix_colors: Array[Color] = [
 	Color.html("ffffff"),
 	Color.html("f900b8"),
 	Color.html("450045")
 ]
+
+var slix_stats: Array = [
+	
+]
+
+

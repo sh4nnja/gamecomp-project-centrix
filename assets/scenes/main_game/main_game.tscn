@@ -573,6 +573,7 @@ offset_bottom = -41.76
 texture = SubResource("AtlasTexture_swmen")
 
 [node name="menu" type="Control" parent="user_interface_layer/user_interface"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
