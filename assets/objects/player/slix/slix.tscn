@@ -1,4 +1,4 @@
-[gd_scene load_steps=184 format=3 uid="uid://djmjrikkun6gd"]
+[gd_scene load_steps=198 format=3 uid="uid://djmjrikkun6gd"]
 
 [ext_resource type="Script" path="res://assets/objects/player/slix/slix.gd" id="1_56pfa"]
 [ext_resource type="Texture2D" uid="uid://ckgqvp0c6ra6r" path="res://assets/objects/player/slix/textures/idle & walk/left/idle_l.png" id="2_rsfkk"]
@@ -37,6 +37,25 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_hpkt0"]
 colors = PackedColorArray(0.678431, 0.819608, 0.929412, 0.392157, 0.0862745, 0.294118, 0.443137, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3jt6y"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_h3f1p"]
+_data = [Vector2(0.736641, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_pxno3"]
+colors = PackedColorArray(0.0862745, 0.294118, 0.443137, 1, 0.678431, 0.819608, 0.929412, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_60g3n"]
+radius = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3at1f"]
+radius = 16.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f146n"]
 atlas = ExtResource("3_lo21s")
@@ -1001,6 +1020,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [Vector2(0, 0), Vector2(0, 0.5), Vector2(0, 0.5), Vector2(0, -0.5), Vector2(0, -1), Vector2(0, -2), Vector2(-0.5, -2), Vector2(-0.5, 0), Vector2(0, 0), Vector2(0, 0.5), Vector2(0, 2.5), Vector2(0, -0.5), Vector2(0, -0.5), Vector2(0, 2), Vector2(0, 1), Vector2(0, 0.5), Vector2(0, 0)]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"devour"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_x1d3r"]
 resource_name = "devour_r"
@@ -1053,6 +1086,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [Vector2(0, 0), Vector2(0, 0.5), Vector2(0, 0.5), Vector2(0, -0.5), Vector2(0, -1), Vector2(0, -2.5), Vector2(0.5, -2.5), Vector2(0.5, 0), Vector2(0, 0.5), Vector2(0, 1), Vector2(0, 2.5), Vector2(0, -0.5), Vector2(0, -0.5), Vector2(0, 2), Vector2(0, 1), Vector2(0, 0.5), Vector2(0, 0)]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"devour"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_14xs5"]
 resource_name = "goowave"
@@ -1103,6 +1150,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2(0, 0), Vector2(0, -0.5), Vector2(0, 1), Vector2(0, 2.5), Vector2(0, 2), Vector2(0, 1.5), Vector2(0, 1), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"goowave"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ejt3n"]
@@ -1326,6 +1387,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [Vector2(0, 0), Vector2(0, 0.5), Vector2(0, 1), Vector2(0, 1.5), Vector2(0, 2), Vector2(0, -0.5), Vector2(0, 0), Vector2(0, 2), Vector2(0, 1.5), Vector2(0, 1), Vector2(0, 0)]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"lash"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_td8kp"]
 resource_name = "lash_r"
@@ -1377,6 +1452,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2(0, 0), Vector2(0, 0.5), Vector2(0, 1), Vector2(0, 1.5), Vector2(0, 2), Vector2(0, -0.5), Vector2(0, 0), Vector2(0, 2), Vector2(0, 1.5), Vector2(0, 1), Vector2(0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"lash"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_xs24j"]
@@ -1442,6 +1531,20 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2(0.791667, 1.235)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"rollout"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_wgwya"]
@@ -1614,10 +1717,65 @@ tracks/3/keys = {
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0.5), Vector2(0, 1), Vector2(0, 1.5), Vector2(0, 1.5), Vector2(0, 0.5), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_ibktc"]
+resource_name = "death"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"goowave"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("texture:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 4, 5]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"death"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("texture:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0.270588, 0, 0.270588, 1), Color(0.0745098, 0, 0.0745098, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o8k37"]
 _data = {
 "RESET": SubResource("Animation_15j7n"),
 "damage": SubResource("Animation_b0pm1"),
+"death": SubResource("Animation_ibktc"),
 "devour_l": SubResource("Animation_idfh5"),
 "devour_r": SubResource("Animation_x1d3r"),
 "goowave": SubResource("Animation_14xs5"),
@@ -1634,6 +1792,9 @@ _data = {
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qk8ib"]
 animation = &"damage"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_774th"]
+animation = &"death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w0sc5"]
 animation = &"devour_l"
@@ -1749,10 +1910,26 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y3tem"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e7nvo"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3ko5h"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rud45"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fhmb8"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_emuc2"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_34y80"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o8lje"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5cnvg"]
 states/Start/position = Vector2(189.333, 112)
 states/damage/node = SubResource("AnimationNodeAnimation_qk8ib")
-states/damage/position = Vector2(562, 21.0326)
+states/damage/position = Vector2(562, -58.122)
+states/death/node = SubResource("AnimationNodeAnimation_774th")
+states/death/position = Vector2(40.6667, 19.4208)
 states/devour/node = SubResource("AnimationNodeBlendSpace2D_vcljq")
 states/devour/position = Vector2(339.601, 389.387)
 states/goowave/node = SubResource("AnimationNodeAnimation_6dlq0")
@@ -1769,8 +1946,8 @@ states/rolling/node = SubResource("AnimationNodeAnimation_6fjgr")
 states/rolling/position = Vector2(347.074, -59.6667)
 states/running/node = SubResource("AnimationNodeBlendSpace2D_8t528")
 states/running/position = Vector2(688.082, 117.519)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_glo71"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_b1fwa"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_a7din"), "rolling", "roll_to_idle", SubResource("AnimationNodeStateMachineTransition_yilfe"), "roll_to_idle", "idle", SubResource("AnimationNodeStateMachineTransition_5kflg"), "idle", "idle_to_roll", SubResource("AnimationNodeStateMachineTransition_5i35g"), "idle_to_roll", "rolling", SubResource("AnimationNodeStateMachineTransition_2nnwt"), "idle", "devour", SubResource("AnimationNodeStateMachineTransition_u6q2t"), "devour", "idle", SubResource("AnimationNodeStateMachineTransition_n2nik"), "running", "devour", SubResource("AnimationNodeStateMachineTransition_ora43"), "idle", "lash", SubResource("AnimationNodeStateMachineTransition_6rqgr"), "lash", "idle", SubResource("AnimationNodeStateMachineTransition_rh8is"), "running", "lash", SubResource("AnimationNodeStateMachineTransition_ndu5h"), "idle", "goowave", SubResource("AnimationNodeStateMachineTransition_qnxw7"), "goowave", "idle", SubResource("AnimationNodeStateMachineTransition_gy5pa"), "running", "goowave", SubResource("AnimationNodeStateMachineTransition_sjexv"), "damage", "idle", SubResource("AnimationNodeStateMachineTransition_ycu6g"), "damage", "running", SubResource("AnimationNodeStateMachineTransition_6ask4"), "idle", "damage", SubResource("AnimationNodeStateMachineTransition_dw7t0"), "running", "damage", SubResource("AnimationNodeStateMachineTransition_y3tem")]
-graph_offset = Vector2(-86, -97.7313)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_glo71"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_b1fwa"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_a7din"), "rolling", "roll_to_idle", SubResource("AnimationNodeStateMachineTransition_yilfe"), "roll_to_idle", "idle", SubResource("AnimationNodeStateMachineTransition_5kflg"), "idle", "idle_to_roll", SubResource("AnimationNodeStateMachineTransition_5i35g"), "idle_to_roll", "rolling", SubResource("AnimationNodeStateMachineTransition_2nnwt"), "idle", "devour", SubResource("AnimationNodeStateMachineTransition_u6q2t"), "devour", "idle", SubResource("AnimationNodeStateMachineTransition_n2nik"), "running", "devour", SubResource("AnimationNodeStateMachineTransition_ora43"), "idle", "lash", SubResource("AnimationNodeStateMachineTransition_6rqgr"), "lash", "idle", SubResource("AnimationNodeStateMachineTransition_rh8is"), "running", "lash", SubResource("AnimationNodeStateMachineTransition_ndu5h"), "idle", "goowave", SubResource("AnimationNodeStateMachineTransition_qnxw7"), "goowave", "idle", SubResource("AnimationNodeStateMachineTransition_gy5pa"), "running", "goowave", SubResource("AnimationNodeStateMachineTransition_sjexv"), "damage", "idle", SubResource("AnimationNodeStateMachineTransition_ycu6g"), "damage", "running", SubResource("AnimationNodeStateMachineTransition_6ask4"), "idle", "damage", SubResource("AnimationNodeStateMachineTransition_dw7t0"), "running", "damage", SubResource("AnimationNodeStateMachineTransition_y3tem"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_e7nvo"), "running", "death", SubResource("AnimationNodeStateMachineTransition_3ko5h"), "lash", "death", SubResource("AnimationNodeStateMachineTransition_rud45"), "goowave", "death", SubResource("AnimationNodeStateMachineTransition_fhmb8"), "devour", "death", SubResource("AnimationNodeStateMachineTransition_emuc2"), "damage", "death", SubResource("AnimationNodeStateMachineTransition_34y80"), "rolling", "death", SubResource("AnimationNodeStateMachineTransition_o8lje")]
+graph_offset = Vector2(-290, -81)
 
 [node name="slix" type="CharacterBody2D" groups=["Slix"]]
 motion_mode = 1
@@ -1813,6 +1990,49 @@ color_initial_ramp = SubResource("Gradient_hpkt0")
 anim_speed_max = 1.0
 anim_offset_max = 1.0
 
+[node name="goowave" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="goo_fx" type="CPUParticles2D" parent="goowave"]
+material = SubResource("CanvasItemMaterial_3jt6y")
+emitting = false
+amount = 128
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+texture = ExtResource("3_jghpd")
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 100.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+orbit_velocity_max = 0.1
+linear_accel_max = 1.0
+radial_accel_max = 1.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.15
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_h3f1p")
+color = Color(0, 1, 1, 1)
+color_ramp = SubResource("Gradient_pxno3")
+
+[node name="shape" type="CollisionShape2D" parent="goowave"]
+shape = SubResource("CircleShape2D_60g3n")
+
+[node name="devour" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="shape" type="CollisionShape2D" parent="devour"]
+shape = SubResource("CircleShape2D_3at1f")
+
 [node name="shadow" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.235294)
 position = Vector2(0.5, -2)
@@ -1824,6 +2044,9 @@ z_index = 1
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_pfa4n")
 animation = &"idle_r"
+
+[node name="timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="anim" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1842,3 +2065,8 @@ parameters/devour/blend_position = Vector2(0.0649652, -0.55)
 parameters/idle/blend_position = Vector2(0.213457, 0.305419)
 parameters/lash/blend_position = Vector2(-0.99768, 0.0145631)
 parameters/running/blend_position = Vector2(-0.988399, 0.0141845)
+
+[connection signal="body_entered" from="goowave" to="." method="_on_goowave_body_entered"]
+[connection signal="body_exited" from="goowave" to="." method="_on_goowave_body_exited"]
+[connection signal="body_entered" from="devour" to="." method="_on_devour_body_entered"]
+[connection signal="body_exited" from="devour" to="." method="_on_devour_body_exited"]

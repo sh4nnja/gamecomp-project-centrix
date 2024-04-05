@@ -18,23 +18,21 @@
 extends CharacterBody2D
 
 # PHYSICS **********************************************************************
-# Speed.
 const SPEED: float = 55.0
 
-# Distance before follow Slix.
-var _chase_threshold: int = 20
+var _chase_threshold: int = 20 # Distance before follow Slix.
 
-# Current velocity.
-var _vel: Vector2 = Vector2.ZERO
+var _vel: Vector2 = Vector2.ZERO # Current velocity.
 
 # SKILLS ***********************************************************************
-# Checks if Slix is in range.
-var _detected_enemy: CharacterBody2D = null
+var _detected_enemy: CharacterBody2D = null # Checks if Slix is in range.
 var _can_chase: bool = false
 
-var _attack: bool = false
+var _attacking: bool = false
 
 var health: float = 100.0
+var _hit: float = 50.0
+var _attack_damage: float = 15.0
 
 # NODES ************************************************************************
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
@@ -42,8 +40,7 @@ var health: float = 100.0
 
 # VIRTUAL **********************************************************************
 func _ready() -> void:
-	# Enable animation.
-	_anim_blend.set_active(true)
+	_anim_blend.set_active(true) # Enable animation.
 
 func _physics_process(_delta: float) -> void:
 	_manage_movement(_delta)
@@ -68,7 +65,7 @@ func _manage_animation() -> void:
 	# Enemy Detected.
 	if _detected_enemy:
 		# If enemy is in range.
-		if _attack:
+		if _attacking:
 			_anim_blend.get("parameters/playback").travel("attack")
 			_anim_blend.set("parameters/attack/blend_position", _vel)
 		else:
@@ -94,8 +91,22 @@ func _manage_animation() -> void:
 	else:
 		_can_chase = false
 	
-func _die() -> void:
-	queue_free()
+	if health <= 0:
+		_anim_blend.get("parameters/playback").travel("dead")
+		_anim_blend.set("parameters/dead/blend_position", _vel)
+
+func damage(_multiplier: int = 1) -> void:
+	health -= _hit * _multiplier
+
+func die() -> void:
+	_anim_alert.play_backwards("alert")
+	await _anim_alert.animation_finished
+	_anim_alert.hide()
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+func attack() -> void:
+	if _detected_enemy:
+		_detected_enemy.damage(_attack_damage)
 
 # SIGNALS **********************************************************************
 func _on_detection_body_entered(_body: Node2D) -> void:
@@ -111,8 +122,8 @@ func _on_detection_body_exited(_body: Node2D) -> void:
 # Attack on contact.
 func _on_attack_body_entered(_body: Node2D) -> void:
 	if _body.is_in_group("Slix") or _detected_enemy:
-		_attack = true
+		_attacking = true
 
 func _on_attack_body_exited(_body: Node2D) -> void:
 	if _body.is_in_group("Slix") or _detected_enemy:
-		_attack = false
+		_attacking = false

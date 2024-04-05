@@ -18,7 +18,6 @@
 extends Node2D
 
 # RESOURCE TYPES ***************************************************************
-# Resource object.
 var _resource: Resource = load("res://assets/objects/map/resources/base_resource.tscn")
 var _false_resource: Resource = load("res://assets/objects/enemies/pseudo/pseudo.tscn")
 
@@ -28,7 +27,7 @@ var _gooz: Resource = load("res://assets/objects/enemies/gooz/gooz.tscn")
 # Enum to know where the cell can spawn on this particular cell.
 enum {
 	CELL_CAN_SPAWN = 0,
-	CELL_TOXIC = 2
+	TOXIC_LAKE = 2
 }
 
 # Enum to know what kind of stone will it spawn, a false stone or an actual resource stone.
@@ -39,7 +38,7 @@ enum {
 
 # Enum for Gooz Spawning.
 enum {
-	GOOZ_SPAWN = 2,
+	GOOZ_SPAWN = 0,
 	TOXIC_GOOZ = 35
 }
 
@@ -50,7 +49,7 @@ var _resource_spawn_chance: int = TRUE_RESOURCE
 
 # NODES ************************************************************************
 @onready var _map: TileMap = get_node("world/map")
-@onready var _objects: Node2D = get_node("objects")
+@onready var objects: Node2D = get_node("objects")
 
 @onready var _slix: CharacterBody2D = get_node("objects/slix")
 
@@ -58,18 +57,17 @@ var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 # GAME UPDATES *****************************************************************
 var slix_health: float
+var slix_immunity: float
 var items_collected: int
 
 # VIRTUAL **********************************************************************
 func _ready() -> void:
-	# Spawn resources.
-	_manage_resources()
-	
-	# Spawn Gooz across toxic lake.
-	_manage_toxic_lake()
+	_manage_resources() # Spawn resources.
+	_manage_toxic_lake() # Spawn Gooz across toxic lake.
 
 func _physics_process(_delta) -> void:
-	_damage_toxic_lake(_slix)
+	update_slix_stats() # Update slix stats such as health etc.
+	_damage_toxic_lake(_slix) # Damage Slix when in contact of the toxic lake.
 
 # CUSTOM ***********************************************************************
 # Resource spawning manager.
@@ -96,7 +94,7 @@ func _spawn_resources(_tile_pos: Vector2i) -> void:
 		var _res_obj: Object = _resource.instantiate()
 		
 		# Add the resource object to the game.
-		_objects.add_child(_res_obj, true)
+		objects.add_child(_res_obj, true)
 		_res_obj.set_global_position(to_global(_map.map_to_local(_tile_pos)))
 	
 	# Spawn the Arachnoxenomorph.
@@ -104,7 +102,7 @@ func _spawn_resources(_tile_pos: Vector2i) -> void:
 		var _res_obj: Object = _false_resource.instantiate()
 		
 		# Add the resource object to the game.
-		_objects.add_child(_res_obj, true)
+		objects.add_child(_res_obj, true)
 		_res_obj.set_global_position(to_global(_map.map_to_local(_tile_pos)))
 
 # Spawn Gooz on toxic lakes randomly.
@@ -122,12 +120,17 @@ func _spawn_gooz(_tile_pos: Vector2i) -> void:
 		var _gooz_inst: Object = _gooz.instantiate()
 		
 		# Add the resource object to the game.
-		_objects.add_child(_gooz_inst, true)
+		objects.add_child(_gooz_inst, true)
 		_gooz_inst.set_global_position(to_global(_map.map_to_local(_tile_pos)))
 
 # Toxic Lake.
 func _damage_toxic_lake(_node: Node) -> void:
 	# Gets the player position to check if its on the toxic lake tile.
-	var _tile_data: int = _map.get_cell_source_id(0, _map.local_to_map(_node.get_position()))
-	if _tile_data == CELL_TOXIC or _tile_data == GOOZ_SPAWN:
-		pass
+	var _tile_data: int = _map.get_cell_source_id(2, _map.local_to_map(_node.get_position()))
+	var _tile_data_2: int = _map.get_cell_source_id(0, _map.local_to_map(_node.get_position()))
+	if (_tile_data == GOOZ_SPAWN or _tile_data == TOXIC_LAKE) or (_tile_data_2 == GOOZ_SPAWN or _tile_data_2 == TOXIC_LAKE):
+		_node.toxic_lake_deduction()
+
+func update_slix_stats() -> void:
+	slix_health = _slix.health
+	slix_immunity = _slix.reduced_toxicity

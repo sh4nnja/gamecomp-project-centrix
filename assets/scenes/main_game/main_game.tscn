@@ -339,7 +339,7 @@ offset_right = 140.0
 offset_bottom = 53.0
 grow_horizontal = 2
 grow_vertical = 0
-value = 25.0
+max_value = 150.0
 fill_mode = 4
 nine_patch_stretch = true
 texture_under = SubResource("AtlasTexture_ub42n")
@@ -347,6 +347,7 @@ texture_progress = SubResource("AtlasTexture_kwnmh")
 radial_initial_angle = 180.0
 
 [node name="locator" type="Control" parent="user_interface_layer/user_interface"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -465,6 +466,7 @@ text = "50/100"
 horizontal_alignment = 1
 
 [node name="byte_notif" type="Control" parent="user_interface_layer/user_interface"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -549,9 +551,9 @@ anchor_top = 1.402
 anchor_right = -0.172
 anchor_bottom = 1.416
 offset_left = 151.752
-offset_top = -139.014
+offset_top = -143.014
 offset_right = 505.752
-offset_bottom = -59.512
+offset_bottom = -63.512
 theme_override_fonts/font = ExtResource("7_omp1m")
 theme_override_font_sizes/font_size = 25
 text = "I'm near you, I will make sure you have extra attack and defense points."
@@ -603,6 +605,8 @@ offset_bottom = 118.0
 grow_horizontal = 2
 texture_normal = SubResource("AtlasTexture_kdkmo")
 stretch_mode = 5
+
+[node name="anim" type="AnimationPlayer" parent="user_interface_layer/user_interface"]
 
 [node name="env" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hpu5o")
@@ -1391,7 +1395,7 @@ scale = Vector2(18.85, 19.95)
 position = Vector2(-804, 1077)
 
 [node name="slix" parent="objects" instance=ExtResource("1_gpnvh")]
-position = Vector2(-617, 1052)
+position = Vector2(-622, 1047)
 
 [node name="byte" parent="objects" instance=ExtResource("5_nj3ef")]
 position = Vector2(-650, 1041)

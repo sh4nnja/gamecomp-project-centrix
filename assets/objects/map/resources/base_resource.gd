@@ -15,7 +15,7 @@
 # Paulo Edrozo
 # ******************************************************************************
 
-extends StaticBody2D
+extends CharacterBody2D
 
 # NODES ************************************************************************
 @onready var _texture: AnimatedSprite2D = get_node("texture")
@@ -33,9 +33,6 @@ var _type: int = 0
 #var _resource_values: Array[Vector2] = [
 	#
 #]
-
-# Value.
-var value: Array = []
 
 # COLLISION SIZE ***************************************************************
 # Preset collision size and position for the resources.
@@ -78,3 +75,7 @@ func _randomize_resource() -> int:
 		_output = _rng.randi_range(4, 8)
 	
 	return _output
+
+func recover() -> int:
+	queue_free()
+	return _type

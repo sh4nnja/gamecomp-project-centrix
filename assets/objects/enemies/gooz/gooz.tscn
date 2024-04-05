@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bxaoafo5h2lh8"]
+[gd_scene load_steps=73 format=3 uid="uid://bxaoafo5h2lh8"]
 
 [ext_resource type="Texture2D" uid="uid://cwrg53r7b2326" path="res://assets/objects/enemies/gooz/textures/explode_r.png" id="1_3fds7"]
 [ext_resource type="Script" path="res://assets/objects/enemies/gooz/gooz.gd" id="1_i6jm0"]
@@ -6,9 +6,23 @@
 [ext_resource type="Texture2D" uid="uid://bp1khk84txbs4" path="res://assets/objects/enemies/gooz/textures/explode_l.png" id="1_qs773"]
 [ext_resource type="Texture2D" uid="uid://b15w7h361cpk7" path="res://assets/objects/enemies/gooz/textures/idle_r.png" id="2_306lt"]
 [ext_resource type="Texture2D" uid="uid://dfjn0vdhrhmhl" path="res://assets/global/texture/alert.png" id="6_paso5"]
+[ext_resource type="Texture2D" uid="uid://c0mfxiynspj7t" path="res://assets/global/texture/smoke.png" id="7_xw2vg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_thpue"]
 size = Vector2(16, 14)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_baoi3"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_ya84g"]
+_data = [Vector2(0.736641, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_beyig"]
+colors = PackedColorArray(0.298039, 0.827451, 0.258824, 1, 0.678431, 0.819608, 0.929412, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ne8f"]
 atlas = ExtResource("1_qs773")
@@ -459,11 +473,14 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.2),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"_self_destruct"
+"method": &"explode"
+}, {
+"args": [],
+"method": &"die"
 }]
 }
 
@@ -525,11 +542,14 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.2),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"_self_destruct"
+"method": &"explode"
+}, {
+"args": [],
+"method": &"die"
 }]
 }
 
@@ -699,7 +719,7 @@ states/idle/node = SubResource("AnimationNodeBlendSpace2D_171r5")
 states/idle/position = Vector2(371.259, 103.679)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_70j7i"), "idle", "damage", SubResource("AnimationNodeStateMachineTransition_16jhn"), "damage", "idle", SubResource("AnimationNodeStateMachineTransition_gjmqm"), "idle", "explode", SubResource("AnimationNodeStateMachineTransition_5jxio")]
 
-[node name="gooz" type="CharacterBody2D"]
+[node name="gooz" type="CharacterBody2D" groups=["enemy"]]
 collision_mask = 0
 script = ExtResource("1_i6jm0")
 
@@ -707,6 +727,35 @@ script = ExtResource("1_i6jm0")
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_thpue")
+
+[node name="toxic_fx" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_baoi3")
+emitting = false
+amount = 128
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+texture = ExtResource("7_xw2vg")
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 100.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+orbit_velocity_max = 0.1
+linear_accel_max = 1.0
+radial_accel_max = 1.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 0.15
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_ya84g")
+color = Color(0.662745, 0.921569, 0.643137, 1)
+color_ramp = SubResource("Gradient_beyig")
 
 [node name="texture" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ryvym")

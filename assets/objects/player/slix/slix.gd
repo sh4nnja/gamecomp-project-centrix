@@ -17,58 +17,63 @@
 
 extends CharacterBody2D
 
+# PROJECTILE *******************************************************************
+var _projectile: Resource = load("res://assets/objects/player/projectile/projectile.tscn")
+
 # NODES ************************************************************************
+@onready var _texture: AnimatedSprite2D = get_node("texture")
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
 
 @onready var _rfx_blur: CPUParticles2D = get_node("roll_fx/blur")
 @onready var _rfx_trail: CPUParticles2D = get_node("roll_fx/trail")
+@onready var _gfx_goo: CPUParticles2D = get_node("goowave/goo_fx")
 
 # PHYSICS **********************************************************************
-# Speed.
 const SPEED: float = 50.0
 
-# Rolling Speed Mult.
-const ROLL_SPEED_MULT: float = 2
+const ROLL_SPEED_MULT: float = 2 # Rolling Speed Mult.
 
-# Current velocity.
-var _vel: Vector2 = Vector2.ZERO
+var _vel: Vector2 = Vector2.ZERO # Current velocity.
 
-# SKILLS ***********************************************************************
-# Facilitates rolling.
-var _enabled_roll: bool = false
-
-# Devour.
+# SKILLS ANIMATION *************************************************************
+var _enabled_roll: bool = false # Facilitates rolling.
 var _enabled_devour: bool = false
-
-# Lash.
 var _enabled_lash: bool = false
-
-# Goowave.
 var _enabled_goo: bool = false
 
 # HEALTH ***********************************************************************
+# Deduction happens per physics frame.
 const TOXIC_ATMOSPHERE: float = 0.005
-const TOXIC_DEDUCTION_REDUCER: float = 0.01
-const ROLLOUT_ENERGY: float = 0.01
+const TOXIC_LAKE: float = 1
+const TOXIC_DEDUCTION_REDUCER: float = 0.005
+const IMMUNITY_DURATION: float = 0.25
 
-# Health.
+# Deduction happens on a specific physics frame of the animation.
+const ROLLOUT_ENERGY: float = 1.25
+const LASH_ENERGY: float = 2.00
+const GOOWAVE_ENERGY: float = 10.00
+
 var health: float = 100.0
 
-# Immunity Timer.
-var reduced_toxic_duration: float = 1
+var reduced_toxicity: float = 0 # Grace period amount before going back to normal deduction.
+
+# GOOWAVE **********************************************************************
+var _enemies: Array = []
+
+# RESOURCE *********************************************************************
+var _devoured: CharacterBody2D
+var _devoured_enemy: CharacterBody2D
 
 # VIRTUAL **********************************************************************
 func _ready() -> void:
-	# Enable animation.
-	_anim_blend.set_active(true)
+	_anim_blend.set_active(true) # Enable animation.
 
 func _physics_process(_delta: float) -> void:
+	_manage_health()
 	_manage_movement(_delta)
-	_manage_animation()
-	_manage_skills()
+	_manage_movement_anim()
+	_manage_skills_anim()
 	_manage_effects()
-	
-	print("Damaged! Health Remaining: ", snappedf(health, 0.01))
 
 # CUSTOM ***********************************************************************
 # Movement handler.
@@ -94,8 +99,8 @@ func _manage_movement(_delta: float) -> void:
 	
 	move_and_slide()
 
-# Skills handler.
-func _manage_skills() -> void:
+# Skills Animation handler.
+func _manage_skills_anim() -> void:
 	# Lash.
 	if Input.is_action_just_pressed("lash"):
 		_enabled_lash = true
@@ -108,12 +113,11 @@ func _manage_skills() -> void:
 	elif Input.is_action_just_pressed("goowave"):
 		_enabled_goo = true
 	
-	# Skills Deduction.
+	# Atmosphere Deduction.
 	_toxic_atmosphere_deduction()
-	_rollout_deduction()
 
 # Animation handler.
-func _manage_animation() -> void:
+func _manage_movement_anim() -> void:
 	# Movement and Idle.
 	if _vel == Vector2.ZERO:
 		_anim_blend.get("parameters/playback").travel("idle")
@@ -128,6 +132,10 @@ func _manage_animation() -> void:
 	# Transform to roll.
 	if _enabled_roll:
 		_anim_blend.get("parameters/playback").travel("rolling")
+	
+	# Death.
+	if health == 0:
+		_anim_blend.get("parameters/playback").travel("death")
 	
 	# ******************************************************************************
 	# Make sure that the animations will not play when rolling.
@@ -163,16 +171,114 @@ func _manage_effects() -> void:
 		_rfx_trail.set_emitting(_enabled_roll)
 		_rfx_blur.set_emitting(_enabled_roll)
 
+# Manage health.
+func _manage_health() -> void:
+	if health > 100:
+		health = 100
+	elif health < 0:
+		health = 0
+	
+	if reduced_toxicity > 150:
+		reduced_toxicity = 150
+	elif reduced_toxicity < 0:
+		reduced_toxicity = 0
+	
+	# Set the colors of all elements
+	if health <= 100 and health >= 66:
+		_texture.self_modulate = Global.slix_colors[0]
+		_gfx_goo.self_modulate = Global.slix_colors[0]
+		_rfx_blur.self_modulate = Global.slix_colors[0]
+		_rfx_trail.self_modulate = Global.slix_colors[0]
+	elif health <= 65 and health >= 33:
+		_texture.self_modulate = Global.slix_colors[1]
+		_gfx_goo.self_modulate = Global.slix_colors[1]
+		_gfx_goo.self_modulate = Global.slix_colors[1]
+		_rfx_blur.self_modulate = Global.slix_colors[1]
+		_rfx_trail.self_modulate = Global.slix_colors[1]
+	elif health <= 32 and health >= 1:
+		_texture.self_modulate = Global.slix_colors[2]
+		_gfx_goo.self_modulate = Global.slix_colors[2]
+		_gfx_goo.self_modulate = Global.slix_colors[2]
+		_rfx_blur.self_modulate = Global.slix_colors[2]
+		_rfx_trail.self_modulate = Global.slix_colors[2]
+
+# Toxic Lake Deduction.
+func toxic_lake_deduction() -> void:
+	health -= TOXIC_LAKE
+
 # Toxic Atmosphere Deduction.
 func _toxic_atmosphere_deduction() -> void:
-	if reduced_toxic_duration > 0:
+	# Reduced.
+	if reduced_toxicity > 0:
+		reduced_toxicity -= TOXIC_DEDUCTION_REDUCER / IMMUNITY_DURATION
 		health -= (TOXIC_ATMOSPHERE * TOXIC_DEDUCTION_REDUCER)
-	elif reduced_toxic_duration == -1:
-		pass
+	
+	# No Reduction.
 	else:
 		health -= TOXIC_ATMOSPHERE
 
-# Rollout Energy Deduction.
-func _rollout_deduction() -> void:
-	if _enabled_roll and _vel != Vector2.ZERO:
+func damage(_damage: float) -> void:
+	health -= _damage
+
+# The execution of the actions below are located in the animations of Slix.
+# The code enable_lash in code are for animation.
+func rollout() -> void:
+	if _vel != Vector2.ZERO:
 		health -= ROLLOUT_ENERGY
+
+func devour() -> void:
+	if _devoured:
+		# Gets the value of that item.
+		var _res_type: int = _devoured.recover() 
+		if _res_type > 3:
+			reduced_toxicity += 15
+		else:
+			health += 25
+			reduced_toxicity = 150
+		_devoured = null
+	
+	if _devoured_enemy:
+		# Only devour enemy when dead.
+		if _devoured_enemy.health <= 0:
+			_devoured_enemy.queue_free()
+			health += 25
+			reduced_toxicity = 75
+			_devoured_enemy = null # Removes the reference.
+
+func lash() -> void:
+	health -= LASH_ENERGY
+	var _projectile_inst = _projectile.instantiate()
+	owner.objects.add_child(_projectile_inst)
+	_projectile_inst.global_position = global_position
+	_projectile_inst.transform = Transform2D(get_angle_to(get_global_mouse_position()), position)
+
+func goowave() -> void:
+	health -= GOOWAVE_ENERGY
+	_gfx_goo.set_emitting(true)
+	for _enemy in _enemies:
+		_enemy.damage(2)
+
+func death() -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED
+	_anim_blend.set_active(false)
+
+# SIGNALS **********************************************************************
+func _on_goowave_body_entered(_body: Node2D) -> void:
+	if _body.is_in_group("enemy"):
+		_enemies.append(_body)
+
+func _on_goowave_body_exited(_body: Node2D) -> void:
+	if _body.is_in_group("enemy"):
+		_enemies.erase(_body)
+
+func _on_devour_body_entered(_body: Node2D) -> void:
+	if _body.is_in_group("Resource") and not _body.is_in_group("Slix"):
+		_devoured = _body
+	elif _body.is_in_group("enemy"):
+		_devoured_enemy = _body
+
+func _on_devour_body_exited(_body: Node2D) -> void:
+	if _body.is_in_group("Resource") and not _body.is_in_group("Slix"):
+		_devoured = null
+	elif _body.is_in_group("enemy"):
+		_devoured_enemy = null

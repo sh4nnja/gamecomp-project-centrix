@@ -21,25 +21,17 @@ extends CharacterBody2D
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
 
 # PHYSICS **********************************************************************
-# Speed.
-const SPEED: float = 35.0
+const SPEED: float = 35.0 
 
-# Distance before follow Slix.
-var _chase_threshold: int = 20
+var _chase_threshold: int = 20 # Distance before follow Slix.
 
-# Slix.
-var _slix: CharacterBody2D = null
-
-# Current velocity.
-var _vel: Vector2 = Vector2.ZERO
+var _slix: CharacterBody2D = null # Slix.
+var _vel: Vector2 = Vector2.ZERO # Current velocity.
 
 # VIRTUAL **********************************************************************
 func _ready() -> void:
-	# Enable animation.
-	_anim_blend.set_active(true)
-	
-	# Get Slix to be followed.
-	_get_slix()
+	_anim_blend.set_active(true) # Enable animation.
+	_get_slix() # Get Slix to be followed.
 
 func _physics_process(_delta: float) -> void:
 	_manage_movement(_delta)
@@ -48,16 +40,17 @@ func _physics_process(_delta: float) -> void:
 # CUSTOM ***********************************************************************
 # Find Slix in world.
 func _get_slix() -> void:
-	_slix = get_parent().get_node("slix")
+	_slix = get_parent().get_node_or_null("slix")
 
 # Movement handler.
 func _manage_movement(_delta: float) -> void:
 	velocity = Vector2.ZERO
 	
 	# Moves Byte when Slix is faraway.
-	if position.distance_to(_slix.global_position) > _chase_threshold and _slix != null:
-		velocity = position.direction_to(_slix.global_position) * SPEED
-		_vel = velocity.normalized()
+	if _slix != null:
+		if position.distance_to(_slix.global_position) > _chase_threshold and _slix != null:
+			velocity = position.direction_to(_slix.global_position) * SPEED
+			_vel = velocity.normalized()
 	
 	move_and_slide()
 

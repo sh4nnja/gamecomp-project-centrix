@@ -17,6 +17,10 @@ boot_splash/image="res://assets/dev/centrix_logo/logomark/1200x1200/1200x1200_mo
 config/icon="res://assets/dev/centrix_logo/logomark/1200x1200/1200x1200_original_white.png"
 boot_splash/minimum_display_time=1000
 
+[autoload]
+
+Global="*res://assets/global/script/global.gd"
+
 [display]
 
 window/size/viewport_width=1920
@@ -25,6 +29,18 @@ window/size/window_width_override=1024
 window/size/window_height_override=600
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "gray",
+"res://assets/dev/": "red",
+"res://assets/global/": "green",
+"res://assets/objects/": "yellow",
+"res://assets/objects/map/": "yellow",
+"res://assets/objects/player/": "yellow",
+"res://assets/scenes/": "purple"
+}
 
 [input]
 
