@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cu3uvqgciebvf"]
+[gd_scene load_steps=28 format=3 uid="uid://cu3uvqgciebvf"]
 
 [ext_resource type="Script" path="res://assets/objects/player/byte/byte.gd" id="1_gfos4"]
 [ext_resource type="Texture2D" uid="uid://bt2ohf4bj2voc" path="res://assets/objects/player/byte/textures/floating_l.png" id="1_scuf7"]
@@ -89,6 +89,9 @@ colors = PackedColorArray(0, 1, 1, 0.392157, 0, 0, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dvfv2"]
 radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_10o2i"]
+radius = 50.0
 
 [sub_resource type="Animation" id="Animation_3cm1i"]
 length = 0.001
@@ -210,7 +213,8 @@ collision_layer = 0
 script = ExtResource("1_gfos4")
 
 [node name="texture" type="AnimatedSprite2D" parent="."]
-z_index = 3
+z_index = 4
+z_as_relative = false
 sprite_frames = SubResource("SpriteFrames_0aagb")
 animation = &"float_l"
 
@@ -237,6 +241,13 @@ anim_offset_max = 1.0
 shape = SubResource("CircleShape2D_dvfv2")
 disabled = true
 
+[node name="detection" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="shape" type="CollisionShape2D" parent="detection"]
+shape = SubResource("CircleShape2D_10o2i")
+
 [node name="anim" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_tb16g")
@@ -250,3 +261,6 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_lvunh")
 anim_player = NodePath("../anim")
 parameters/float/blend_position = Vector2(0.24594, 0.215827)
+
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]

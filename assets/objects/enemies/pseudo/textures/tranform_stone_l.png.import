@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d341an48s2xie"
-path="res://.godot/imported/idle_l.png-c3296f8e951aebbac5c6627c4ab62dc5.ctex"
+uid="uid://i5uasohbg246"
+path="res://.godot/imported/tranform_stone_l.png-90954e857285ad7144821d020a14daad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/enemies/arachnoxenomorph/textures/idle_l.png"
-dest_files=["res://.godot/imported/idle_l.png-c3296f8e951aebbac5c6627c4ab62dc5.ctex"]
+source_file="res://assets/objects/enemies/pseudo/textures/tranform_stone_l.png"
+dest_files=["res://.godot/imported/tranform_stone_l.png-90954e857285ad7144821d020a14daad.ctex"]
 
 [params]
 

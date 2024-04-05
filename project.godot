@@ -12,6 +12,7 @@ config_version=5
 
 config/name="gamedev-project-centium"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://assets/dev/centrix_logo/logomark/1200x1200/1200x1200_monochrome_white.png"
 config/icon="res://assets/dev/centrix_logo/logomark/1200x1200/1200x1200_original_white.png"
 boot_splash/minimum_display_time=1000
@@ -22,6 +23,8 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/window_width_override=1024
 window/size/window_height_override=600
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [input]
 
@@ -191,6 +194,8 @@ goowave={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+shading/overrides/force_lambert_over_burley=true
+textures/default_filters/use_nearest_mipmap_filter=true
 textures/decals/filter=0
 textures/light_projectors/filter=0
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

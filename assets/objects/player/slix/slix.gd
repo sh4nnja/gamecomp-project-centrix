@@ -11,7 +11,7 @@
 # Miccael Jasper Tayas
 # Jhovic Cortel
 #
-# Advisers
+# Adviser
 # Paulo Edrozo
 # ******************************************************************************
 

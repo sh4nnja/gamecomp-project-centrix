@@ -11,7 +11,7 @@
 # Miccael Jasper Tayas
 # Jhovic Cortel
 #
-# Advisers
+# Adviser
 # Paulo Edrozo
 # ******************************************************************************
 
@@ -63,3 +63,10 @@ func _manage_movement(_delta: float) -> void:
 
 func _manage_animation() -> void:
 	_anim_blend.set("parameters/float/blend_position", _vel)
+
+# SIGNALS **********************************************************************
+func _on_detection_body_entered(_body: Node2D) -> void:
+	pass # Replace with function body.
+
+func _on_detection_body_exited(_body: Node2D) -> void:
+	pass # Replace with function body.
