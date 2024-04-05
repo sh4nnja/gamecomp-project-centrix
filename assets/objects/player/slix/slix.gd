@@ -46,6 +46,17 @@ var _enabled_lash: bool = false
 # Goowave.
 var _enabled_goo: bool = false
 
+# HEALTH ***********************************************************************
+const TOXIC_ATMOSPHERE: float = 0.005
+const TOXIC_DEDUCTION_REDUCER: float = 0.01
+const ROLLOUT_ENERGY: float = 0.01
+
+# Health.
+var health: float = 100.0
+
+# Immunity Timer.
+var reduced_toxic_duration: float = 1
+
 # VIRTUAL **********************************************************************
 func _ready() -> void:
 	# Enable animation.
@@ -56,6 +67,8 @@ func _physics_process(_delta: float) -> void:
 	_manage_animation()
 	_manage_skills()
 	_manage_effects()
+	
+	print("Damaged! Health Remaining: ", snappedf(health, 0.01))
 
 # CUSTOM ***********************************************************************
 # Movement handler.
@@ -94,6 +107,10 @@ func _manage_skills() -> void:
 	# Goowave.
 	elif Input.is_action_just_pressed("goowave"):
 		_enabled_goo = true
+	
+	# Skills Deduction.
+	_toxic_atmosphere_deduction()
+	_rollout_deduction()
 
 # Animation handler.
 func _manage_animation() -> void:
@@ -145,3 +162,17 @@ func _manage_effects() -> void:
 	else:
 		_rfx_trail.set_emitting(_enabled_roll)
 		_rfx_blur.set_emitting(_enabled_roll)
+
+# Toxic Atmosphere Deduction.
+func _toxic_atmosphere_deduction() -> void:
+	if reduced_toxic_duration > 0:
+		health -= (TOXIC_ATMOSPHERE * TOXIC_DEDUCTION_REDUCER)
+	elif reduced_toxic_duration == -1:
+		pass
+	else:
+		health -= TOXIC_ATMOSPHERE
+
+# Rollout Energy Deduction.
+func _rollout_deduction() -> void:
+	if _enabled_roll and _vel != Vector2.ZERO:
+		health -= ROLLOUT_ENERGY

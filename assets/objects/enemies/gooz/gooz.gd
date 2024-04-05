@@ -31,6 +31,8 @@ var _vel: Vector2 = Vector2.ZERO
 var _detected_enemy: CharacterBody2D = null
 var _explode: bool = false
 
+var health: float = 100.0
+
 # NODES ************************************************************************
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
 @onready var _anim_alert: AnimatedSprite2D = get_node("alert")
@@ -50,7 +52,7 @@ func _manage_movement(_delta: float) -> void:
 	velocity = Vector2.ZERO
 	
 	# Chase Slix.
-	if _detected_enemy != null:
+	if _detected_enemy != null and not _explode:
 		if position.distance_to(_detected_enemy.global_position) > _chase_threshold:
 			velocity = position.direction_to(_detected_enemy.global_position) * SPEED
 			_vel = velocity.normalized()
@@ -77,12 +79,13 @@ func _on_detection_body_entered(_body: Node2D) -> void:
 		_anim_alert.play("alert")
 
 func _on_detection_body_exited(_body: Node2D) -> void:
-	if _body.is_in_group("Slix") or _detected_enemy:
+	if _body.is_in_group("Slix"):
 		_detected_enemy = null
 		_anim_alert.play_backwards("alert")
 
 # Explode on contact.
 func _on_attack_body_entered(_body: Node2D) -> void:
-	if _body.is_in_group("Slix") or _detected_enemy:
+	if _body.is_in_group("Slix"):
 		_explode = true
+		_anim_alert.play_backwards("alert")
 

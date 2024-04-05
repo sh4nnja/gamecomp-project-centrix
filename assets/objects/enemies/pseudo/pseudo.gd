@@ -34,6 +34,8 @@ var _can_chase: bool = false
 
 var _attack: bool = false
 
+var health: float = 100.0
+
 # NODES ************************************************************************
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
 @onready var _anim_alert: AnimatedSprite2D = get_node("alert")

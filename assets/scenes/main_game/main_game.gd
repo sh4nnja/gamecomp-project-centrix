@@ -40,7 +40,7 @@ enum {
 # Enum for Gooz Spawning.
 enum {
 	GOOZ_SPAWN = 2,
-	TOXIC_GOOZ = 50
+	TOXIC_GOOZ = 35
 }
 
 # Chance of the resource to spawn. Example, there are 1 in 20 chance of spawning.

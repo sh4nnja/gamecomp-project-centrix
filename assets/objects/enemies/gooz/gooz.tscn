@@ -740,7 +740,6 @@ libraries = {
 }
 
 [node name="anim_blend" type="AnimationTree" parent="."]
-deterministic = false
 libraries = {
 "": SubResource("AnimationLibrary_jynsm")
 }
