@@ -137,7 +137,7 @@ func _pause_animation(_value: bool) -> void:
 	get_tree().paused = _value
 
 func _pause() -> void:
-	if Input.is_action_just_pressed("esc"):
+	if Input.is_action_just_pressed("esc") and not _death:
 		if not get_tree().paused:
 			_pause_animation(true)
 		else:

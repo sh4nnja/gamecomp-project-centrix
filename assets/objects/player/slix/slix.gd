@@ -265,6 +265,7 @@ func lash() -> void:
 	owner.objects.add_child(_projectile_inst)
 	_projectile_inst.global_position = global_position
 	_projectile_inst.transform = Transform2D(get_angle_to(get_global_mouse_position()), position)
+	_projectile_inst.change_texture(_texture.self_modulate)
 
 func goowave() -> void:
 	health -= goowave_energy
