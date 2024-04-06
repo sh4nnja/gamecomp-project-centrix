@@ -1,4 +1,4 @@
-[gd_scene load_steps=150 format=3 uid="uid://b3d3rovgrbsqh"]
+[gd_scene load_steps=147 format=3 uid="uid://b3d3rovgrbsqh"]
 
 [ext_resource type="Script" path="res://assets/objects/enemies/pseudo/pseudo.gd" id="1_tn7si"]
 [ext_resource type="Texture2D" uid="uid://dse7n3csxj4dq" path="res://assets/objects/enemies/pseudo/textures/attack_l.png" id="2_8cou5"]
@@ -643,7 +643,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g4jqm"]
-radius = 50.0
+radius = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1r47u"]
 radius = 11.7047
@@ -901,22 +901,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Vector2(0, -0.5), Vector2(0, -1), Vector2(0, -0.5)]
-}
-
-[sub_resource type="Animation" id="Animation_nbjv2"]
-resource_name = "damage"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("texture:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_rdnhd"]
@@ -1400,7 +1384,6 @@ _data = {
 "attack_r": SubResource("Animation_g4fr7"),
 "crawl_l": SubResource("Animation_wgnsy"),
 "crawl_r": SubResource("Animation_6hpks"),
-"damage": SubResource("Animation_nbjv2"),
 "dead_l": SubResource("Animation_rdnhd"),
 "dead_r": SubResource("Animation_2j2qt"),
 "idle_l": SubResource("Animation_cqnyy"),
@@ -1437,9 +1420,6 @@ blend_point_0/pos = Vector2(-1, 0)
 blend_point_1/node = SubResource("AnimationNodeAnimation_b5u7t")
 blend_point_1/pos = Vector2(1, 0)
 blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wjraw"]
-animation = &"damage"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ytbh5"]
 animation = &"dead_l"
@@ -1513,18 +1493,6 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rgbss"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lsgvd"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vdecm"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dnoxc"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7hktd"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p72bk"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_26ke8"]
@@ -1533,17 +1501,21 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xtm7i"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fcm0d"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6xkiv"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0livd"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mo1ml"]
 states/End/position = Vector2(1073.33, -9.25037)
 states/Start/position = Vector2(186.667, 106.305)
 states/attack/node = SubResource("AnimationNodeBlendSpace2D_ev3ra")
-states/attack/position = Vector2(766.013, -4.33333)
+states/attack/position = Vector2(748.68, -5.51852)
 states/crawl/node = SubResource("AnimationNodeBlendSpace2D_ywo6c")
 states/crawl/position = Vector2(835.333, 102)
-states/damage/node = SubResource("AnimationNodeAnimation_wjraw")
-states/damage/position = Vector2(765.129, 200.667)
 states/dead/node = SubResource("AnimationNodeBlendSpace2D_ch1sc")
-states/dead/position = Vector2(909.667, -3.88889)
+states/dead/position = Vector2(575, -49.2222)
 states/idle/node = SubResource("AnimationNodeBlendSpace2D_ak2mo")
 states/idle/position = Vector2(693.333, 105.591)
 states/idle_to_stone/node = SubResource("AnimationNodeBlendSpace2D_t5310")
@@ -1552,8 +1524,8 @@ states/stone/node = SubResource("AnimationNodeAnimation_ua4st")
 states/stone/position = Vector2(333.333, 105.826)
 states/stone_to_idle/node = SubResource("AnimationNodeBlendSpace2D_kyvcy")
 states/stone_to_idle/position = Vector2(530.667, 144.667)
-transitions = ["Start", "stone", SubResource("AnimationNodeStateMachineTransition_mngxt"), "idle_to_stone", "stone", SubResource("AnimationNodeStateMachineTransition_8dpbi"), "stone_to_idle", "idle", SubResource("AnimationNodeStateMachineTransition_kxy55"), "idle", "idle_to_stone", SubResource("AnimationNodeStateMachineTransition_8vdp8"), "stone", "stone_to_idle", SubResource("AnimationNodeStateMachineTransition_io86h"), "idle", "crawl", SubResource("AnimationNodeStateMachineTransition_mg8b7"), "crawl", "idle", SubResource("AnimationNodeStateMachineTransition_rgbss"), "idle", "damage", SubResource("AnimationNodeStateMachineTransition_lsgvd"), "damage", "idle", SubResource("AnimationNodeStateMachineTransition_vdecm"), "crawl", "damage", SubResource("AnimationNodeStateMachineTransition_dnoxc"), "damage", "crawl", SubResource("AnimationNodeStateMachineTransition_7hktd"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_p72bk"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_26ke8"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_juvvt"), "crawl", "dead", SubResource("AnimationNodeStateMachineTransition_xtm7i")]
-graph_offset = Vector2(135, -73)
+transitions = ["Start", "stone", SubResource("AnimationNodeStateMachineTransition_mngxt"), "idle_to_stone", "stone", SubResource("AnimationNodeStateMachineTransition_8dpbi"), "stone_to_idle", "idle", SubResource("AnimationNodeStateMachineTransition_kxy55"), "idle", "idle_to_stone", SubResource("AnimationNodeStateMachineTransition_8vdp8"), "stone", "stone_to_idle", SubResource("AnimationNodeStateMachineTransition_io86h"), "idle", "crawl", SubResource("AnimationNodeStateMachineTransition_mg8b7"), "crawl", "idle", SubResource("AnimationNodeStateMachineTransition_rgbss"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_p72bk"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_26ke8"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_juvvt"), "crawl", "dead", SubResource("AnimationNodeStateMachineTransition_xtm7i"), "attack", "dead", SubResource("AnimationNodeStateMachineTransition_fcm0d"), "idle_to_stone", "dead", SubResource("AnimationNodeStateMachineTransition_6xkiv"), "stone", "dead", SubResource("AnimationNodeStateMachineTransition_0livd")]
+graph_offset = Vector2(162, 39)
 
 [node name="pseudo" type="CharacterBody2D" groups=["enemy"]]
 z_index = 3

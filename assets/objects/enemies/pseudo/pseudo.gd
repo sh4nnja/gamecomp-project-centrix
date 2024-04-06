@@ -37,6 +37,7 @@ var _attack_damage: float = 15.0
 # NODES ************************************************************************
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
 @onready var _anim_alert: AnimatedSprite2D = get_node("alert")
+@onready var _texture: AnimatedSprite2D = get_node("texture")
 
 # VIRTUAL **********************************************************************
 func _ready() -> void:
@@ -96,6 +97,9 @@ func _manage_animation() -> void:
 		_anim_blend.set("parameters/dead/blend_position", _vel)
 
 func damage(_multiplier: int = 1) -> void:
+	_texture.modulate = Color.html("ff0000")
+	await get_tree().create_timer(0.1).timeout
+	_texture.modulate = Color.html("ffffff")
 	health -= _hit * _multiplier
 
 func die() -> void:

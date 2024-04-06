@@ -45,13 +45,13 @@ var _enabled_goo: bool = false
 # Deduction happens per physics frame.
 const TOXIC_ATMOSPHERE: float = 0.005
 const TOXIC_LAKE: float = 1
-const TOXIC_DEDUCTION_REDUCER: float = 0.005
+const TOXIC_DEDUCTION_REDUCER: float = 0.01
 const IMMUNITY_DURATION: float = 0.25
 
 # Deduction happens on a specific physics frame of the animation.
-const ROLLOUT_ENERGY: float = 1.25
-const LASH_ENERGY: float = 2.00
-const GOOWAVE_ENERGY: float = 10.00
+var rollout_energy: float = 1.25
+var lash_energy: float = 2.00
+var goowave_energy: float = 10.00
 
 var health: float = 100.0
 
@@ -218,13 +218,27 @@ func _toxic_atmosphere_deduction() -> void:
 		health -= TOXIC_ATMOSPHERE
 
 func damage(_damage: float) -> void:
+	_texture.modulate = Color.html("ff0000")
+	await get_tree().create_timer(0.1).timeout
+	_texture.modulate = Color.html("ffffff")
 	health -= _damage
+
+# Lowers the energy usage when attacking or doing things
+func lower_energy_usage(_mode: bool) -> void:
+	if _mode:
+		rollout_energy = 0.625
+		lash_energy = 1.00
+		goowave_energy = 5.00
+	else:
+		rollout_energy = 1.25
+		lash_energy = 2.00
+		goowave_energy = 10.00
 
 # The execution of the actions below are located in the animations of Slix.
 # The code enable_lash in code are for animation.
 func rollout() -> void:
 	if _vel != Vector2.ZERO:
-		health -= ROLLOUT_ENERGY
+		health -= rollout_energy
 
 func devour() -> void:
 	if _devoured:
@@ -246,14 +260,14 @@ func devour() -> void:
 			_devoured_enemy = null # Removes the reference.
 
 func lash() -> void:
-	health -= LASH_ENERGY
+	health -= lash_energy
 	var _projectile_inst = _projectile.instantiate()
 	owner.objects.add_child(_projectile_inst)
 	_projectile_inst.global_position = global_position
 	_projectile_inst.transform = Transform2D(get_angle_to(get_global_mouse_position()), position)
 
 func goowave() -> void:
-	health -= GOOWAVE_ENERGY
+	health -= goowave_energy
 	_gfx_goo.set_emitting(true)
 	for _enemy in _enemies:
 		_enemy.damage(2)

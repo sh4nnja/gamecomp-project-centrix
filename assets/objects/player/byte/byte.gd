@@ -28,6 +28,9 @@ var _chase_threshold: int = 20 # Distance before follow Slix.
 var _slix: CharacterBody2D = null # Slix.
 var _vel: Vector2 = Vector2.ZERO # Current velocity.
 
+# SKILLS ***********************************************************************
+var connected: bool = true
+
 # VIRTUAL **********************************************************************
 func _ready() -> void:
 	_anim_blend.set_active(true) # Enable animation.
@@ -57,9 +60,19 @@ func _manage_movement(_delta: float) -> void:
 func _manage_animation() -> void:
 	_anim_blend.set("parameters/float/blend_position", _vel)
 
+func _provide_assistance(_mode: bool) -> void:
+	if _mode:
+		connected = true
+	else:
+		connected = false
+	
+	_slix.lower_energy_usage(connected)
+
 # SIGNALS **********************************************************************
 func _on_detection_body_entered(_body: Node2D) -> void:
-	pass # Replace with function body.
+	if _body.is_in_group("Slix"):
+		_provide_assistance(true)
 
 func _on_detection_body_exited(_body: Node2D) -> void:
-	pass # Replace with function body.
+	if _body.is_in_group("Slix"):
+		_provide_assistance(false)

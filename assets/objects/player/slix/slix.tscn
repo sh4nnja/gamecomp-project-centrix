@@ -1,4 +1,4 @@
-[gd_scene load_steps=198 format=3 uid="uid://djmjrikkun6gd"]
+[gd_scene load_steps=191 format=3 uid="uid://djmjrikkun6gd"]
 
 [ext_resource type="Script" path="res://assets/objects/player/slix/slix.gd" id="1_56pfa"]
 [ext_resource type="Texture2D" uid="uid://ckgqvp0c6ra6r" path="res://assets/objects/player/slix/textures/idle & walk/left/idle_l.png" id="2_rsfkk"]
@@ -953,20 +953,58 @@ tracks/5/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_b0pm1"]
-resource_name = "damage"
+[sub_resource type="Animation" id="Animation_ibktc"]
+resource_name = "death"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("texture:self_modulate")
+tracks/0/path = NodePath("texture:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+"values": [&"goowave"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("texture:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 4, 5]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"death"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("texture:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(0.270588, 0, 0.270588, 1), Color(0.0745098, 0, 0.0745098, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_idfh5"]
@@ -1717,64 +1755,9 @@ tracks/3/keys = {
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0.5), Vector2(0, 1), Vector2(0, 1.5), Vector2(0, 1.5), Vector2(0, 0.5), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_ibktc"]
-resource_name = "death"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("texture:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"goowave"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("texture:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 3, 4, 5]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"death"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("texture:self_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Color(0.270588, 0, 0.270588, 1), Color(0.0745098, 0, 0.0745098, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o8k37"]
 _data = {
 "RESET": SubResource("Animation_15j7n"),
-"damage": SubResource("Animation_b0pm1"),
 "death": SubResource("Animation_ibktc"),
 "devour_l": SubResource("Animation_idfh5"),
 "devour_r": SubResource("Animation_x1d3r"),
@@ -1789,9 +1772,6 @@ _data = {
 "running_l": SubResource("Animation_p7ssh"),
 "running_r": SubResource("Animation_mp7vu")
 }
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qk8ib"]
-animation = &"damage"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_774th"]
 animation = &"death"
@@ -1898,18 +1878,6 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sjexv"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ycu6g"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ask4"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dw7t0"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y3tem"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e7nvo"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3ko5h"]
@@ -1920,14 +1888,10 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_emuc2"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_34y80"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o8lje"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_5cnvg"]
 states/Start/position = Vector2(189.333, 112)
-states/damage/node = SubResource("AnimationNodeAnimation_qk8ib")
-states/damage/position = Vector2(562, -58.122)
 states/death/node = SubResource("AnimationNodeAnimation_774th")
 states/death/position = Vector2(40.6667, 19.4208)
 states/devour/node = SubResource("AnimationNodeBlendSpace2D_vcljq")
@@ -1946,8 +1910,8 @@ states/rolling/node = SubResource("AnimationNodeAnimation_6fjgr")
 states/rolling/position = Vector2(347.074, -59.6667)
 states/running/node = SubResource("AnimationNodeBlendSpace2D_8t528")
 states/running/position = Vector2(688.082, 117.519)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_glo71"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_b1fwa"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_a7din"), "rolling", "roll_to_idle", SubResource("AnimationNodeStateMachineTransition_yilfe"), "roll_to_idle", "idle", SubResource("AnimationNodeStateMachineTransition_5kflg"), "idle", "idle_to_roll", SubResource("AnimationNodeStateMachineTransition_5i35g"), "idle_to_roll", "rolling", SubResource("AnimationNodeStateMachineTransition_2nnwt"), "idle", "devour", SubResource("AnimationNodeStateMachineTransition_u6q2t"), "devour", "idle", SubResource("AnimationNodeStateMachineTransition_n2nik"), "running", "devour", SubResource("AnimationNodeStateMachineTransition_ora43"), "idle", "lash", SubResource("AnimationNodeStateMachineTransition_6rqgr"), "lash", "idle", SubResource("AnimationNodeStateMachineTransition_rh8is"), "running", "lash", SubResource("AnimationNodeStateMachineTransition_ndu5h"), "idle", "goowave", SubResource("AnimationNodeStateMachineTransition_qnxw7"), "goowave", "idle", SubResource("AnimationNodeStateMachineTransition_gy5pa"), "running", "goowave", SubResource("AnimationNodeStateMachineTransition_sjexv"), "damage", "idle", SubResource("AnimationNodeStateMachineTransition_ycu6g"), "damage", "running", SubResource("AnimationNodeStateMachineTransition_6ask4"), "idle", "damage", SubResource("AnimationNodeStateMachineTransition_dw7t0"), "running", "damage", SubResource("AnimationNodeStateMachineTransition_y3tem"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_e7nvo"), "running", "death", SubResource("AnimationNodeStateMachineTransition_3ko5h"), "lash", "death", SubResource("AnimationNodeStateMachineTransition_rud45"), "goowave", "death", SubResource("AnimationNodeStateMachineTransition_fhmb8"), "devour", "death", SubResource("AnimationNodeStateMachineTransition_emuc2"), "damage", "death", SubResource("AnimationNodeStateMachineTransition_34y80"), "rolling", "death", SubResource("AnimationNodeStateMachineTransition_o8lje")]
-graph_offset = Vector2(-290, -81)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_glo71"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_b1fwa"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_a7din"), "rolling", "roll_to_idle", SubResource("AnimationNodeStateMachineTransition_yilfe"), "roll_to_idle", "idle", SubResource("AnimationNodeStateMachineTransition_5kflg"), "idle", "idle_to_roll", SubResource("AnimationNodeStateMachineTransition_5i35g"), "idle_to_roll", "rolling", SubResource("AnimationNodeStateMachineTransition_2nnwt"), "idle", "devour", SubResource("AnimationNodeStateMachineTransition_u6q2t"), "devour", "idle", SubResource("AnimationNodeStateMachineTransition_n2nik"), "running", "devour", SubResource("AnimationNodeStateMachineTransition_ora43"), "idle", "lash", SubResource("AnimationNodeStateMachineTransition_6rqgr"), "lash", "idle", SubResource("AnimationNodeStateMachineTransition_rh8is"), "running", "lash", SubResource("AnimationNodeStateMachineTransition_ndu5h"), "idle", "goowave", SubResource("AnimationNodeStateMachineTransition_qnxw7"), "goowave", "idle", SubResource("AnimationNodeStateMachineTransition_gy5pa"), "running", "goowave", SubResource("AnimationNodeStateMachineTransition_sjexv"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_e7nvo"), "running", "death", SubResource("AnimationNodeStateMachineTransition_3ko5h"), "lash", "death", SubResource("AnimationNodeStateMachineTransition_rud45"), "goowave", "death", SubResource("AnimationNodeStateMachineTransition_fhmb8"), "devour", "death", SubResource("AnimationNodeStateMachineTransition_emuc2"), "rolling", "death", SubResource("AnimationNodeStateMachineTransition_o8lje")]
+graph_offset = Vector2(-113, -89)
 
 [node name="slix" type="CharacterBody2D" groups=["Slix"]]
 motion_mode = 1
@@ -2054,7 +2018,6 @@ libraries = {
 }
 
 [node name="anim_blend" type="AnimationTree" parent="."]
-active = false
 callback_mode_process = 0
 libraries = {
 "": SubResource("AnimationLibrary_o8k37")

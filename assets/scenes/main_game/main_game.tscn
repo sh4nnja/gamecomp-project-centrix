@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cw1fyp63ld3kf"]
+[gd_scene load_steps=63 format=3 uid="uid://cw1fyp63ld3kf"]
 
 [ext_resource type="PackedScene" uid="uid://djmjrikkun6gd" path="res://assets/objects/player/slix/slix.tscn" id="1_gpnvh"]
 [ext_resource type="Script" path="res://assets/scenes/main_game/main_game.gd" id="1_grsym"]
@@ -19,8 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://bt2ohf4bj2voc" path="res://assets/objects/player/byte/textures/floating_l.png" id="8_2d2qu"]
 [ext_resource type="FontFile" uid="uid://btj7n83cnsvrr" path="res://assets/global/fonts/null-pointer/nullp.ttf" id="8_io2s1"]
 [ext_resource type="Texture2D" uid="uid://2g7dq3v3b6n0" path="res://assets/dev/test/items.png" id="9_fn1js"]
-[ext_resource type="Texture2D" uid="uid://dnwbkpg3y3ik8" path="res://assets/objects/user_interface/textures/in_game/pause.png" id="10_uh662"]
-[ext_resource type="Texture2D" uid="uid://dm3hekp3j7ywr" path="res://assets/objects/user_interface/textures/in_game/settings.png" id="11_4u4l6"]
+[ext_resource type="Texture2D" uid="uid://b51i8g0ia3jg6" path="res://assets/objects/user_interface/textures/in_game/shield_overlay.png" id="11_58hxk"]
+[ext_resource type="Texture2D" uid="uid://c03j81gmb5rh6" path="res://assets/objects/user_interface/textures/in_game/death_screen.png" id="17_7tv7k"]
+[ext_resource type="Texture2D" uid="uid://b7n41v0ew3sg5" path="res://assets/objects/user_interface/textures/in_game/pause_screen.png" id="18_ce6rx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gvldv"]
 atlas = ExtResource("2_dthsk")
@@ -58,17 +59,377 @@ region = Rect2(0, 0, 24, 24)
 atlas = ExtResource("6_fba4j")
 region = Rect2(128, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fpru"]
+atlas = ExtResource("7_jxtfk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ej0kg"]
+atlas = ExtResource("7_rnnnj")
+region = Rect2(0, 0, 126, 28)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_swmen"]
 atlas = ExtResource("8_2d2qu")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nyx40"]
-atlas = ExtResource("10_uh662")
-region = Rect2(0, 0, 24, 24)
+[sub_resource type="Animation" id="Animation_aqm3r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.0980392)]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kdkmo"]
-atlas = ExtResource("11_4u4l6")
-region = Rect2(0, 0, 24, 24)
+[sub_resource type="Animation" id="Animation_3ieoc"]
+resource_name = "shield"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.0980392), Color(1, 1, 1, 0.294118), Color(1, 1, 1, 0.0980392)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8xy1t"]
+_data = {
+"RESET": SubResource("Animation_aqm3r"),
+"shield": SubResource("Animation_3ieoc")
+}
+
+[sub_resource type="Animation" id="Animation_7i5jl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("shield_overlay:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.0980392)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("stats:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("byte_notif:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("death_screen:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("death_screen:mouse_filter")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("pause_screen:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("pause_screen:mouse_filter")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("pause_screen/continue:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(783, 1280)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("pause_screen/settings:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1080)]
+}
+
+[sub_resource type="Animation" id="Animation_lxfvt"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("stats:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 540)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("byte_notif:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 540)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("death_screen:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.686275)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("death_screen:mouse_filter")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_qqunw"]
+resource_name = "spawn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("stats:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.277392, 0.277392),
+"update": 0,
+"values": [Vector2(0, 540), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("byte_notif:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(0.2885, 0.2885),
+"update": 0,
+"values": [Vector2(0, 540), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("death_screen:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("death_screen:mouse_filter")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("pause_screen:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("pause_screen:mouse_filter")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_boh2i"]
+resource_name = "pause"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("stats:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 540)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("byte_notif:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 540)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pause_screen:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.686275)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("pause_screen:mouse_filter")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("pause_screen/continue:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.35, 0.35),
+"update": 0,
+"values": [Vector2(783, 1280), Vector2(783, 999)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("pause_screen/settings:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(0.75, 0.75),
+"update": 0,
+"values": [Vector2(0, 1080), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aws1p"]
+_data = {
+"RESET": SubResource("Animation_7i5jl"),
+"death": SubResource("Animation_lxfvt"),
+"pause": SubResource("Animation_boh2i"),
+"spawn": SubResource("Animation_qqunw")
+}
 
 [sub_resource type="Environment" id="Environment_hpu5o"]
 background_mode = 3
@@ -259,12 +620,14 @@ script = ExtResource("1_grsym")
 [node name="user_interface_layer" type="CanvasLayer" parent="."]
 
 [node name="user_interface" type="Control" parent="user_interface_layer"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("2_5b5w7")
 
 [node name="stats" type="Control" parent="user_interface_layer/user_interface"]
@@ -275,7 +638,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-metadata/_edit_lock_ = true
 
 [node name="slix" type="TextureRect" parent="user_interface_layer/user_interface/stats"]
 layout_mode = 1
@@ -466,7 +828,6 @@ text = "50/100"
 horizontal_alignment = 1
 
 [node name="byte_notif" type="Control" parent="user_interface_layer/user_interface"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -474,7 +835,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-metadata/_edit_lock_ = true
 
 [node name="help_panel" type="TextureRect" parent="user_interface_layer/user_interface/byte_notif"]
 layout_mode = 1
@@ -484,47 +844,72 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -349.0
-offset_top = -238.0
+offset_top = -257.0
 offset_right = 7.0
+offset_bottom = -19.0
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("7_jxtfk")
+texture = SubResource("AtlasTexture_4fpru")
 stretch_mode = 6
-
-[node name="byte_title" type="Label" parent="user_interface_layer/user_interface/byte_notif/help_panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.2
-anchor_top = 1.256
-anchor_right = 1.2
-anchor_bottom = 1.256
-offset_left = -379.2
-offset_top = -238.928
-offset_right = -86.2
-offset_bottom = -213.928
-theme_override_fonts/font = ExtResource("8_io2s1")
-theme_override_font_sizes/font_size = 25
-text = "Help"
-autowrap_mode = 2
 
 [node name="byte_broadcast" type="Label" parent="user_interface_layer/user_interface/byte_notif/help_panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.2
-anchor_top = 1.256
-anchor_right = 1.2
-anchor_bottom = 1.256
-offset_left = -379.2
-offset_top = -215.928
-offset_right = -125.2
-offset_bottom = -99.928
+anchor_left = 0.979
+anchor_top = 1.0
+anchor_right = 0.979
+anchor_bottom = 1.0
+offset_left = -299.524
+offset_top = -185.0
+offset_right = -45.524
+offset_bottom = -48.0
 theme_override_fonts/font = ExtResource("7_omp1m")
 theme_override_font_sizes/font_size = 25
-text = "W, A, S, D | Movement
-Space | Goo Wave
-RMB | Devour
-LMB | Lash
+text = "W A S D 
+Shift 
+Space 
+RMB 
+LMB 
 "
+autowrap_mode = 3
+
+[node name="byte_broadcast2" type="Label" parent="user_interface_layer/user_interface/byte_notif/help_panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.978
+anchor_top = 1.0
+anchor_right = 0.978
+anchor_bottom = 1.0
+offset_left = -299.168
+offset_top = -185.0
+offset_right = -45.168
+offset_bottom = -48.0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 25
+text = "Movement
+Rollout
+Goo Wave
+Devour
+Lash
+"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="byte_broadcast3" type="Label" parent="user_interface_layer/user_interface/byte_notif/help_panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.98
+anchor_top = 1.08
+anchor_right = 0.98
+anchor_bottom = 1.08
+offset_left = -316.88
+offset_top = -47.04
+offset_right = -31.88
+offset_bottom = -18.04
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 25
+text = "Press ESCAPE to Pause"
+horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="byte_panel" type="TextureRect" parent="user_interface_layer/user_interface/byte_notif"]
@@ -540,7 +925,7 @@ offset_right = 605.0
 offset_bottom = -43.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("7_rnnnj")
+texture = SubResource("AtlasTexture_ej0kg")
 stretch_mode = 5
 
 [node name="byte_broadcast" type="Label" parent="user_interface_layer/user_interface/byte_notif/byte_panel"]
@@ -572,8 +957,28 @@ offset_right = 592.0
 offset_bottom = -41.76
 texture = SubResource("AtlasTexture_swmen")
 
-[node name="menu" type="Control" parent="user_interface_layer/user_interface"]
+[node name="shield_overlay" type="TextureRect" parent="user_interface_layer/user_interface"]
 visible = false
+self_modulate = Color(1, 1, 1, 0.0980392)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_58hxk")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="anim" type="AnimationPlayer" parent="user_interface_layer/user_interface/shield_overlay"]
+libraries = {
+"": SubResource("AnimationLibrary_8xy1t")
+}
+autoplay = "shield"
+
+[node name="death_screen" type="TextureRect" parent="user_interface_layer/user_interface"]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -581,33 +986,57 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = ExtResource("17_7tv7k")
 metadata/_edit_lock_ = true
 
-[node name="pause_btn" type="TextureButton" parent="user_interface_layer/user_interface/menu"]
+[node name="pause_screen" type="TextureRect" parent="user_interface_layer/user_interface"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -96.0
-offset_top = 22.0
-offset_bottom = 118.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-texture_normal = SubResource("AtlasTexture_nyx40")
-stretch_mode = 5
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("18_ce6rx")
 
-[node name="settings_btn" type="TextureButton" parent="user_interface_layer/user_interface/menu"]
+[node name="continue" type="Label" parent="user_interface_layer/user_interface/pause_screen"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_top = 22.0
-offset_right = 96.0
-offset_bottom = 118.0
+anchor_bottom = 1.0
+offset_left = -177.0
+offset_top = 200.0
+offset_right = 177.0
+offset_bottom = 281.001
 grow_horizontal = 2
-texture_normal = SubResource("AtlasTexture_kdkmo")
-stretch_mode = 5
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 25
+text = "Press ESCAPE to Continue"
+horizontal_alignment = 1
+autowrap_mode = 3
 
-[node name="anim" type="AnimationPlayer" parent="user_interface_layer/user_interface"]
+[node name="settings" type="Control" parent="user_interface_layer/user_interface/pause_screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1080.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="user_interface_anim" type="AnimationPlayer" parent="user_interface_layer/user_interface"]
+process_mode = 3
+callback_mode_process = 0
+libraries = {
+"": SubResource("AnimationLibrary_aws1p")
+}
+autoplay = "spawn"
 
 [node name="env" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hpu5o")
@@ -1400,3 +1829,6 @@ position = Vector2(-622, 1047)
 
 [node name="byte" parent="objects" instance=ExtResource("5_nj3ef")]
 position = Vector2(-650, 1041)
+
+[connection signal="value_changed" from="user_interface_layer/user_interface/stats/life_progress" to="user_interface_layer/user_interface" method="_on_life_progress_value_changed"]
+[connection signal="value_changed" from="user_interface_layer/user_interface/stats/immunity_progress" to="user_interface_layer/user_interface" method="_on_immunity_progress_value_changed"]

@@ -35,7 +35,7 @@ var hit: float = 50.0
 # NODES ************************************************************************
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
 @onready var _anim_alert: AnimatedSprite2D = get_node("alert")
-
+@onready var _texture: AnimatedSprite2D = get_node("texture")
 @onready var _toxic_fx: CPUParticles2D = get_node("toxic_fx")
 
 # VIRTUAL **********************************************************************
@@ -72,6 +72,9 @@ func _manage_animation() -> void:
 		_anim_blend.set("parameters/explode/blend_position", _vel)
 
 func damage(_multiplier: int = 1) -> void:
+	_texture.modulate = Color.html("ff0000")
+	await get_tree().create_timer(0.1).timeout
+	_texture.modulate = Color.html("ffffff")
 	health -= hit * _multiplier
 
 func die() -> void:
@@ -87,10 +90,14 @@ func explode() -> void:
 # Calculate damage based on distance.
 func _damage_by_dist() -> float:
 	var _output: float = 0
-	var _norm_dist = global_position.distance_to(_detected_enemy.global_position) / 150
+	var _norm_dist = global_position.distance_to(_detected_enemy.global_position) / 75
 	var _falloff = 1.0 - pow(_norm_dist, 2)
 	
 	_output = _attack_damage * _falloff
+	# Moves back to 0 if damage is negative.
+	if _output < 0:
+		_output = 0
+	
 	return _output
 
 # SIGNALS **********************************************************************

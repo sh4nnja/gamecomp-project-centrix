@@ -52,12 +52,16 @@ var _resource_spawn_chance: int = TRUE_RESOURCE
 @onready var objects: Node2D = get_node("objects")
 
 @onready var _slix: CharacterBody2D = get_node("objects/slix")
+@onready var _byte: CharacterBody2D = get_node("objects/byte")
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 # GAME UPDATES *****************************************************************
 var slix_health: float
 var slix_immunity: float
+
+var byte_connected: bool 
+
 var items_collected: int
 
 # VIRTUAL **********************************************************************
@@ -66,7 +70,8 @@ func _ready() -> void:
 	_manage_toxic_lake() # Spawn Gooz across toxic lake.
 
 func _physics_process(_delta) -> void:
-	update_slix_stats() # Update slix stats such as health etc.
+	_update_byte()
+	_update_slix_stats() # Update slix stats such as health etc.
 	_damage_toxic_lake(_slix) # Damage Slix when in contact of the toxic lake.
 
 # CUSTOM ***********************************************************************
@@ -131,6 +136,9 @@ func _damage_toxic_lake(_node: Node) -> void:
 	if (_tile_data == GOOZ_SPAWN or _tile_data == TOXIC_LAKE) or (_tile_data_2 == GOOZ_SPAWN or _tile_data_2 == TOXIC_LAKE):
 		_node.toxic_lake_deduction()
 
-func update_slix_stats() -> void:
+func _update_slix_stats() -> void:
 	slix_health = _slix.health
 	slix_immunity = _slix.reduced_toxicity
+
+func _update_byte() -> void:
+	byte_connected = _byte.connected
