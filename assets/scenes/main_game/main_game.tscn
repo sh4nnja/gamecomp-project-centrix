@@ -981,25 +981,6 @@ offset_right = 592.0
 offset_bottom = -41.76
 texture = SubResource("AtlasTexture_swmen")
 
-[node name="shield_overlay" type="TextureRect" parent="user_interface_layer/user_interface"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.0980392)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_58hxk")
-expand_mode = 5
-stretch_mode = 4
-
-[node name="anim" type="AnimationPlayer" parent="user_interface_layer/user_interface/shield_overlay"]
-libraries = {
-"": SubResource("AnimationLibrary_8xy1t")
-}
-autoplay = "shield"
-
 [node name="death_screen" type="TextureRect" parent="user_interface_layer/user_interface"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -1071,6 +1052,25 @@ offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="shield_overlay" type="TextureRect" parent="user_interface_layer/user_interface"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.0980392)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_58hxk")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="anim" type="AnimationPlayer" parent="user_interface_layer/user_interface/shield_overlay"]
+libraries = {
+"": SubResource("AnimationLibrary_8xy1t")
+}
+autoplay = "shield"
 
 [node name="user_interface_anim" type="AnimationPlayer" parent="user_interface_layer/user_interface"]
 process_mode = 3

@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://bxaoafo5h2lh8"]
+[gd_scene load_steps=69 format=3 uid="uid://bxaoafo5h2lh8"]
 
 [ext_resource type="Texture2D" uid="uid://cwrg53r7b2326" path="res://assets/objects/enemies/gooz/textures/explode_r.png" id="1_3fds7"]
 [ext_resource type="Script" path="res://assets/objects/enemies/gooz/gooz.gd" id="1_i6jm0"]
@@ -399,22 +399,6 @@ tracks/4/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_sp557"]
-resource_name = "damage"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("texture:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_v1ymy"]
 resource_name = "explode_l"
 length = 1.3
@@ -662,15 +646,11 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jynsm"]
 _data = {
 "RESET": SubResource("Animation_ilfo8"),
-"damage": SubResource("Animation_sp557"),
 "explode_l": SubResource("Animation_v1ymy"),
 "explode_r": SubResource("Animation_iiifm"),
 "idle_l": SubResource("Animation_s4yl3"),
 "idle_r": SubResource("Animation_y8ajo")
 }
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dyxv5"]
-animation = &"damage"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rscqo"]
 animation = &"explode_l"
@@ -701,23 +681,16 @@ blend_mode = 1
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_70j7i"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_16jhn"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gjmqm"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5jxio"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_isw17"]
 states/Start/position = Vector2(196, 99.3635)
-states/damage/node = SubResource("AnimationNodeAnimation_dyxv5")
-states/damage/position = Vector2(371.111, 26)
 states/explode/node = SubResource("AnimationNodeBlendSpace2D_2dkdb")
 states/explode/position = Vector2(565.333, 101.058)
 states/idle/node = SubResource("AnimationNodeBlendSpace2D_171r5")
 states/idle/position = Vector2(371.259, 103.679)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_70j7i"), "idle", "damage", SubResource("AnimationNodeStateMachineTransition_16jhn"), "damage", "idle", SubResource("AnimationNodeStateMachineTransition_gjmqm"), "idle", "explode", SubResource("AnimationNodeStateMachineTransition_5jxio")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_70j7i"), "idle", "explode", SubResource("AnimationNodeStateMachineTransition_5jxio")]
+graph_offset = Vector2(-143, 0)
 
 [node name="gooz" type="CharacterBody2D" groups=["enemy"]]
 collision_mask = 0
