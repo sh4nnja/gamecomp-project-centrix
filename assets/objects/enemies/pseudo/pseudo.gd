@@ -18,7 +18,7 @@
 extends CharacterBody2D
 
 # PHYSICS **********************************************************************
-const SPEED: float = 55.0
+const SPEED: float = 65.0
 
 var _chase_threshold: int = 20 # Distance before follow Slix.
 
@@ -31,8 +31,8 @@ var _can_chase: bool = false
 var _attacking: bool = false
 
 var health: float = 100.0
-var _hit: float = 50.0
-var _attack_damage: float = 15.0
+var _hit: float = 25.0
+var _attack_damage: float = 10.0
 
 # NODES ************************************************************************
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
@@ -53,7 +53,7 @@ func _manage_movement(_delta: float) -> void:
 	velocity = Vector2.ZERO
 	
 	# Chase Slix.
-	if _detected_enemy != null:
+	if _detected_enemy:
 		if position.distance_to(_detected_enemy.global_position) > _chase_threshold:
 			if _can_chase:
 				velocity = position.direction_to(_detected_enemy.global_position) * SPEED
@@ -76,8 +76,9 @@ func _manage_animation() -> void:
 				_anim_blend.get("parameters/playback").travel("idle")
 				_anim_blend.set("parameters/idle/blend_position", _vel)
 			else:
-				_anim_blend.get("parameters/playback").travel("crawl")
-				_anim_blend.set("parameters/crawl/blend_position", _vel)
+				if not position.distance_to(_detected_enemy.global_position) < _chase_threshold * 2:
+					_anim_blend.get("parameters/playback").travel("crawl")
+					_anim_blend.set("parameters/crawl/blend_position", _vel)
 			
 			# Sets Pseudo to look at the player before morphing.
 			_anim_blend.set("parameters/stone_to_idle/blend_position", _vel)
@@ -115,19 +116,21 @@ func attack() -> void:
 # SIGNALS **********************************************************************
 func _on_detection_body_entered(_body: Node2D) -> void:
 	if _body.is_in_group("Slix"):
+		set_collision_mask_value(1, true)
 		_detected_enemy = _body
 		_anim_alert.play("alert")
 
 func _on_detection_body_exited(_body: Node2D) -> void:
 	if _body.is_in_group("Slix"):
+		set_collision_mask_value(1, false)
 		_detected_enemy = null
 		_anim_alert.play_backwards("alert")
 
 # Attack on contact.
 func _on_attack_body_entered(_body: Node2D) -> void:
-	if _body.is_in_group("Slix") or _detected_enemy:
+	if _body.is_in_group("Slix"):
 		_attacking = true
 
 func _on_attack_body_exited(_body: Node2D) -> void:
-	if _body.is_in_group("Slix") or _detected_enemy:
+	if _body.is_in_group("Slix"):
 		_attacking = false

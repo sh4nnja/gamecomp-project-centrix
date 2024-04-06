@@ -30,7 +30,7 @@ var _explode: bool = false
 
 var _attack_damage: float = 35.0
 var health: float = 100.0
-var hit: float = 50.0
+var hit: float = 20.0
 
 # NODES ************************************************************************
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
@@ -104,11 +104,13 @@ func _damage_by_dist() -> float:
 func _on_detection_body_entered(_body: Node2D) -> void:
 	if _body.is_in_group("Slix"):
 		_detected_enemy = _body
+		set_collision_mask_value(1, true)
 		_anim_alert.play("alert")
 
 func _on_detection_body_exited(_body: Node2D) -> void:
 	if _body.is_in_group("Slix"):
 		_detected_enemy = null
+		set_collision_mask_value(1, false)
 		_anim_alert.play_backwards("alert")
 
 # Explode on contact.

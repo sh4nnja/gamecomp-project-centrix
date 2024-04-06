@@ -51,7 +51,7 @@ const IMMUNITY_DURATION: float = 0.25
 # Deduction happens on a specific physics frame of the animation.
 var rollout_energy: float = 1.25
 var lash_energy: float = 2.00
-var goowave_energy: float = 10.00
+var goowave_energy: float = 20.00
 
 var health: float = 100.0
 
@@ -228,11 +228,11 @@ func lower_energy_usage(_mode: bool) -> void:
 	if _mode:
 		rollout_energy = 0.625
 		lash_energy = 1.00
-		goowave_energy = 5.00
+		goowave_energy = 10.00
 	else:
 		rollout_energy = 1.25
 		lash_energy = 2.00
-		goowave_energy = 10.00
+		goowave_energy = 20.00
 
 # The execution of the actions below are located in the animations of Slix.
 # The code enable_lash in code are for animation.
@@ -245,9 +245,9 @@ func devour() -> void:
 		# Gets the value of that item.
 		var _res_type: int = _devoured.recover() 
 		if _res_type > 3:
-			reduced_toxicity += 15
+			reduced_toxicity += 35
 		else:
-			health += 25
+			health += 5
 			reduced_toxicity = 150
 		_devoured = null
 	
@@ -255,9 +255,8 @@ func devour() -> void:
 		# Only devour enemy when dead.
 		if _devoured_enemy.health <= 0:
 			_devoured_enemy.queue_free()
-			health += 25
-			reduced_toxicity = 75
-			_devoured_enemy = null # Removes the reference.
+			health += 10
+		_devoured_enemy = null # Removes the reference.
 
 func lash() -> void:
 	health -= lash_energy
@@ -271,7 +270,7 @@ func goowave() -> void:
 	health -= goowave_energy
 	_gfx_goo.set_emitting(true)
 	for _enemy in _enemies:
-		_enemy.damage(2)
+		_enemy.damage(5)
 
 func death() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED

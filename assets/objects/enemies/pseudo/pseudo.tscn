@@ -646,7 +646,7 @@ animations = [{
 radius = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1r47u"]
-radius = 11.7047
+radius = 15.0
 
 [sub_resource type="Animation" id="Animation_ov0bx"]
 length = 0.001
@@ -715,6 +715,7 @@ tracks/4/keys = {
 resource_name = "attack_l"
 length = 0.5
 loop_mode = 1
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -746,7 +747,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.3),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -758,6 +759,7 @@ tracks/2/keys = {
 resource_name = "attack_r"
 length = 0.5
 loop_mode = 1
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -777,10 +779,10 @@ tracks/1/path = NodePath("texture:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 0]
+"values": [1, 2, 3, 4, 0]
 }
 tracks/2/type = "method"
 tracks/2/imported = false
@@ -789,7 +791,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.3),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -1525,13 +1527,14 @@ states/stone/position = Vector2(333.333, 105.826)
 states/stone_to_idle/node = SubResource("AnimationNodeBlendSpace2D_kyvcy")
 states/stone_to_idle/position = Vector2(530.667, 144.667)
 transitions = ["Start", "stone", SubResource("AnimationNodeStateMachineTransition_mngxt"), "idle_to_stone", "stone", SubResource("AnimationNodeStateMachineTransition_8dpbi"), "stone_to_idle", "idle", SubResource("AnimationNodeStateMachineTransition_kxy55"), "idle", "idle_to_stone", SubResource("AnimationNodeStateMachineTransition_8vdp8"), "stone", "stone_to_idle", SubResource("AnimationNodeStateMachineTransition_io86h"), "idle", "crawl", SubResource("AnimationNodeStateMachineTransition_mg8b7"), "crawl", "idle", SubResource("AnimationNodeStateMachineTransition_rgbss"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_p72bk"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_26ke8"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_juvvt"), "crawl", "dead", SubResource("AnimationNodeStateMachineTransition_xtm7i"), "attack", "dead", SubResource("AnimationNodeStateMachineTransition_fcm0d"), "idle_to_stone", "dead", SubResource("AnimationNodeStateMachineTransition_6xkiv"), "stone", "dead", SubResource("AnimationNodeStateMachineTransition_0livd")]
-graph_offset = Vector2(162, 39)
+graph_offset = Vector2(170, -24)
 
 [node name="pseudo" type="CharacterBody2D" groups=["enemy"]]
 z_index = 3
 disable_mode = 2
 collision_mask = 0
 motion_mode = 1
+platform_on_leave = 2
 script = ExtResource("1_tn7si")
 
 [node name="enable_process" type="VisibleOnScreenEnabler2D" parent="."]
@@ -1575,6 +1578,7 @@ libraries = {
 }
 
 [node name="anim_blend" type="AnimationTree" parent="."]
+active = false
 callback_mode_process = 0
 libraries = {
 "": SubResource("AnimationLibrary_lb84n")

@@ -694,6 +694,8 @@ graph_offset = Vector2(-143, 0)
 
 [node name="gooz" type="CharacterBody2D" groups=["enemy"]]
 collision_mask = 0
+motion_mode = 1
+platform_on_leave = 2
 script = ExtResource("1_i6jm0")
 
 [node name="enable_process" type="VisibleOnScreenEnabler2D" parent="."]
