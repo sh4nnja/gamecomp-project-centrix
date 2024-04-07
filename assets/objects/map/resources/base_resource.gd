@@ -29,11 +29,6 @@ var _high_tier_chance: int = 5
 # A single object that contains all the types of resources are finalized to save time.
 var _type: int = 0
 
-# Collection of resource values per each type of resource.
-#var _resource_values: Array[Vector2] = [
-	#
-#]
-
 # COLLISION SIZE ***************************************************************
 # Preset collision size and position for the resources.
 var _collision_sizes: Array[Array] = [

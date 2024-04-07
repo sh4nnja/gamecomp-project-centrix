@@ -1,7 +1,8 @@
-[gd_scene load_steps=147 format=3 uid="uid://b3d3rovgrbsqh"]
+[gd_scene load_steps=150 format=3 uid="uid://b3d3rovgrbsqh"]
 
 [ext_resource type="Script" path="res://assets/objects/enemies/pseudo/pseudo.gd" id="1_tn7si"]
 [ext_resource type="Texture2D" uid="uid://dse7n3csxj4dq" path="res://assets/objects/enemies/pseudo/textures/attack_l.png" id="2_8cou5"]
+[ext_resource type="AudioStream" uid="uid://de4eki2ty3wj3" path="res://assets/global/sounds/fx/105279__mbezzola__stein-aufschlag-mit-langem-decay-02.wav" id="2_lrt6j"]
 [ext_resource type="Texture2D" uid="uid://bqs6j42my4gkx" path="res://assets/objects/enemies/pseudo/textures/crawl_l.png" id="2_mvvwv"]
 [ext_resource type="Texture2D" uid="uid://d341an48s2xie" path="res://assets/objects/enemies/pseudo/textures/idle_l.png" id="2_npbff"]
 [ext_resource type="Texture2D" uid="uid://3cpro823wseh" path="res://assets/objects/enemies/pseudo/textures/idle_r.png" id="3_6hont"]
@@ -10,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://i5uasohbg246" path="res://assets/objects/enemies/pseudo/textures/tranform_stone_l.png" id="4_ypiyb"]
 [ext_resource type="Texture2D" uid="uid://dfhrbs31qd72y" path="res://assets/objects/enemies/pseudo/textures/tranform_stone_r.png" id="5_adv4d"]
 [ext_resource type="Texture2D" uid="uid://dfjn0vdhrhmhl" path="res://assets/global/texture/alert.png" id="8_56inb"]
+[ext_resource type="AudioStream" uid="uid://cbtbslc3v6ucs" path="res://assets/global/sounds/fx/443721__cabusta9__13cabeza-arana-spider-head.wav" id="12_sjpna"]
+[ext_resource type="AudioStream" uid="uid://cc7ute3pni6oc" path="res://assets/global/sounds/fx/524611__clearwavsound__knuckle-cracking-long.wav" id="12_urd41"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyd6d"]
 size = Vector2(17, 5)
@@ -710,12 +713,35 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_lrt6j")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_knt2r"]
 resource_name = "attack_l"
 length = 0.5
 loop_mode = 1
-step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -747,7 +773,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -791,7 +817,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.13),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -851,6 +877,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [Vector2(0, 0.5), Vector2(0, -0.5), Vector2(-0.5, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_sjpna")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_6hpks"]
 resource_name = "crawl_r"
@@ -903,6 +953,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Vector2(0, -0.5), Vector2(0, -1), Vector2(0, -0.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.00956726),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_sjpna")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.00956726),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_rdnhd"]
@@ -1222,6 +1296,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [Vector2(16, 13), Vector2(16, 12), Vector2(16, 11), Vector2(16, 12), Vector2(16, 13), Vector2(16, 13), Vector2(16, 14), Vector2(16, 15), Vector2(16, 14), Vector2(17, 9), Vector2(17, 10), Vector2(17, 11), Vector2(17, 12), Vector2(17, 11), Vector2(17, 5), Vector2(17, 5)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_urd41")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_8vjad"]
 resource_name = "transform_idle_r"
@@ -1326,6 +1424,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [Vector2(-0.5, 4.5), Vector2(-0.5, 4.5), Vector2(-0.5, 1.5), Vector2(-0.5, 1), Vector2(-0.5, 1.5), Vector2(-0.5, 2), Vector2(-0.5, 2.5), Vector2(-0.5, -0.5), Vector2(-0.5, 0), Vector2(0, -0.5), Vector2(0, 0.5), Vector2(0, 0), Vector2(0, 0.5), Vector2(0, 0), Vector2(0, -0.5)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_urd41")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_uqqxs"]
 resource_name = "transform_stone_r"
@@ -1377,6 +1499,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2(-0.5, 4.5), Vector2(-0.5, 4.5), Vector2(-0.5, 1.5), Vector2(-0.5, 1), Vector2(-0.5, 1.5), Vector2(-0.5, 2), Vector2(-0.5, 2.5), Vector2(-0.5, -0.5), Vector2(-0.5, -1), Vector2(0, -1.5), Vector2(0, -0.5), Vector2(0, 0), Vector2(0, 0.5), Vector2(0, 0), Vector2(0, -0.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_urd41")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lb84n"]
@@ -1527,7 +1673,7 @@ states/stone/position = Vector2(333.333, 105.826)
 states/stone_to_idle/node = SubResource("AnimationNodeBlendSpace2D_kyvcy")
 states/stone_to_idle/position = Vector2(530.667, 144.667)
 transitions = ["Start", "stone", SubResource("AnimationNodeStateMachineTransition_mngxt"), "idle_to_stone", "stone", SubResource("AnimationNodeStateMachineTransition_8dpbi"), "stone_to_idle", "idle", SubResource("AnimationNodeStateMachineTransition_kxy55"), "idle", "idle_to_stone", SubResource("AnimationNodeStateMachineTransition_8vdp8"), "stone", "stone_to_idle", SubResource("AnimationNodeStateMachineTransition_io86h"), "idle", "crawl", SubResource("AnimationNodeStateMachineTransition_mg8b7"), "crawl", "idle", SubResource("AnimationNodeStateMachineTransition_rgbss"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_p72bk"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_26ke8"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_juvvt"), "crawl", "dead", SubResource("AnimationNodeStateMachineTransition_xtm7i"), "attack", "dead", SubResource("AnimationNodeStateMachineTransition_fcm0d"), "idle_to_stone", "dead", SubResource("AnimationNodeStateMachineTransition_6xkiv"), "stone", "dead", SubResource("AnimationNodeStateMachineTransition_0livd")]
-graph_offset = Vector2(170, -24)
+graph_offset = Vector2(-79, -53)
 
 [node name="pseudo" type="CharacterBody2D" groups=["enemy"]]
 z_index = 3
@@ -1536,6 +1682,11 @@ collision_mask = 0
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_tn7si")
+
+[node name="sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_lrt6j")
+max_polyphony = 5
+bus = &"Pseudo"
 
 [node name="enable_process" type="VisibleOnScreenEnabler2D" parent="."]
 
@@ -1572,17 +1723,12 @@ monitorable = false
 shape = SubResource("CircleShape2D_1r47u")
 
 [node name="anim" type="AnimationPlayer" parent="."]
-callback_mode_process = 0
 libraries = {
 "": SubResource("AnimationLibrary_lb84n")
 }
 
 [node name="anim_blend" type="AnimationTree" parent="."]
-active = false
-callback_mode_process = 0
-libraries = {
-"": SubResource("AnimationLibrary_lb84n")
-}
+callback_mode_discrete = 0
 tree_root = SubResource("AnimationNodeStateMachine_mo1ml")
 anim_player = NodePath("../anim")
 parameters/attack/blend_position = Vector2(0.157773, 0.0143886)

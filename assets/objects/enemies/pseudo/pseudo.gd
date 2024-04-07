@@ -17,6 +17,9 @@
 
 extends CharacterBody2D
 
+# DAMAGE ***********************************************************************
+var _damage_fx: Resource = load("res://assets/global/sounds/fx/385046__mortisblack__damage.ogg")
+
 # PHYSICS **********************************************************************
 const SPEED: float = 65.0
 
@@ -38,6 +41,8 @@ var _attack_damage: float = 10.0
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
 @onready var _anim_alert: AnimatedSprite2D = get_node("alert")
 @onready var _texture: AnimatedSprite2D = get_node("texture")
+
+@onready var _sound: AudioStreamPlayer2D = get_node("sound")
 
 # VIRTUAL **********************************************************************
 func _ready() -> void:
@@ -98,6 +103,14 @@ func _manage_animation() -> void:
 		_anim_blend.set("parameters/dead/blend_position", _vel)
 
 func damage(_multiplier: int = 1) -> void:
+	if not _sound.is_playing():
+		_sound.set_stream(_damage_fx)
+		_sound.play()
+	else:
+		if _sound.get_stream() != _damage_fx:
+			_sound.set_stream(_damage_fx)
+			_sound.play()
+	
 	_texture.modulate = Color.html("ff0000")
 	await get_tree().create_timer(0.1).timeout
 	_texture.modulate = Color.html("ffffff")

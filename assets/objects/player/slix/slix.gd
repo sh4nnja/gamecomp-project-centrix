@@ -17,6 +17,9 @@
 
 extends CharacterBody2D
 
+# DAMAGE ***********************************************************************
+var _damage_fx: Resource = load("res://assets/global/sounds/fx/385046__mortisblack__damage.ogg")
+
 # PROJECTILE *******************************************************************
 var _projectile: Resource = load("res://assets/objects/player/projectile/projectile.tscn")
 
@@ -27,6 +30,8 @@ var _projectile: Resource = load("res://assets/objects/player/projectile/project
 @onready var _rfx_blur: CPUParticles2D = get_node("roll_fx/blur")
 @onready var _rfx_trail: CPUParticles2D = get_node("roll_fx/trail")
 @onready var _gfx_goo: CPUParticles2D = get_node("goowave/goo_fx")
+
+@onready var _sound: AudioStreamPlayer2D = get_node("sound")
 
 # PHYSICS **********************************************************************
 const SPEED: float = 50.0
@@ -63,6 +68,7 @@ var _enemies: Array = []
 # RESOURCE *********************************************************************
 var _devoured: CharacterBody2D
 var _devoured_enemy: CharacterBody2D
+var _devoured_item: CharacterBody2D
 
 # VIRTUAL **********************************************************************
 func _ready() -> void:
@@ -185,22 +191,11 @@ func _manage_health() -> void:
 	
 	# Set the colors of all elements
 	if health <= 100 and health >= 66:
-		_texture.self_modulate = Global.slix_colors[0]
-		_gfx_goo.self_modulate = Global.slix_colors[0]
-		_rfx_blur.self_modulate = Global.slix_colors[0]
-		_rfx_trail.self_modulate = Global.slix_colors[0]
+		modulate = Global.slix_colors[0]
 	elif health <= 65 and health >= 33:
-		_texture.self_modulate = Global.slix_colors[1]
-		_gfx_goo.self_modulate = Global.slix_colors[1]
-		_gfx_goo.self_modulate = Global.slix_colors[1]
-		_rfx_blur.self_modulate = Global.slix_colors[1]
-		_rfx_trail.self_modulate = Global.slix_colors[1]
+		modulate = Global.slix_colors[1]
 	elif health <= 32 and health >= 1:
-		_texture.self_modulate = Global.slix_colors[2]
-		_gfx_goo.self_modulate = Global.slix_colors[2]
-		_gfx_goo.self_modulate = Global.slix_colors[2]
-		_rfx_blur.self_modulate = Global.slix_colors[2]
-		_rfx_trail.self_modulate = Global.slix_colors[2]
+		modulate = Global.slix_colors[2]
 
 # Toxic Lake Deduction.
 func toxic_lake_deduction() -> void:
@@ -218,6 +213,14 @@ func _toxic_atmosphere_deduction() -> void:
 		health -= TOXIC_ATMOSPHERE
 
 func damage(_damage: float) -> void:
+	if not _sound.is_playing():
+		_sound.set_stream(_damage_fx)
+		_sound.play()
+	else:
+		if _sound.get_stream() != _damage_fx:
+			_sound.set_stream(_damage_fx)
+			_sound.play()
+	
 	_texture.modulate = Color.html("ff0000")
 	await get_tree().create_timer(0.1).timeout
 	_texture.modulate = Color.html("ffffff")
@@ -241,6 +244,7 @@ func rollout() -> void:
 		health -= rollout_energy
 
 func devour() -> void:
+	# Resource.
 	if _devoured:
 		# Gets the value of that item.
 		var _res_type: int = _devoured.recover() 
@@ -251,12 +255,17 @@ func devour() -> void:
 			reduced_toxicity = 150
 		_devoured = null
 	
+	# Enemy.
 	if _devoured_enemy:
 		# Only devour enemy when dead.
 		if _devoured_enemy.health <= 0:
 			_devoured_enemy.queue_free()
 			health += 10
 		_devoured_enemy = null # Removes the reference.
+	
+	# Item.
+	if _devoured_item:
+		_devoured_item.recover() 
 
 func lash() -> void:
 	health -= lash_energy
@@ -290,9 +299,13 @@ func _on_devour_body_entered(_body: Node2D) -> void:
 		_devoured = _body
 	elif _body.is_in_group("enemy"):
 		_devoured_enemy = _body
+	elif _body.is_in_group("Items"):
+		_devoured_item = _body
 
 func _on_devour_body_exited(_body: Node2D) -> void:
 	if _body.is_in_group("Resource") and not _body.is_in_group("Slix"):
 		_devoured = null
 	elif _body.is_in_group("enemy"):
 		_devoured_enemy = null
+	elif _body.is_in_group("Items"):
+		pass

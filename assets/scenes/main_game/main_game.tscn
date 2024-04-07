@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cw1fyp63ld3kf"]
+[gd_scene load_steps=64 format=3 uid="uid://cw1fyp63ld3kf"]
 
 [ext_resource type="PackedScene" uid="uid://djmjrikkun6gd" path="res://assets/objects/player/slix/slix.tscn" id="1_gpnvh"]
 [ext_resource type="Script" path="res://assets/scenes/main_game/main_game.gd" id="1_grsym"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bxy0w1jn1otkl" path="res://assets/objects/user_interface/textures/in_game/life_progress.png" id="2_be1ne"]
 [ext_resource type="Texture2D" uid="uid://ckgqvp0c6ra6r" path="res://assets/objects/player/slix/textures/idle & walk/left/idle_l.png" id="2_dthsk"]
 [ext_resource type="Texture2D" uid="uid://bhvh5n2phneid" path="res://assets/objects/map/ship/parts.png" id="2_p46mb"]
+[ext_resource type="AudioStream" uid="uid://d0lsk1s2pil71" path="res://assets/global/sounds/bgm/game/594225__klankbeeld__halloween-background.ogg" id="2_v3gj8"]
 [ext_resource type="Texture2D" uid="uid://b5xesqt22qt5b" path="res://assets/objects/user_interface/textures/in_game/stats_holder.png" id="3_ykvik"]
 [ext_resource type="Texture2D" uid="uid://c0mfxiynspj7t" path="res://assets/global/texture/smoke.png" id="4_a47ae"]
 [ext_resource type="Texture2D" uid="uid://bj5dem8hp8sij" path="res://assets/objects/user_interface/textures/in_game/item_locator.png" id="5_f456p"]
@@ -267,6 +268,30 @@ tracks/12/keys = {
 "update": 0,
 "values": [Vector2(1920, 1080)]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../../sound:stream")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_v3gj8")]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../../sound:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_lxfvt"]
 resource_name = "death"
@@ -482,6 +507,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [2]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../sound:stream")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_v3gj8")]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../sound:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aws1p"]
 _data = {
@@ -677,6 +726,10 @@ colors = PackedColorArray(0.898039, 1, 0, 0.678431, 0.823529, 0.313726, 0, 0.843
 [node name="main" type="Node2D"]
 script = ExtResource("1_grsym")
 
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_v3gj8")
+volume_db = -15.0
+
 [node name="user_interface_layer" type="CanvasLayer" parent="."]
 
 [node name="user_interface" type="Control" parent="user_interface_layer"]
@@ -743,10 +796,10 @@ grow_horizontal = 2
 grow_vertical = 0
 value = 55.0
 fill_mode = 4
+radial_initial_angle = 180.0
 nine_patch_stretch = true
 texture_under = SubResource("AtlasTexture_8d21s")
 texture_progress = SubResource("AtlasTexture_jso48")
-radial_initial_angle = 180.0
 
 [node name="immunity_progress" type="TextureProgressBar" parent="user_interface_layer/user_interface/stats"]
 layout_mode = 1
@@ -763,10 +816,10 @@ grow_horizontal = 2
 grow_vertical = 0
 max_value = 150.0
 fill_mode = 4
+radial_initial_angle = 180.0
 nine_patch_stretch = true
 texture_under = SubResource("AtlasTexture_ub42n")
 texture_progress = SubResource("AtlasTexture_kwnmh")
-radial_initial_angle = 180.0
 
 [node name="locator" type="Control" parent="user_interface_layer/user_interface"]
 visible = false
@@ -1017,6 +1070,25 @@ offset_right = 592.0
 offset_bottom = -41.76
 texture = SubResource("AtlasTexture_swmen")
 
+[node name="shield_overlay" type="TextureRect" parent="user_interface_layer/user_interface"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.0980392)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_58hxk")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="anim" type="AnimationPlayer" parent="user_interface_layer/user_interface/shield_overlay"]
+libraries = {
+"": SubResource("AnimationLibrary_8xy1t")
+}
+autoplay = "shield"
+
 [node name="death_screen" type="TextureRect" parent="user_interface_layer/user_interface"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -1084,29 +1156,11 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 1080.0
-offset_bottom = 1080.0
+offset_right = 15360.0
+offset_bottom = 9720.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="shield_overlay" type="TextureRect" parent="user_interface_layer/user_interface"]
-visible = false
-self_modulate = Color(1, 1, 1, 0.0980392)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_58hxk")
-expand_mode = 5
-stretch_mode = 4
-
-[node name="anim" type="AnimationPlayer" parent="user_interface_layer/user_interface/shield_overlay"]
-libraries = {
-"": SubResource("AnimationLibrary_8xy1t")
-}
-autoplay = "shield"
 
 [node name="user_interface_anim" type="AnimationPlayer" parent="user_interface_layer/user_interface"]
 process_mode = 3

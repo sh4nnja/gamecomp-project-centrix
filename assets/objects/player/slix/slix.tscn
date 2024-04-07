@@ -1,7 +1,8 @@
-[gd_scene load_steps=191 format=3 uid="uid://djmjrikkun6gd"]
+[gd_scene load_steps=197 format=3 uid="uid://djmjrikkun6gd"]
 
 [ext_resource type="Script" path="res://assets/objects/player/slix/slix.gd" id="1_56pfa"]
 [ext_resource type="Texture2D" uid="uid://ckgqvp0c6ra6r" path="res://assets/objects/player/slix/textures/idle & walk/left/idle_l.png" id="2_rsfkk"]
+[ext_resource type="AudioStream" uid="uid://cqj3dx31img5l" path="res://assets/global/sounds/fx/530616__lukeo135__slime-2.ogg" id="2_u6qgo"]
 [ext_resource type="Texture2D" uid="uid://b8rnc7no7truj" path="res://assets/objects/player/slix/textures/idle & walk/right/idle_r.png" id="3_7fjd6"]
 [ext_resource type="Texture2D" uid="uid://c0mfxiynspj7t" path="res://assets/global/texture/smoke.png" id="3_jghpd"]
 [ext_resource type="Texture2D" uid="uid://blayfcmlafu0h" path="res://assets/objects/player/slix/textures/skills/devour/devour_l.png" id="3_lo21s"]
@@ -14,6 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://byf7yxbq6kpg" path="res://assets/objects/player/slix/textures/skills/roll/transform_roll.png" id="6_5abuj"]
 [ext_resource type="Texture2D" uid="uid://ch8kio606nf63" path="res://assets/objects/player/slix/textures/skills/lash/lash_l.png" id="7_wlbpk"]
 [ext_resource type="Texture2D" uid="uid://cbwca31pxr6mo" path="res://assets/objects/player/slix/textures/skills/lash/lash_r.png" id="8_bi4pc"]
+[ext_resource type="AudioStream" uid="uid://dmog2d28sxb15" path="res://assets/global/sounds/fx/340794__kuchenanderung1__slime-squish.wav" id="16_4o04y"]
+[ext_resource type="AudioStream" uid="uid://c4vqfdw4e72od" path="res://assets/global/sounds/fx/557647__clagnar__schlorp.wav" id="16_tr1uu"]
+[ext_resource type="AudioStream" uid="uid://clm6a2lhryh3m" path="res://assets/global/sounds/fx/681682__pnmcarrierailfan__splat-big-gooshy.mp3" id="17_1uvd3"]
+[ext_resource type="AudioStream" uid="uid://cjoesctkik2fh" path="res://assets/global/sounds/fx/660404__mattbrs__laser-gunshot.wav" id="17_qjaee"]
+[ext_resource type="AudioStream" uid="uid://baausp7ejlfnv" path="res://assets/global/sounds/fx/268909__caoimhe_s1__dragging.wav" id="20_3e36r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3phau"]
 size = Vector2(16, 12)
@@ -943,13 +949,37 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("texture:self_modulate")
+tracks/5/path = NodePath("sound:stream")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
+"values": [ExtResource("2_u6qgo")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("texture:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
 
@@ -1072,6 +1102,30 @@ tracks/4/keys = {
 "method": &"devour"
 }]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_tr1uu")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_x1d3r"]
 resource_name = "devour_r"
@@ -1138,6 +1192,30 @@ tracks/4/keys = {
 "method": &"devour"
 }]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_tr1uu")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_14xs5"]
 resource_name = "goowave"
@@ -1203,6 +1281,30 @@ tracks/4/keys = {
 "method": &"goowave"
 }]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("17_1uvd3")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ejt3n"]
 resource_name = "idle_l"
@@ -1256,6 +1358,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [Vector2(0, 0), Vector2(0, 0.5), Vector2(0, 1), Vector2(0, 1.5), Vector2(0, 1.5), Vector2(0, 1), Vector2(0, 0), Vector2(0, -0.5), Vector2(0, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 2,
+"values": [ExtResource("2_u6qgo")]
+}
 
 [sub_resource type="Animation" id="Animation_28gd4"]
 resource_name = "idle_r"
@@ -1308,6 +1434,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2(0, 0), Vector2(0, 0.5), Vector2(0, 1), Vector2(0, 1.5), Vector2(0, 1.5), Vector2(0, 1), Vector2(0, 0), Vector2(0, -0.5), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_u6qgo")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_w5cb7"]
@@ -1372,6 +1522,30 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(1.235, 1.235), Vector2(0.791667, 1.235)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_4o04y")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_lnlg1"]
@@ -1439,6 +1613,30 @@ tracks/4/keys = {
 "method": &"lash"
 }]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("17_qjaee")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_td8kp"]
 resource_name = "lash_r"
@@ -1504,6 +1702,30 @@ tracks/4/keys = {
 "args": [],
 "method": &"lash"
 }]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("17_qjaee")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_xs24j"]
@@ -1584,6 +1806,30 @@ tracks/5/keys = {
 "method": &"rollout"
 }]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sound:stream")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("20_3e36r")]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("sound:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_wgwya"]
 resource_name = "roll_to_idle"
@@ -1648,6 +1894,30 @@ tracks/4/keys = {
 "update": 1,
 "values": [Vector2(0.791667, 1.235), Vector2(1.235, 1.235)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_4o04y")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("sound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_p7ssh"]
 resource_name = "running_l"
@@ -1701,6 +1971,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0.5), Vector2(0, 1), Vector2(0, 1.5), Vector2(0, 1.5), Vector2(0, 0.5), Vector2(0, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_u6qgo")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_mp7vu"]
 resource_name = "running_r"
@@ -1753,6 +2047,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 0.5), Vector2(0, 1), Vector2(0, 1.5), Vector2(0, 1.5), Vector2(0, 0.5), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_u6qgo")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sound:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o8k37"]
@@ -1911,11 +2229,17 @@ states/rolling/position = Vector2(347.074, -59.6667)
 states/running/node = SubResource("AnimationNodeBlendSpace2D_8t528")
 states/running/position = Vector2(688.082, 117.519)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_glo71"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_b1fwa"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_a7din"), "rolling", "roll_to_idle", SubResource("AnimationNodeStateMachineTransition_yilfe"), "roll_to_idle", "idle", SubResource("AnimationNodeStateMachineTransition_5kflg"), "idle", "idle_to_roll", SubResource("AnimationNodeStateMachineTransition_5i35g"), "idle_to_roll", "rolling", SubResource("AnimationNodeStateMachineTransition_2nnwt"), "idle", "devour", SubResource("AnimationNodeStateMachineTransition_u6q2t"), "devour", "idle", SubResource("AnimationNodeStateMachineTransition_n2nik"), "running", "devour", SubResource("AnimationNodeStateMachineTransition_ora43"), "idle", "lash", SubResource("AnimationNodeStateMachineTransition_6rqgr"), "lash", "idle", SubResource("AnimationNodeStateMachineTransition_rh8is"), "running", "lash", SubResource("AnimationNodeStateMachineTransition_ndu5h"), "idle", "goowave", SubResource("AnimationNodeStateMachineTransition_qnxw7"), "goowave", "idle", SubResource("AnimationNodeStateMachineTransition_gy5pa"), "running", "goowave", SubResource("AnimationNodeStateMachineTransition_sjexv"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_e7nvo"), "running", "death", SubResource("AnimationNodeStateMachineTransition_3ko5h"), "lash", "death", SubResource("AnimationNodeStateMachineTransition_rud45"), "goowave", "death", SubResource("AnimationNodeStateMachineTransition_fhmb8"), "devour", "death", SubResource("AnimationNodeStateMachineTransition_emuc2"), "rolling", "death", SubResource("AnimationNodeStateMachineTransition_o8lje")]
-graph_offset = Vector2(-113, -89)
+graph_offset = Vector2(-126, 196)
 
 [node name="slix" type="CharacterBody2D" groups=["Slix"]]
 motion_mode = 1
 script = ExtResource("1_56pfa")
+
+[node name="sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_u6qgo")
+volume_db = -10.0
+max_polyphony = 10
+bus = &"Slix"
 
 [node name="camera" type="Camera2D" parent="."]
 zoom = Vector2(5, 5)
@@ -2018,10 +2342,8 @@ libraries = {
 }
 
 [node name="anim_blend" type="AnimationTree" parent="."]
-callback_mode_process = 0
-libraries = {
-"": SubResource("AnimationLibrary_o8k37")
-}
+deterministic = false
+callback_mode_discrete = 0
 tree_root = SubResource("AnimationNodeStateMachine_5cnvg")
 anim_player = NodePath("../anim")
 parameters/devour/blend_position = Vector2(0.0649652, -0.55)

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://ila5s0khiajw"]
+
+[ext_resource type="Script" path="res://assets/objects/map/items/centennium_collection.gd" id="1_fq5ps"]
+
+[node name="centennium_collection" type="CharacterBody2D" groups=["Item"]]
+collision_mask = 0
+motion_mode = 1
+platform_on_leave = 2
+script = ExtResource("1_fq5ps")
+
+[node name="texture" type="AnimatedSprite2D" parent="."]
+z_index = 2
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
