@@ -21,6 +21,11 @@ extends Node2D
 var _resource: Resource = load("res://assets/objects/map/resources/base_resource.tscn")
 var _false_resource: Resource = load("res://assets/objects/enemies/pseudo/pseudo.tscn")
 
+# Chance of the resource to spawn. Example, there are 1 in 20 chance of spawning.
+# Amount of favorable outcome / Amount of all outcomes = Chance.
+# Don't make this lower than 10, it will go just fine, but slow loading.
+var _resource_spawn_chance: int = TRUE_RESOURCE
+
 # GOOZ *************************************************************************
 var _gooz: Resource = load("res://assets/objects/enemies/gooz/gooz.tscn")
 
@@ -42,10 +47,14 @@ enum {
 	TOXIC_GOOZ = 35
 }
 
-# Chance of the resource to spawn. Example, there are 1 in 20 chance of spawning.
-# Amount of favorable outcome / Amount of all outcomes = Chance.
-# Don't make this lower than 10, it will go just fine, but slow loading.
-var _resource_spawn_chance: int = TRUE_RESOURCE
+enum {
+	ITEM = 100
+}
+
+# ITEM *************************************************************************
+var _centennium_collection: Resource = load("res://assets/objects/map/items/centennium_collection.tscn")
+var _item_count: int = 0
+var _item_chance: int = ITEM
 
 # NODES ************************************************************************
 @onready var _map: TileMap = get_node("world/map")
@@ -127,6 +136,26 @@ func _spawn_gooz(_tile_pos: Vector2i) -> void:
 		# Add the resource object to the game.
 		objects.add_child(_gooz_inst, true)
 		_gooz_inst.set_global_position(to_global(_map.map_to_local(_tile_pos)))
+
+func _manage_items() -> void:
+	# Loop through each tile.
+	for _tile in _map.get_used_cells(1):
+		_spawn_items(_tile)
+
+# Spawn the 100 items.
+func _spawn_items(_tile_pos: Vector2i) -> void:
+	_rng.randomize()
+	
+	if _item_count < 100:
+		if _rng.randi_range(0, _item_chance) == ITEM:
+			var _item_obj: Object = _centennium_collection.instantiate()
+			
+			# Add the resource object to the game.
+			objects.add_child(_item_obj, true)
+			_item_obj.item_name = _item_count
+			_item_obj.set_global_position(to_global(_map.map_to_local(_tile_pos)))
+			
+			_item_count += 1
 
 # Toxic Lake.
 func _damage_toxic_lake(_node: Node) -> void:
