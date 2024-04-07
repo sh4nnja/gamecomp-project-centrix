@@ -1119,6 +1119,7 @@ theme_override_font_sizes/font_size = 55
 text = "You died."
 horizontal_alignment = 1
 autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="pause_screen" type="TextureRect" parent="user_interface_layer/user_interface"]
 self_modulate = Color(1, 1, 1, 0)

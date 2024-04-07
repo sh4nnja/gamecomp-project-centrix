@@ -55,6 +55,7 @@ enum {
 var _centennium_collection: Resource = load("res://assets/objects/map/items/centennium_collection.tscn")
 var _item_count: int = 0
 var _item_chance: int = ITEM
+var _spots_taken: Array[Vector2i] = []
 
 # NODES ************************************************************************
 @onready var _map: TileMap = get_node("world/map")
@@ -77,6 +78,7 @@ var items_collected: int
 func _ready() -> void:
 	_manage_resources() # Spawn resources.
 	_manage_toxic_lake() # Spawn Gooz across toxic lake.
+	_manage_items()
 
 func _physics_process(_delta) -> void:
 	_update_byte()
@@ -110,14 +112,20 @@ func _spawn_resources(_tile_pos: Vector2i) -> void:
 		# Add the resource object to the game.
 		objects.add_child(_res_obj, true)
 		_res_obj.set_global_position(to_global(_map.map_to_local(_tile_pos)))
+		
+		# Uploads the position to make sure no other items will spawn.
+		_spots_taken.append(_tile_pos)
 	
-	# Spawn the Arachnoxenomorph.
+	# Spawn Pseudo.
 	elif _rng.randi_range(0, _resource_spawn_chance) == FALSE_RESOURCE:
 		var _res_obj: Object = _false_resource.instantiate()
 		
 		# Add the resource object to the game.
 		objects.add_child(_res_obj, true)
 		_res_obj.set_global_position(to_global(_map.map_to_local(_tile_pos)))
+		
+		# Uploads the position to make sure no other items will spawn.
+		_spots_taken.append(_tile_pos)
 
 # Spawn Gooz on toxic lakes randomly.
 func _manage_toxic_lake() -> void:
@@ -140,7 +148,8 @@ func _spawn_gooz(_tile_pos: Vector2i) -> void:
 func _manage_items() -> void:
 	# Loop through each tile.
 	for _tile in _map.get_used_cells(1):
-		_spawn_items(_tile)
+		if not _spots_taken.has(_tile):
+			_spawn_items(_tile)
 
 # Spawn the 100 items.
 func _spawn_items(_tile_pos: Vector2i) -> void:
@@ -152,9 +161,10 @@ func _spawn_items(_tile_pos: Vector2i) -> void:
 			
 			# Add the resource object to the game.
 			objects.add_child(_item_obj, true)
-			_item_obj.item_name = _item_count
+			_item_obj.set_item(_item_count)
 			_item_obj.set_global_position(to_global(_map.map_to_local(_tile_pos)))
 			
+			print(_tile_pos, " ", _item_count)
 			_item_count += 1
 
 # Toxic Lake.

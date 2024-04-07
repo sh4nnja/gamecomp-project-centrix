@@ -127,14 +127,11 @@ var _item_name_collection: Array = [
 	"Mangrove Reforestation Initiatives"
 ]
 
-# VIRTUAL **********************************************************************
-func _ready() -> void:
-	_set_item()
-
 # CUSTOM ***********************************************************************
-func _set_item() -> void:
-	_texture.set_frame(item_number)
-	item_name = _item_name_collection[item_number]
+func set_item(_item_num: int) -> void:
+	_texture.set_frame(_item_num)
+	item_number = _item_num
+	item_name = _item_name_collection[_item_num]
  
 func recover() -> int:
 	queue_free()
