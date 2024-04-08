@@ -67,7 +67,7 @@ var _enemies: Array = []
 
 # RESOURCE *********************************************************************
 var _devoured: CharacterBody2D
-var _devoured_enemy: CharacterBody2D
+var _devoured_enemy: Array[CharacterBody2D]
 var _devoured_item: CharacterBody2D
 
 # ITEMS ************************************************************************
@@ -259,12 +259,13 @@ func devour() -> void:
 		_devoured = null
 	
 	# Enemy.
-	if _devoured_enemy:
-		# Only devour enemy when dead.
-		if _devoured_enemy.health <= 0:
-			_devoured_enemy.queue_free()
-			health += 10
-		_devoured_enemy = null # Removes the reference.
+	if _devoured_enemy.size() > 0:
+		for _enemy in _devoured_enemy:
+			# Only devour enemy when dead.
+			if _enemy.health <= 0:
+				_enemy.queue_free()
+				health += 10
+				_devoured_enemy.erase(_enemy) # Removes the reference.
 	
 	# Item.
 	if _devoured_item:
@@ -303,7 +304,7 @@ func _on_devour_body_entered(_body: Node2D) -> void:
 	if _body.is_in_group("Resource") and not _body.is_in_group("Slix"):
 		_devoured = _body
 	elif _body.is_in_group("enemy"):
-		_devoured_enemy = _body
+		_devoured_enemy.append(_body)
 	elif _body.is_in_group("Items"):
 		_devoured_item = _body
 
@@ -311,6 +312,6 @@ func _on_devour_body_exited(_body: Node2D) -> void:
 	if _body.is_in_group("Resource") and not _body.is_in_group("Slix"):
 		_devoured = null
 	elif _body.is_in_group("enemy"):
-		_devoured_enemy = null
+		_devoured_enemy.erase(_body)
 	elif _body.is_in_group("Items"):
 		_devoured_item = null
