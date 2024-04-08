@@ -18,22 +18,22 @@
 extends Control
 
 # NODES ************************************************************************
-@onready var _life_prog: TextureProgressBar = get_node("stats/life_progress")
-@onready var _immunity_prog: TextureProgressBar = get_node("stats/immunity_progress")
-@onready var _slix_icon: TextureRect = get_node("stats/slix")
+@onready var _life_prog: TextureProgressBar = get_node("stats_panel/life_progress")
+@onready var _immunity_prog: TextureProgressBar = get_node("stats_panel/immunity_progress")
+@onready var _slix_icon: TextureRect = get_node("stats_panel/slix")
 
 @onready var _shield_overlay: TextureRect = get_node("shield_overlay")
 
-@onready var _byte_icon: TextureRect = get_node("byte_notif/byte")
-@onready var _byte_broadcast: Label = get_node("byte_notif/byte_panel/byte_broadcast")
-@onready var _byte_panel: TextureRect = get_node("byte_notif/byte_panel")
-@onready var _byte_help_panel: TextureRect = get_node("byte_notif/help_panel")
+@onready var _byte_icon: TextureRect = get_node("byte_notif_panel/byte")
+@onready var _byte_broadcast: Label = get_node("byte_notif_panel/byte_panel/byte_broadcast")
+@onready var _byte_panel: TextureRect = get_node("byte_notif_panel/byte_panel")
+@onready var _byte_help_panel: TextureRect = get_node("byte_notif_panel/help_panel")
 
-@onready var _locator_arrow: TextureRect = get_node("locator/item_compass/item_arrow")
-@onready var _item: TextureRect = get_node("locator/item_locator_panel/item")
-@onready var _item_name: Label = get_node("locator/item_locator_panel/item_desc_title")
-@onready var _item_desc: Label = get_node("locator/item_compass/item_desc")
-@onready var _item_collected: Label = get_node("locator/item_collected/collected_amount")
+@onready var _locator_arrow: TextureRect = get_node("locator_panel/item_compass/item_arrow")
+@onready var _item: TextureRect = get_node("locator_panel/item_locator_panel/item")
+@onready var _item_name: Label = get_node("locator_panel/item_locator_panel/item_desc_title")
+@onready var _item_desc: Label = get_node("locator_panel/item_compass/item_desc")
+@onready var _item_collected: Label = get_node("locator_panel/item_collected/collected_amount")
 
 @onready var _ui_anim: AnimationPlayer = get_node("user_interface_anim")
 

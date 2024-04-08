@@ -17,6 +17,8 @@
 
 extends Control
 
+var _scene: Resource = preload("res://assets/scenes/main_game/main_game.tscn")
+
 # SIGNALS **********************************************************************
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://assets/scenes/main_game/main_game.tscn")
+	get_tree().change_scene_to_packed(_scene)
