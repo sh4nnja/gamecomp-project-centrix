@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="gamedev-project-centium"
+config/name="gamedev-project-centrix"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://assets/dev/centrix_logo/logomark/1200x1200/1200x1200_monochrome_white.png"
