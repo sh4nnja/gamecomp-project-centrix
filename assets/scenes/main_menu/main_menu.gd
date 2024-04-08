@@ -17,7 +17,15 @@
 
 extends Control
 
-var _scene: Resource = preload("res://assets/scenes/main_game/main_game.tscn")
+var _scene: Resource = load("res://assets/scenes/main_game/main_game.tscn")
+
+# NODES ************************************************************************
+@onready var _anim: AnimationPlayer = get_node("menu/anim")
+
+# VIRTUAL **********************************************************************
+func _ready() -> void:
+	# Enable animation.
+	_anim.play("splash")
 
 # SIGNALS **********************************************************************
 func _on_play_pressed() -> void:

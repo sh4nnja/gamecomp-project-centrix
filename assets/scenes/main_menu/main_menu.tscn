@@ -1,10 +1,9 @@
-[gd_scene load_steps=56 format=3 uid="uid://bsl50jg108w77"]
+[gd_scene load_steps=57 format=3 uid="uid://bsl50jg108w77"]
 
 [ext_resource type="Texture2D" uid="uid://cu68ig1qwa1g6" path="res://assets/dev/centrix_logo/boot_splash/logo.png" id="1_esnfi"]
 [ext_resource type="Script" path="res://assets/scenes/main_menu/main_menu.gd" id="1_k0qw2"]
 [ext_resource type="Texture2D" uid="uid://oak5oitkme1p" path="res://assets/scenes/main_menu/textures/star.png" id="2_rroys"]
 [ext_resource type="Texture2D" uid="uid://rkrrmvr7cvvm" path="res://assets/scenes/main_menu/textures/planet.png" id="3_81sdf"]
-[ext_resource type="Texture2D" uid="uid://hes8g7yrnnb6" path="res://assets/dev/centrix_logo/logo/98x19/98x19_original_white.png" id="4_aadag"]
 [ext_resource type="Texture2D" uid="uid://y6hus6vvwexr" path="res://assets/scenes/main_menu/textures/button.png" id="5_gw8h5"]
 [ext_resource type="FontFile" uid="uid://bg2pcaxw1aarq" path="res://assets/global/fonts/FH-Millennia WTT/MILLENNIA.TTF" id="5_sctxg"]
 [ext_resource type="Texture2D" uid="uid://c12ye0gdykvrs" path="res://assets/scenes/main_menu/textures/button_about.png" id="5_yi5re"]
@@ -14,7 +13,8 @@ background_mode = 3
 tonemap_mode = 3
 tonemap_exposure = 0.35
 glow_enabled = true
-glow_levels/5 = 1.5
+glow_levels/3 = 0.35
+glow_levels/7 = 1.0
 glow_bloom = 1.0
 glow_blend_mode = 0
 fog_light_energy = 0.0
@@ -293,6 +293,14 @@ animations = [{
 atlas = ExtResource("5_yi5re")
 region = Rect2(0, 0, 83, 14)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv1sd"]
+atlas = ExtResource("5_yi5re")
+region = Rect2(0, 28, 83, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imi2p"]
+atlas = ExtResource("5_yi5re")
+region = Rect2(0, 14, 83, 14)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_40vpw"]
 atlas = ExtResource("5_gw8h5")
 region = Rect2(0, 0, 126, 28)
@@ -358,7 +366,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("background:modulate")
+tracks/4/path = NodePath("menu/background:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -370,14 +378,26 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("title:self_modulate")
+tracks/5/path = NodePath("menu/about:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("menu/play:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_di3rm"]
@@ -402,10 +422,10 @@ tracks/1/path = NodePath("logo/logo_splash:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(3.5, 5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -434,7 +454,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("background:modulate")
+tracks/4/path = NodePath("menu/background:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -446,11 +466,23 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("title:self_modulate")
+tracks/5/path = NodePath("menu/about:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(4.5, 5),
+"times": PackedFloat32Array(4.1, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("menu/play:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3.9, 5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -470,6 +502,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k0qw2")
+metadata/_edit_use_anchors_ = true
 
 [node name="env" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_je0rx")
@@ -481,112 +514,116 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="stars" type="CPUParticles2D" parent="logo"]
 material = SubResource("CanvasItemMaterial_f3xcj")
-position = Vector2(20, 21)
-amount = 250
+amount = 500
 speed_scale = 0.05
 lifetime_randomness = 1.0
 texture = ExtResource("2_rroys")
 emission_shape = 3
-emission_rect_extents = Vector2(960, 540)
+emission_rect_extents = Vector2(1920, 1080)
 gravity = Vector2(0, 0)
 scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_0x3wj")
 anim_offset_max = 1.0
 
 [node name="logo_splash" type="AnimatedSprite2D" parent="logo"]
-position = Vector2(20, 20)
 scale = Vector2(11.8684, 11.8684)
 sprite_frames = SubResource("SpriteFrames_gcrd0")
 
-[node name="title" type="TextureRect" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = 264.0
-offset_top = 256.0
-offset_right = 840.0
-offset_bottom = 384.0
-texture = ExtResource("4_aadag")
-stretch_mode = 5
-
-[node name="background" type="TextureRect" parent="."]
+[node name="menu" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 683.0
-offset_top = 384.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_81sdf")
-stretch_mode = 6
 
-[node name="about" type="TextureButton" parent="background"]
-auto_translate_mode = 1
+[node name="about" type="TextureButton" parent="menu"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = -1
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -459.0
-offset_top = -520.0
-offset_right = -67.0
-offset_bottom = -456.0
+offset_left = 64.0
+offset_top = -128.0
+offset_right = 456.0
+offset_bottom = -64.0
 grow_vertical = 0
 texture_normal = SubResource("AtlasTexture_iacbv")
+texture_pressed = SubResource("AtlasTexture_wv1sd")
+texture_hover = SubResource("AtlasTexture_imi2p")
 stretch_mode = 5
 flip_v = true
 
-[node name="text" type="Label" parent="background/about"]
+[node name="text" type="Label" parent="menu/about"]
 auto_translate_mode = 1
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
 offset_left = 56.0
-offset_top = 8.0
+offset_top = -32.0
 offset_right = 360.0
-offset_bottom = 64.0
+offset_bottom = 24.0
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_sctxg")
 theme_override_font_sizes/font_size = 40
 text = "About
 "
 vertical_alignment = 1
 
-[node name="play" type="TextureButton" parent="background"]
+[node name="play" type="TextureButton" parent="menu"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -443.0
-offset_top = -704.0
-offset_right = 187.0
-offset_bottom = -504.0
+offset_left = 64.0
+offset_top = -280.0
+offset_right = 694.0
+offset_bottom = -136.0
 grow_vertical = 0
 texture_normal = SubResource("AtlasTexture_40vpw")
 texture_pressed = SubResource("AtlasTexture_butly")
 texture_hover = SubResource("AtlasTexture_lcnlp")
 stretch_mode = 5
 
-[node name="text" type="Label" parent="background/play"]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 32.0
-offset_right = 208.0
-offset_bottom = 168.0
+[node name="text" type="Label" parent="menu/play"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+offset_top = -64.0
+offset_right = 200.0
+offset_bottom = 64.0
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_sctxg")
 theme_override_font_sizes/font_size = 65
 text = "Play
 "
 vertical_alignment = 1
 
-[node name="anim" type="AnimationPlayer" parent="."]
+[node name="background" type="TextureRect" parent="menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.007
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 683.0
+offset_top = 376.44
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_81sdf")
+stretch_mode = 6
+
+[node name="anim" type="AnimationPlayer" parent="menu"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_rjt8b")
 }
 autoplay = "splash"
 
-[connection signal="pressed" from="background/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="menu/play" to="." method="_on_play_pressed"]

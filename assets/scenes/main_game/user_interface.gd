@@ -37,6 +37,8 @@ extends Control
 
 @onready var _ui_anim: AnimationPlayer = get_node("user_interface_anim")
 
+var _scene: Resource = load("res://assets/scenes/main_menu/main_menu.tscn")
+
 # Gets the main game node that has all the details.
 @onready var _game: Node2D = get_parent().get_parent()
 
@@ -171,3 +173,8 @@ func _on_life_progress_value_changed(_value: float) -> void:
 
 func _on_immunity_progress_value_changed(_value: float) -> void:
 	_randomize_life_min_deduction()
+
+func _on_to_main_pressed() -> void:
+	if get_tree().paused:
+		get_tree().paused = false
+	get_tree().change_scene_to_packed(_scene)
