@@ -172,7 +172,6 @@ func _spawn_items(_tile_pos: Vector2i) -> void:
 			items.append(get_node(_item_obj.get_path()))
 			_item_spots_taken.append(_tile_pos)
 			
-			print(_item_count)
 			_item_count += 1
 
 # Toxic Lake.

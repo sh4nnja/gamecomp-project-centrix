@@ -1,10 +1,10 @@
 [gd_scene load_steps=56 format=3 uid="uid://bsl50jg108w77"]
 
-[ext_resource type="Texture2D" uid="uid://bydpf3no0sckn" path="res://assets/dev/centrix_logo/logomark/48x48/48x48_original_white.png" id="1_b2chh"]
 [ext_resource type="Texture2D" uid="uid://cu68ig1qwa1g6" path="res://assets/dev/centrix_logo/boot_splash/logo.png" id="1_esnfi"]
 [ext_resource type="Script" path="res://assets/scenes/main_menu/main_menu.gd" id="1_k0qw2"]
 [ext_resource type="Texture2D" uid="uid://oak5oitkme1p" path="res://assets/scenes/main_menu/textures/star.png" id="2_rroys"]
 [ext_resource type="Texture2D" uid="uid://rkrrmvr7cvvm" path="res://assets/scenes/main_menu/textures/planet.png" id="3_81sdf"]
+[ext_resource type="Texture2D" uid="uid://hes8g7yrnnb6" path="res://assets/dev/centrix_logo/logo/98x19/98x19_original_white.png" id="4_aadag"]
 [ext_resource type="Texture2D" uid="uid://y6hus6vvwexr" path="res://assets/scenes/main_menu/textures/button.png" id="5_gw8h5"]
 [ext_resource type="FontFile" uid="uid://bg2pcaxw1aarq" path="res://assets/global/fonts/FH-Millennia WTT/MILLENNIA.TTF" id="5_sctxg"]
 [ext_resource type="Texture2D" uid="uid://c12ye0gdykvrs" path="res://assets/scenes/main_menu/textures/button_about.png" id="5_yi5re"]
@@ -370,7 +370,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("background/layer/title:self_modulate")
+tracks/5/path = NodePath("title:self_modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -446,7 +446,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("background/layer/title:self_modulate")
+tracks/5/path = NodePath("title:self_modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -507,11 +507,22 @@ position = Vector2(20, 20)
 scale = Vector2(11.8684, 11.8684)
 sprite_frames = SubResource("SpriteFrames_gcrd0")
 
+[node name="title" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 264.0
+offset_top = 256.0
+offset_right = 840.0
+offset_bottom = 384.0
+texture = ExtResource("4_aadag")
+stretch_mode = 5
+
 [node name="background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 683.0
+offset_top = 384.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_81sdf")
@@ -523,13 +534,14 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 120.0
-offset_top = -336.0
-offset_right = 512.0
-offset_bottom = -272.0
+offset_left = -459.0
+offset_top = -520.0
+offset_right = -67.0
+offset_bottom = -456.0
 grow_vertical = 0
 texture_normal = SubResource("AtlasTexture_iacbv")
 stretch_mode = 5
+flip_v = true
 
 [node name="text" type="Label" parent="background/about"]
 auto_translate_mode = 1
@@ -549,10 +561,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 128.0
-offset_top = -288.0
-offset_right = 758.0
-offset_bottom = -88.0
+offset_left = -443.0
+offset_top = -704.0
+offset_right = 187.0
+offset_bottom = -504.0
 grow_vertical = 0
 texture_normal = SubResource("AtlasTexture_40vpw")
 texture_pressed = SubResource("AtlasTexture_butly")
@@ -570,16 +582,6 @@ theme_override_font_sizes/font_size = 65
 text = "Play
 "
 vertical_alignment = 1
-
-[node name="layer" type="CanvasLayer" parent="background"]
-
-[node name="title" type="TextureRect" parent="background/layer"]
-visible = false
-self_modulate = Color(1, 1, 1, 0)
-offset_right = 833.0
-offset_bottom = 752.0
-texture = ExtResource("1_b2chh")
-stretch_mode = 5
 
 [node name="anim" type="AnimationPlayer" parent="."]
 libraries = {
