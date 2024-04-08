@@ -29,6 +29,12 @@ extends Control
 @onready var _byte_panel: TextureRect = get_node("byte_notif/byte_panel")
 @onready var _byte_help_panel: TextureRect = get_node("byte_notif/help_panel")
 
+@onready var _locator_arrow: TextureRect = get_node("locator/item_compass/item_arrow")
+@onready var _item: TextureRect = get_node("locator/item_locator_panel/item")
+@onready var _item_name: Label = get_node("locator/item_locator_panel/item_desc_title")
+@onready var _item_desc: Label = get_node("locator/item_locator_panel/item_desc")
+@onready var _item_collected: Label = get_node("locator/item_collected/collected_amount")
+
 @onready var _ui_anim: AnimationPlayer = get_node("user_interface_anim")
 
 # Gets the main game node that has all the details.
@@ -37,6 +43,7 @@ extends Control
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 var _death: bool = false
+var _win: bool = false
 
 # VIRTUAL **********************************************************************
 func _ready() -> void:
@@ -47,7 +54,9 @@ func _physics_process(_delta: float) -> void:
 	_set_slix_hp(_game.slix_health)
 	_set_slix_immun(_game.slix_immunity)
 	_death_animation(_game.slix_health)
+	_win_animation(_game.items_collected)
 	
+	_locate_items()
 	_pause()
 	_byte_connected()
 
@@ -127,21 +136,34 @@ func _death_animation(_value: float) -> void:
 		_death = true
 		_ui_anim.play("death")
 
+func _win_animation(_value: float) -> void:
+	if _value == 100 and not _win:
+		_win = true
+		_ui_anim.play("win")
+		get_tree().set_deferred("paused", true)
+
 func _pause_animation(_value: bool) -> void:
 	if _value:
 		_ui_anim.play("pause")
 	else:
 		_ui_anim.play_backwards("pause")
-	
-	# Pause the tree.
-	get_tree().paused = _value
 
 func _pause() -> void:
-	if Input.is_action_just_pressed("esc") and not _death:
+	if Input.is_action_just_pressed("esc") and not _death and not _win:
 		if not get_tree().paused:
 			_pause_animation(true)
+			get_tree().set_deferred("paused", true)
 		else:
 			_pause_animation(false)
+			get_tree().set_deferred("paused", false)
+
+func _locate_items() -> void:
+	var _nearest_item: Array = _game.get_nearest_node(_game.items, _game.slix)
+	_locator_arrow.set_rotation_degrees(90 + rad_to_deg(_game.slix.get_angle_to(_nearest_item[0].get_global_position())))
+	_item.get_texture().set_region(Rect2(Vector2i(_nearest_item[0].item_number * 24, 0), Vector2i(24, 24)))
+	_item_name.text = _nearest_item[0].item_name
+	_item_desc.text = "Distance to item: " + str(round(_nearest_item[1]) / 10).pad_decimals(0) + "m"
+	_item_collected.text = str(_game.items_collected) + "/100"
 
 # SIGNALS **********************************************************************
 func _on_life_progress_value_changed(_value: float) -> void:

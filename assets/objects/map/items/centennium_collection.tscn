@@ -713,7 +713,7 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_av2fv"]
 
-[node name="centennium_collection" type="CharacterBody2D" groups=["Item"]]
+[node name="centennium_collection" type="CharacterBody2D" groups=["Items"]]
 collision_mask = 0
 motion_mode = 1
 platform_on_leave = 2

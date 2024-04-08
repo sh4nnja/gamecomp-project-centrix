@@ -21,7 +21,7 @@ extends CharacterBody2D
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
 
 # PHYSICS **********************************************************************
-const SPEED: float = 35.0 
+const SPEED: float = 45.0 
 
 var _chase_threshold: int = 20 # Distance before follow Slix.
 

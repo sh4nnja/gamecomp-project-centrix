@@ -70,6 +70,9 @@ var _devoured: CharacterBody2D
 var _devoured_enemy: CharacterBody2D
 var _devoured_item: CharacterBody2D
 
+# ITEMS ************************************************************************
+var item_collected: int = 0
+
 # VIRTUAL **********************************************************************
 func _ready() -> void:
 	_anim_blend.set_active(true) # Enable animation.
@@ -251,7 +254,7 @@ func devour() -> void:
 		if _res_type > 3:
 			reduced_toxicity += 35
 		else:
-			health += 5
+			health += 15
 			reduced_toxicity = 150
 		_devoured = null
 	
@@ -265,6 +268,8 @@ func devour() -> void:
 	
 	# Item.
 	if _devoured_item:
+		item_collected += 1
+		health += 5
 		_devoured_item.recover() 
 
 func lash() -> void:
@@ -308,4 +313,4 @@ func _on_devour_body_exited(_body: Node2D) -> void:
 	elif _body.is_in_group("enemy"):
 		_devoured_enemy = null
 	elif _body.is_in_group("Items"):
-		pass
+		_devoured_item = null

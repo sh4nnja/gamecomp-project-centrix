@@ -48,20 +48,24 @@ enum {
 }
 
 enum {
-	ITEM = 100
+	ITEM = 300
 }
 
 # ITEM *************************************************************************
 var _centennium_collection: Resource = load("res://assets/objects/map/items/centennium_collection.tscn")
 var _item_count: int = 0
 var _item_chance: int = ITEM
-var _spots_taken: Array[Vector2i] = []
+
+var items: Array = []
+
+var _resource_spots_taken: Array[Vector2i] = []
+var _item_spots_taken: Array[Vector2i] = []
 
 # NODES ************************************************************************
 @onready var _map: TileMap = get_node("world/map")
 @onready var objects: Node2D = get_node("objects")
 
-@onready var _slix: CharacterBody2D = get_node("objects/slix")
+@onready var slix: CharacterBody2D = get_node("objects/slix")
 @onready var _byte: CharacterBody2D = get_node("objects/byte")
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -83,7 +87,7 @@ func _ready() -> void:
 func _physics_process(_delta) -> void:
 	_update_byte()
 	_update_slix_stats() # Update slix stats such as health etc.
-	_damage_toxic_lake(_slix) # Damage Slix when in contact of the toxic lake.
+	_damage_toxic_lake(slix) # Damage Slix when in contact of the toxic lake.
 
 # CUSTOM ***********************************************************************
 # Resource spawning manager.
@@ -114,7 +118,7 @@ func _spawn_resources(_tile_pos: Vector2i) -> void:
 		_res_obj.set_global_position(to_global(_map.map_to_local(_tile_pos)))
 		
 		# Uploads the position to make sure no other items will spawn.
-		_spots_taken.append(_tile_pos)
+		_resource_spots_taken.append(_tile_pos)
 	
 	# Spawn Pseudo.
 	elif _rng.randi_range(0, _resource_spawn_chance) == FALSE_RESOURCE:
@@ -125,7 +129,7 @@ func _spawn_resources(_tile_pos: Vector2i) -> void:
 		_res_obj.set_global_position(to_global(_map.map_to_local(_tile_pos)))
 		
 		# Uploads the position to make sure no other items will spawn.
-		_spots_taken.append(_tile_pos)
+		_resource_spots_taken.append(_tile_pos)
 
 # Spawn Gooz on toxic lakes randomly.
 func _manage_toxic_lake() -> void:
@@ -148,7 +152,7 @@ func _spawn_gooz(_tile_pos: Vector2i) -> void:
 func _manage_items() -> void:
 	# Loop through each tile.
 	for _tile in _map.get_used_cells(1):
-		if not _spots_taken.has(_tile):
+		if not _resource_spots_taken.has(_tile):
 			_spawn_items(_tile)
 
 # Spawn the 100 items.
@@ -164,7 +168,9 @@ func _spawn_items(_tile_pos: Vector2i) -> void:
 			_item_obj.set_item(_item_count)
 			_item_obj.set_global_position(to_global(_map.map_to_local(_tile_pos)))
 			
-			print(_tile_pos, " ", _item_count)
+			# Get their unique identifiers for tracking.
+			items.append(get_node(_item_obj.get_path()))
+			_item_spots_taken.append(_tile_pos)
 			_item_count += 1
 
 # Toxic Lake.
@@ -176,8 +182,25 @@ func _damage_toxic_lake(_node: Node) -> void:
 		_node.toxic_lake_deduction()
 
 func _update_slix_stats() -> void:
-	slix_health = _slix.health
-	slix_immunity = _slix.reduced_toxicity
+	slix_health = slix.health
+	slix_immunity = slix.reduced_toxicity
+	items_collected = slix.item_collected
 
 func _update_byte() -> void:
 	byte_connected = _byte.connected
+
+# Get the nearest node.
+func get_nearest_node(_nodes: Array, _player: Node) -> Array:
+	var _output: Array
+	var _nearest_node: Node = null
+	var _nearest_distance = INF 
+	
+	for _node in _nodes:
+		if _node:
+			var _distance = _player.global_position.distance_to(_node.global_position)
+			if _distance < _nearest_distance:
+				_nearest_distance = _distance
+				_nearest_node = _node
+	
+	_output = [_nearest_node,  _nearest_distance]
+	return _output

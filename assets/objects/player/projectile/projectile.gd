@@ -39,6 +39,6 @@ func _remove_bullet() -> void:
 
 # SIGNALS **********************************************************************
 func _on_body_entered(_body: Node2D) -> void:
-	if not _body.is_in_group("Slix") and not _body.is_in_group("Resource"):
+	if not _body.is_in_group("Slix") and not _body.is_in_group("Resource") and not _body.is_in_group("Items"):
 		_body.damage()
 		queue_free()
