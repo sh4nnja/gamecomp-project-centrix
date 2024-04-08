@@ -1,12 +1,14 @@
-[gd_scene load_steps=57 format=3 uid="uid://bsl50jg108w77"]
+[gd_scene load_steps=59 format=3 uid="uid://bsl50jg108w77"]
 
 [ext_resource type="Texture2D" uid="uid://cu68ig1qwa1g6" path="res://assets/dev/centrix_logo/boot_splash/logo.png" id="1_esnfi"]
 [ext_resource type="Script" path="res://assets/scenes/main_menu/main_menu.gd" id="1_k0qw2"]
+[ext_resource type="AudioStream" uid="uid://d0lsk1s2pil71" path="res://assets/global/sounds/bgm/game/594225__klankbeeld__halloween-background.ogg" id="2_5fdhh"]
 [ext_resource type="Texture2D" uid="uid://oak5oitkme1p" path="res://assets/scenes/main_menu/textures/star.png" id="2_rroys"]
 [ext_resource type="Texture2D" uid="uid://rkrrmvr7cvvm" path="res://assets/scenes/main_menu/textures/planet.png" id="3_81sdf"]
 [ext_resource type="Texture2D" uid="uid://y6hus6vvwexr" path="res://assets/scenes/main_menu/textures/button.png" id="5_gw8h5"]
 [ext_resource type="FontFile" uid="uid://bg2pcaxw1aarq" path="res://assets/global/fonts/FH-Millennia WTT/MILLENNIA.TTF" id="5_sctxg"]
 [ext_resource type="Texture2D" uid="uid://c12ye0gdykvrs" path="res://assets/scenes/main_menu/textures/button_about.png" id="5_yi5re"]
+[ext_resource type="AudioStream" uid="uid://bebd8rkn1skm1" path="res://assets/global/sounds/fx/528561__jummit__soft-ui-button-click.ogg" id="8_mppip"]
 
 [sub_resource type="Environment" id="Environment_je0rx"]
 background_mode = 3
@@ -399,6 +401,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("sound:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_di3rm"]
 resource_name = "splash"
@@ -487,6 +501,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("sound:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rjt8b"]
 _data = {
@@ -503,6 +529,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k0qw2")
 metadata/_edit_use_anchors_ = true
+
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5fdhh")
+volume_db = -10.0
 
 [node name="env" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_je0rx")
@@ -606,6 +636,12 @@ text = "Play
 "
 vertical_alignment = 1
 
+[node name="sound2" type="AudioStreamPlayer" parent="menu"]
+stream = ExtResource("8_mppip")
+volume_db = -10.0
+max_polyphony = 5
+bus = &"UI"
+
 [node name="background" type="TextureRect" parent="menu"]
 layout_mode = 1
 anchors_preset = -1
@@ -626,4 +662,7 @@ libraries = {
 }
 autoplay = "splash"
 
+[connection signal="mouse_entered" from="menu/about" to="." method="_on_about_mouse_entered"]
+[connection signal="pressed" from="menu/about" to="." method="_on_about_pressed"]
+[connection signal="mouse_entered" from="menu/play" to="." method="_on_play_mouse_entered"]
 [connection signal="pressed" from="menu/play" to="." method="_on_play_pressed"]

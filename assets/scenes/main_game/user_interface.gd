@@ -35,6 +35,7 @@ extends Control
 @onready var _item_desc: Label = get_node("locator_panel/item_compass/item_desc")
 @onready var _item_collected: Label = get_node("locator_panel/item_collected/collected_amount")
 
+@onready var _fx: AudioStreamPlayer = get_node("sound2")
 @onready var _ui_anim: AnimationPlayer = get_node("user_interface_anim")
 
 var _scene: Resource = load("res://assets/scenes/main_menu/main_menu.tscn")
@@ -178,3 +179,6 @@ func _on_to_main_pressed() -> void:
 	if get_tree().paused:
 		get_tree().paused = false
 	get_tree().change_scene_to_packed(_scene)
+
+func _on_to_main_mouse_entered() -> void:
+	_fx.play()
