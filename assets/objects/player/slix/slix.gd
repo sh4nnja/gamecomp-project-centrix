@@ -254,7 +254,7 @@ func devour() -> void:
 		if _res_type > 3:
 			reduced_toxicity += 35
 		else:
-			health += 15
+			health += 10
 			reduced_toxicity = 150
 		_devoured = null
 	

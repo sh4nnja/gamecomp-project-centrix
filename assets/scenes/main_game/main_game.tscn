@@ -1101,13 +1101,14 @@ anchor_top = 1.256
 anchor_right = 1.2
 anchor_bottom = 1.256
 offset_left = -478.2
-offset_top = -113.024
-offset_right = -147.2
-offset_bottom = -60.0237
-theme_override_constants/line_spacing = -7
+offset_top = -145.024
+offset_right = -153.2
+offset_bottom = -54.0237
+theme_override_constants/line_spacing = -3
 theme_override_fonts/font = ExtResource("7_omp1m")
 theme_override_font_sizes/font_size = 30
-text = "Water Purification System"
+text = "Emergency Water Purification System "
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="item_desc" type="Label" parent="user_interface_layer/user_interface/locator/item_locator_panel"]
@@ -1117,14 +1118,15 @@ anchor_left = 1.2
 anchor_top = 1.256
 anchor_right = 1.2
 anchor_bottom = 1.256
-offset_left = -478.2
-offset_top = -144.024
-offset_right = -141.2
-offset_bottom = -117.024
+offset_left = -858.2
+offset_top = -190.024
+offset_right = -781.2
+offset_bottom = -160.024
 theme_override_constants/line_spacing = -7
 theme_override_fonts/font = ExtResource("7_omp1m")
-theme_override_font_sizes/font_size = 25
-text = "Distance to collective: 10m"
+theme_override_font_sizes/font_size = 30
+text = "10m"
+horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="item" type="TextureRect" parent="user_interface_layer/user_interface/locator/item_locator_panel"]
@@ -1271,10 +1273,11 @@ anchor_bottom = 1.416
 offset_left = 151.752
 offset_top = -143.014
 offset_right = 505.752
-offset_bottom = -63.512
+offset_bottom = -54.512
 theme_override_fonts/font = ExtResource("7_omp1m")
 theme_override_font_sizes/font_size = 25
 text = "I'm near you, I will make sure you have extra attack and defense points."
+vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="byte" type="TextureRect" parent="user_interface_layer/user_interface/byte_notif"]

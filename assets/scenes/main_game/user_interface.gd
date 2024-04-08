@@ -162,7 +162,7 @@ func _locate_items() -> void:
 	_locator_arrow.set_rotation_degrees(90 + rad_to_deg(_game.slix.get_angle_to(_nearest_item[0].get_global_position())))
 	_item.get_texture().set_region(Rect2(Vector2i(_nearest_item[0].item_number * 24, 0), Vector2i(24, 24)))
 	_item_name.text = _nearest_item[0].item_name
-	_item_desc.text = "Distance to item: " + str(round(_nearest_item[1]) / 10).pad_decimals(0) + "m"
+	_item_desc.text = str(round(_nearest_item[1]) / 10).pad_decimals(0) + "m"
 	_item_collected.text = str(_game.items_collected) + "/100"
 
 # SIGNALS **********************************************************************
