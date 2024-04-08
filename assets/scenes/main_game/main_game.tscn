@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://cy7cusbp8lcf0" path="res://assets/objects/user_interface/textures/in_game/win_screen.png" id="16_1ke4q"]
 [ext_resource type="Texture2D" uid="uid://c03j81gmb5rh6" path="res://assets/objects/user_interface/textures/in_game/death_screen.png" id="17_7tv7k"]
 [ext_resource type="Texture2D" uid="uid://b7n41v0ew3sg5" path="res://assets/objects/user_interface/textures/in_game/pause_screen.png" id="18_ce6rx"]
+[ext_resource type="Environment" uid="uid://cearmu6xhrwog" path="res://assets/global/material/glow.tres" id="18_vxqe6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gvldv"]
 atlas = ExtResource("2_dthsk")
@@ -206,7 +207,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(802, 1280)]
+"values": [Vector2(802, 1000)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -223,19 +224,19 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("win_screen/you_win:position")
+tracks/9/path = NodePath("../../sound:stream")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(783, -720)]
+"update": 1,
+"values": [ExtResource("2_v3gj8")]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("stats:size")
+tracks/10/path = NodePath("pause_screen/settings:size")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -247,110 +248,86 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("locator:size")
+tracks/11/path = NodePath("../../sound:playing")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0.001),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1920, 1080)]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("byte_notif:size")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0.001),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1920, 1080)]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("../../sound:stream")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_v3gj8")]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("pause_screen/settings:size")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(0.001),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1920, 1080)]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("../../sound:playing")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("locator:position")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("locator:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("win_screen:self_modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("win_screen:mouse_filter")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("death_screen/you_died:self_modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("pause_screen/continue:self_modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("death_screen/you_died:position")
+tracks/17/path = NodePath("win_screen/you_win:self_modulate")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(783, -720)]
-}
-tracks/18/type = "value"
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/path = NodePath("win_screen:self_modulate")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/keys = {
-"times": PackedFloat32Array(0.001),
-"transitions": PackedFloat32Array(1),
-"update": 0,
 "values": [Color(1, 1, 1, 0)]
-}
-tracks/19/type = "value"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("win_screen:mouse_filter")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
 }
 
 [sub_resource type="Animation" id="Animation_lxfvt"]
@@ -407,50 +384,50 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("death_screen/you_died:position")
+tracks/4/path = NodePath("locator:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.35, 0.35),
-"update": 0,
-"values": [Vector2(783, -720), Vector2(783, 483.5)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("locator:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0.2, 0.5),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 540)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("win_screen:mouse_filter")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("win_screen:mouse_filter")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [2]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("win_screen:self_modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("win_screen:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("death_screen/you_died:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_boh2i"]
@@ -506,14 +483,14 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("pause_screen/continue:position")
+tracks/4/path = NodePath("pause_screen/continue:self_modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.35, 0.35),
+"transitions": PackedFloat32Array(0.388349, 0.35),
 "update": 0,
-"values": [Vector2(802, 1280), Vector2(802, 1034)]
+"values": [Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -730,26 +707,26 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("win_screen/you_win:position")
+tracks/4/path = NodePath("locator:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.35, 0.35),
-"update": 0,
-"values": [Vector2(644, -720), Vector2(644, 483.5)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("locator:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0.2, 0.5),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 540)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("win_screen/you_win:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aws1p"]
@@ -760,17 +737,6 @@ _data = {
 "spawn": SubResource("Animation_qqunw"),
 "win": SubResource("Animation_w1hlb")
 }
-
-[sub_resource type="Environment" id="Environment_hpu5o"]
-background_mode = 3
-tonemap_mode = 3
-tonemap_exposure = 0.35
-glow_enabled = true
-glow_levels/5 = 1.5
-glow_levels/6 = 1.0
-glow_bloom = 1.0
-glow_blend_mode = 0
-fog_light_energy = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xsoci"]
 texture = ExtResource("1_miquc")
@@ -1077,6 +1043,25 @@ pivot_offset = Vector2(179, 179)
 texture = SubResource("AtlasTexture_b55b4")
 stretch_mode = 5
 
+[node name="item_desc" type="Label" parent="user_interface_layer/user_interface/locator/item_compass"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.109
+anchor_top = 1.173
+anchor_right = 0.109
+anchor_bottom = 1.173
+offset_left = 103.978
+offset_top = -191.934
+offset_right = 180.978
+offset_bottom = -161.934
+grow_vertical = 0
+theme_override_constants/line_spacing = -7
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 30
+text = "10m"
+horizontal_alignment = 1
+autowrap_mode = 3
+
 [node name="item_locator_panel" type="TextureRect" parent="user_interface_layer/user_interface/locator"]
 layout_mode = 1
 anchors_preset = -1
@@ -1110,24 +1095,6 @@ theme_override_font_sizes/font_size = 30
 text = "Emergency Water Purification System "
 vertical_alignment = 1
 autowrap_mode = 2
-
-[node name="item_desc" type="Label" parent="user_interface_layer/user_interface/locator/item_locator_panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.2
-anchor_top = 1.256
-anchor_right = 1.2
-anchor_bottom = 1.256
-offset_left = -858.2
-offset_top = -190.024
-offset_right = -781.2
-offset_bottom = -160.024
-theme_override_constants/line_spacing = -7
-theme_override_fonts/font = ExtResource("7_omp1m")
-theme_override_font_sizes/font_size = 30
-text = "10m"
-horizontal_alignment = 1
-autowrap_mode = 3
 
 [node name="item" type="TextureRect" parent="user_interface_layer/user_interface/locator/item_locator_panel"]
 layout_mode = 0
@@ -1325,16 +1292,17 @@ mouse_filter = 2
 texture = ExtResource("16_1ke4q")
 
 [node name="you_win" type="Label" parent="user_interface_layer/user_interface/win_screen"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -177.0
-offset_top = -1260.0
-offset_right = 455.0
-offset_bottom = -1147.0
+offset_left = -316.0
+offset_top = -56.5
+offset_right = 316.0
+offset_bottom = 56.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("7_omp1m")
@@ -1355,6 +1323,7 @@ mouse_filter = 2
 texture = ExtResource("18_ce6rx")
 
 [node name="continue" type="Label" parent="user_interface_layer/user_interface/pause_screen"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -1362,9 +1331,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -158.0
-offset_top = 200.0
+offset_top = -80.0
 offset_right = 159.0
-offset_bottom = 226.0
+offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("7_omp1m")
@@ -1397,6 +1366,7 @@ texture = ExtResource("17_7tv7k")
 
 [node name="you_died" type="Label" parent="user_interface_layer/user_interface/death_screen"]
 auto_translate_mode = 1
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1404,9 +1374,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -177.0
-offset_top = -1260.0
+offset_top = -56.5
 offset_right = 177.0
-offset_bottom = -1205.0
+offset_bottom = -1.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("7_omp1m")
@@ -1423,7 +1393,7 @@ libraries = {
 autoplay = "spawn"
 
 [node name="env" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_hpu5o")
+environment = ExtResource("18_vxqe6")
 
 [node name="world" type="Node2D" parent="."]
 

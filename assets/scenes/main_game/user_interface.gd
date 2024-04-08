@@ -32,7 +32,7 @@ extends Control
 @onready var _locator_arrow: TextureRect = get_node("locator/item_compass/item_arrow")
 @onready var _item: TextureRect = get_node("locator/item_locator_panel/item")
 @onready var _item_name: Label = get_node("locator/item_locator_panel/item_desc_title")
-@onready var _item_desc: Label = get_node("locator/item_locator_panel/item_desc")
+@onready var _item_desc: Label = get_node("locator/item_compass/item_desc")
 @onready var _item_collected: Label = get_node("locator/item_collected/collected_amount")
 
 @onready var _ui_anim: AnimationPlayer = get_node("user_interface_anim")

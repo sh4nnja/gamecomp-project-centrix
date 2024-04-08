@@ -181,6 +181,7 @@ func _damage_toxic_lake(_node: Node) -> void:
 	var _tile_data: int = _map.get_cell_source_id(2, _map.local_to_map(_node.get_position()))
 	var _tile_data_2: int = _map.get_cell_source_id(0, _map.local_to_map(_node.get_position()))
 	if (_tile_data == GOOZ_SPAWN or _tile_data == TOXIC_LAKE) or (_tile_data_2 == GOOZ_SPAWN or _tile_data_2 == TOXIC_LAKE):
+		# Add toxic lake damage.
 		_node.toxic_lake_deduction()
 
 func _update_slix_stats() -> void:

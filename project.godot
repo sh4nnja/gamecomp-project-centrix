@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="gamedev-project-centrix"
+run/main_scene="res://assets/scenes/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://assets/dev/centrix_logo/logomark/1200x1200/1200x1200_monochrome_white.png"
+boot_splash/bg_color=Color(0.0295066, 0.0295066, 0.0295066, 1)
+boot_splash/image="res://assets/global/texture/boot_splash.png"
 config/icon="res://assets/dev/centrix_logo/logomark/1200x1200/1200x1200_original_white.png"
 boot_splash/minimum_display_time=1000
 
@@ -25,9 +26,12 @@ Global="*res://assets/global/script/global.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=4
+window/size/resizable=false
+window/size/borderless=true
 window/size/window_width_override=1024
 window/size/window_height_override=600
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
 [file_customization]
@@ -219,4 +223,4 @@ shading/overrides/force_lambert_over_burley=true
 textures/default_filters/use_nearest_mipmap_filter=true
 textures/decals/filter=0
 textures/light_projectors/filter=0
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+environment/defaults/default_clear_color=Color(0.0313726, 0.0313726, 0.0313726, 1)
