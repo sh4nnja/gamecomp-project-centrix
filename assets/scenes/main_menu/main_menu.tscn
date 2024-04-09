@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bsl50jg108w77"]
+[gd_scene load_steps=62 format=3 uid="uid://bsl50jg108w77"]
 
 [ext_resource type="Texture2D" uid="uid://cu68ig1qwa1g6" path="res://assets/dev/centrix_logo/boot_splash/logo.png" id="1_esnfi"]
 [ext_resource type="Script" path="res://assets/scenes/main_menu/main_menu.gd" id="1_k0qw2"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://bg2pcaxw1aarq" path="res://assets/global/fonts/FH-Millennia WTT/MILLENNIA.TTF" id="5_sctxg"]
 [ext_resource type="Texture2D" uid="uid://c12ye0gdykvrs" path="res://assets/scenes/main_menu/textures/button_about.png" id="5_yi5re"]
 [ext_resource type="AudioStream" uid="uid://bebd8rkn1skm1" path="res://assets/global/sounds/fx/528561__jummit__soft-ui-button-click.ogg" id="8_mppip"]
+[ext_resource type="Texture2D" uid="uid://b4r4io78cnh1a" path="res://assets/scenes/main_menu/textures/sound.png" id="10_8p0l1"]
 
 [sub_resource type="Environment" id="Environment_je0rx"]
 background_mode = 3
@@ -291,6 +292,14 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsm7t"]
+atlas = ExtResource("10_8p0l1")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36qt8"]
+atlas = ExtResource("10_8p0l1")
+region = Rect2(0, 96, 24, 24)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_iacbv"]
 atlas = ExtResource("5_yi5re")
 region = Rect2(0, 0, 83, 14)
@@ -413,6 +422,78 @@ tracks/7/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("menu/exit:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("menu/sound:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("menu/sound:mouse_filter")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("menu/exit:mouse_filter")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("menu/about:mouse_filter")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("menu/play:mouse_filter")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
 
 [sub_resource type="Animation" id="Animation_di3rm"]
 resource_name = "splash"
@@ -513,6 +594,78 @@ tracks/7/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("menu/exit:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(4.2, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("menu/sound:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(4.2, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("menu/sound:mouse_filter")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(4.2, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("menu/exit:mouse_filter")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(4.2, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("menu/about:mouse_filter")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(4.1, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("menu/play:mouse_filter")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(4.2, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rjt8b"]
 _data = {
@@ -572,7 +725,40 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="about" type="TextureButton" parent="menu"]
+[node name="background" type="TextureRect" parent="menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.007
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 683.0
+offset_top = 376.44
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_81sdf")
+stretch_mode = 6
+
+[node name="sound" type="TextureButton" parent="menu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -88.0
+offset_right = -32.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+toggle_mode = true
+texture_normal = SubResource("AtlasTexture_jsm7t")
+texture_pressed = SubResource("AtlasTexture_36qt8")
+stretch_mode = 5
+
+[node name="exit" type="TextureButton" parent="menu"]
+auto_translate_mode = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -582,6 +768,41 @@ offset_top = -128.0
 offset_right = 456.0
 offset_bottom = -64.0
 grow_vertical = 0
+mouse_filter = 2
+texture_normal = SubResource("AtlasTexture_iacbv")
+texture_pressed = SubResource("AtlasTexture_wv1sd")
+texture_hover = SubResource("AtlasTexture_imi2p")
+stretch_mode = 5
+flip_v = true
+
+[node name="text" type="Label" parent="menu/exit"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 56.0
+offset_top = -32.0
+offset_right = 360.0
+offset_bottom = 24.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_sctxg")
+theme_override_font_sizes/font_size = 40
+text = "Exit
+"
+vertical_alignment = 1
+
+[node name="about" type="TextureButton" parent="menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = -200.0
+offset_right = 464.0
+offset_bottom = -136.0
+grow_vertical = 0
+mouse_filter = 2
 texture_normal = SubResource("AtlasTexture_iacbv")
 texture_pressed = SubResource("AtlasTexture_wv1sd")
 texture_hover = SubResource("AtlasTexture_imi2p")
@@ -610,11 +831,12 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = -280.0
-offset_right = 694.0
-offset_bottom = -136.0
+offset_left = 72.0
+offset_top = -352.0
+offset_right = 702.0
+offset_bottom = -208.0
 grow_vertical = 0
+mouse_filter = 2
 texture_normal = SubResource("AtlasTexture_40vpw")
 texture_pressed = SubResource("AtlasTexture_butly")
 texture_hover = SubResource("AtlasTexture_lcnlp")
@@ -642,19 +864,6 @@ volume_db = -10.0
 max_polyphony = 5
 bus = &"UI"
 
-[node name="background" type="TextureRect" parent="menu"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.007
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 683.0
-offset_top = 376.44
-grow_horizontal = 0
-grow_vertical = 0
-texture = ExtResource("3_81sdf")
-stretch_mode = 6
-
 [node name="anim" type="AnimationPlayer" parent="menu"]
 root_node = NodePath("../..")
 libraries = {
@@ -662,6 +871,10 @@ libraries = {
 }
 autoplay = "splash"
 
+[connection signal="mouse_entered" from="menu/sound" to="." method="_on_sound_mouse_entered"]
+[connection signal="toggled" from="menu/sound" to="." method="_on_sound_toggled"]
+[connection signal="mouse_entered" from="menu/exit" to="." method="_on_exit_mouse_entered"]
+[connection signal="pressed" from="menu/exit" to="." method="_on_exit_pressed"]
 [connection signal="mouse_entered" from="menu/about" to="." method="_on_about_mouse_entered"]
 [connection signal="pressed" from="menu/about" to="." method="_on_about_pressed"]
 [connection signal="mouse_entered" from="menu/play" to="." method="_on_play_mouse_entered"]

@@ -27,6 +27,9 @@ var _scene: Resource = load("res://assets/scenes/main_game/main_game.tscn")
 func _ready() -> void:
 	# Enable animation.
 	_anim.play("splash")
+	
+	for _bus in AudioServer.bus_count:
+		AudioServer.set_bus_mute(_bus, false)
 
 # SIGNALS **********************************************************************
 func _on_play_pressed() -> void:
@@ -41,5 +44,15 @@ func _on_about_pressed() -> void:
 func _on_about_mouse_entered() -> void:
 	_fx.play()
 
+func _on_exit_pressed() -> void:
+	get_tree().quit()
 
+func _on_exit_mouse_entered() -> void:
+	_fx.play()
 
+func _on_sound_toggled(_toggled_on: bool) -> void:
+	for _bus in AudioServer.bus_count:
+		AudioServer.set_bus_mute(_bus, _toggled_on)
+
+func _on_sound_mouse_entered() -> void:
+	_fx.play()
