@@ -46,6 +46,10 @@ var _enabled_devour: bool = false
 var _enabled_lash: bool = false
 var _enabled_goo: bool = false
 
+var killed_enemies: int = 0
+var devoured_resources: int = 0
+var devoured_items: int = 0
+
 # HEALTH ***********************************************************************
 # Deduction happens per physics frame.
 const TOXIC_ATMOSPHERE: float = 0.005
@@ -257,6 +261,7 @@ func devour() -> void:
 			health += 10
 			reduced_toxicity = 150
 		_devoured = null
+		devoured_resources += 10
 	
 	# Enemy.
 	if _devoured_enemy.size() > 0:
@@ -266,12 +271,14 @@ func devour() -> void:
 				_enemy.queue_free()
 				health += 10
 				_devoured_enemy.erase(_enemy) # Removes the reference.
+				killed_enemies += 50
 	
 	# Item.
 	if _devoured_item:
 		item_collected += 1
 		health += 5
-		_devoured_item.recover() 
+		_devoured_item.recover()
+		devoured_items += 100 
 
 func lash() -> void:
 	health -= lash_energy

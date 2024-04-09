@@ -38,12 +38,17 @@ extends Control
 @onready var _fx: AudioStreamPlayer = get_node("sound2")
 @onready var _ui_anim: AnimationPlayer = get_node("user_interface_anim")
 
+@onready var _win_text: Label = get_node("win_screen/you_win")
+@onready var _death_text: Label = get_node("death_screen/you_died")
+
 var _scene: Resource = load("res://assets/scenes/main_menu/main_menu.tscn")
 
 # Gets the main game node that has all the details.
 @onready var _game: Node2D = get_parent().get_parent()
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
+
+var _score: int = 0
 
 var _death: bool = false
 var _win: bool = false
@@ -138,12 +143,14 @@ func _death_animation(_value: float) -> void:
 	if _value <= 0 and not _death:
 		_death = true
 		_ui_anim.play("death")
+		_calculate_score()
 
 func _win_animation(_value: float) -> void:
 	if _value == 100 and not _win:
 		_win = true
 		_ui_anim.play("win")
 		get_tree().set_deferred("paused", true)
+		_calculate_score()
 
 func _pause_animation(_value: bool) -> void:
 	if _value:
@@ -167,6 +174,11 @@ func _locate_items() -> void:
 	_item_name.text = _nearest_item[0].item_name
 	_item_desc.text = str(round(_nearest_item[1]) / 10).pad_decimals(0) + "m"
 	_item_collected.text = str(_game.items_collected) + "/100"
+
+func _calculate_score() -> void:
+	_score = _game.slix.devoured_items + (_game.slix.killed_enemies / _game.slix.devoured_resources)
+	_win_text.text += "\n\nScore: " + str(_score)
+	_death_text.text += "\n\nScore: " + str(_score)
 
 # SIGNALS **********************************************************************
 func _on_life_progress_value_changed(_value: float) -> void:

@@ -870,6 +870,7 @@ scale_amount_curve = SubResource("Curve_0x3wj")
 anim_offset_max = 1.0
 
 [node name="logo_splash" type="AnimatedSprite2D" parent="logo"]
+z_index = 1
 scale = Vector2(11.8684, 11.8684)
 sprite_frames = SubResource("SpriteFrames_gcrd0")
 
@@ -896,17 +897,14 @@ stretch_mode = 6
 
 [node name="sound" type="TextureButton" parent="menu"]
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = -96.0
-offset_top = -88.0
+offset_top = 32.0
 offset_right = -32.0
-offset_bottom = -24.0
+offset_bottom = 96.0
 grow_horizontal = 0
-grow_vertical = 0
 mouse_filter = 2
 toggle_mode = true
 texture_normal = SubResource("AtlasTexture_jsm7t")
