@@ -833,6 +833,18 @@ tracks/19/keys = {
 "update": 1,
 "values": [2]
 }
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("pause_screen/task:self_modulate")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_lxfvt"]
 resource_name = "death"
@@ -1079,6 +1091,18 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [2, 0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("pause_screen/task:self_modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_qqunw"]
@@ -2147,6 +2171,28 @@ theme_override_fonts/font = ExtResource("7_omp1m")
 theme_override_font_sizes/font_size = 25
 text = "Press ESCAPE to Continue"
 horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="task" type="Label" parent="user_interface_layer/user/pause_screen"]
+auto_translate_mode = 1
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1216.0
+offset_bottom = 644.0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 50
+text = "Your task is to find the 100 items scattered in the planet before you die from the toxic atmosphere.
+
+You must survive. 
+
+Be curious on the enviroment and use them to your advantage.
+
+Locate the items by using the locator on the bottom left side.
+
+Devour the items to collect them. You can also devour other things that you are curious with. Check them if they can be an advantage."
+vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="death_screen" type="TextureRect" parent="user_interface_layer/user"]

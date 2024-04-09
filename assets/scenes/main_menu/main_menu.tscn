@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bsl50jg108w77"]
+[gd_scene load_steps=67 format=3 uid="uid://bsl50jg108w77"]
 
 [ext_resource type="Texture2D" uid="uid://cu68ig1qwa1g6" path="res://assets/dev/centrix_logo/boot_splash/logo.png" id="1_esnfi"]
 [ext_resource type="Script" path="res://assets/scenes/main_menu/main_menu.gd" id="1_k0qw2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c12ye0gdykvrs" path="res://assets/scenes/main_menu/textures/button_about.png" id="5_yi5re"]
 [ext_resource type="AudioStream" uid="uid://bebd8rkn1skm1" path="res://assets/global/sounds/fx/528561__jummit__soft-ui-button-click.ogg" id="8_mppip"]
 [ext_resource type="Texture2D" uid="uid://b4r4io78cnh1a" path="res://assets/scenes/main_menu/textures/sound.png" id="10_8p0l1"]
+[ext_resource type="Texture2D" uid="uid://twvrla33gsgc" path="res://assets/scenes/main_menu/textures/about.png" id="11_58wx5"]
 
 [sub_resource type="Environment" id="Environment_je0rx"]
 background_mode = 3
@@ -514,6 +515,18 @@ tracks/15/keys = {
 "update": 1,
 "values": [2]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("about:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_di3rm"]
 resource_name = "splash"
@@ -821,6 +834,18 @@ tracks/10/keys = {
 "update": 1,
 "values": [2, 0]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("about:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rjt8b"]
 _data = {
@@ -828,6 +853,22 @@ _data = {
 "about": SubResource("Animation_t10g3"),
 "splash": SubResource("Animation_di3rm")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnmjs"]
+atlas = ExtResource("11_58wx5")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbkj4"]
+atlas = ExtResource("11_58wx5")
+region = Rect2(130, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jeffe"]
+atlas = ExtResource("11_58wx5")
+region = Rect2(67, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c64rv"]
+atlas = ExtResource("11_58wx5")
+region = Rect2(0, 0, 64, 64)
 
 [node name="main_menu" type="Control"]
 layout_mode = 3
@@ -897,14 +938,10 @@ stretch_mode = 6
 
 [node name="sound" type="TextureButton" parent="menu"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -96.0
-offset_top = 32.0
-offset_right = -32.0
-offset_bottom = 96.0
-grow_horizontal = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 64.0
+offset_bottom = 64.0
 mouse_filter = 2
 toggle_mode = true
 texture_normal = SubResource("AtlasTexture_jsm7t")
@@ -1058,6 +1095,226 @@ libraries = {
 "": SubResource("AnimationLibrary_rjt8b")
 }
 autoplay = "splash"
+
+[node name="about" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="sound" type="Label" parent="about"]
+auto_translate_mode = 1
+layout_mode = 1
+offset_left = 1528.0
+offset_top = 1000.0
+offset_right = 1859.0
+offset_bottom = 1025.0
+theme_override_fonts/font = ExtResource("5_sctxg")
+theme_override_font_sizes/font_size = 25
+text = "Sounds from Freesound.org"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="brought to you by" type="Label" parent="about"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1856.0
+offset_top = -352.0
+offset_right = -1293.0
+offset_bottom = -296.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("5_sctxg")
+theme_override_font_sizes/font_size = 40
+text = "Centrix has brought to you by"
+vertical_alignment = 1
+
+[node name="school" type="Label" parent="about"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1856.0
+offset_top = -324.0
+offset_right = -935.0
+offset_bottom = -65.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/line_spacing = -41
+theme_override_fonts/font = ExtResource("5_sctxg")
+theme_override_font_sizes/font_size = 150
+text = "University of 
+Cabuyao"
+vertical_alignment = 1
+
+[node name="made with" type="Label" parent="about"]
+auto_translate_mode = 1
+layout_mode = 1
+offset_left = 296.0
+offset_top = 192.0
+offset_right = 859.0
+offset_bottom = 248.0
+theme_override_fonts/font = ExtResource("5_sctxg")
+theme_override_font_sizes/font_size = 40
+text = "Made with love by"
+vertical_alignment = 1
+
+[node name="members" type="TextureRect" parent="about"]
+layout_mode = 1
+offset_left = 296.0
+offset_top = 264.0
+offset_right = 552.0
+offset_bottom = 520.0
+texture = SubResource("AtlasTexture_hnmjs")
+
+[node name="name" type="Label" parent="about/members"]
+auto_translate_mode = 1
+layout_mode = 1
+offset_left = -32.0
+offset_top = 256.0
+offset_right = 280.0
+offset_bottom = 312.0
+theme_override_fonts/font = ExtResource("5_sctxg")
+theme_override_font_sizes/font_size = 25
+text = "Shannja Ashley Malelang"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="name2" type="Label" parent="about/members"]
+auto_translate_mode = 1
+layout_mode = 1
+offset_left = -32.0
+offset_top = 296.0
+offset_right = 280.0
+offset_bottom = 352.0
+theme_override_fonts/font = ExtResource("5_sctxg")
+theme_override_font_sizes/font_size = 25
+text = "Lead Developer
+Lead Designer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="members2" type="TextureRect" parent="about"]
+auto_translate_mode = 1
+layout_mode = 1
+offset_left = 616.0
+offset_top = 264.0
+offset_right = 872.0
+offset_bottom = 520.0
+texture = SubResource("AtlasTexture_qbkj4")
+
+[node name="name" type="Label" parent="about/members2"]
+auto_translate_mode = 1
+layout_mode = 1
+offset_left = -32.0
+offset_top = 256.0
+offset_right = 280.0
+offset_bottom = 312.0
+theme_override_fonts/font = ExtResource("5_sctxg")
+theme_override_font_sizes/font_size = 25
+text = "Jhovic Cortel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="name2" type="Label" parent="about/members2"]
+auto_translate_mode = 1
+layout_mode = 1
+offset_left = -32.0
+offset_top = 296.0
+offset_right = 280.0
+offset_bottom = 352.0
+theme_override_fonts/font = ExtResource("5_sctxg")
+theme_override_font_sizes/font_size = 25
+text = "Sprite Designer
+Sound Manager"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="members3" type="TextureRect" parent="about"]
+auto_translate_mode = 1
+layout_mode = 1
+offset_left = 936.0
+offset_top = 264.0
+offset_right = 1192.0
+offset_bottom = 520.0
+texture = SubResource("AtlasTexture_jeffe")
+
+[node name="name" type="Label" parent="about/members3"]
+auto_translate_mode = 1
+layout_mode = 1
+offset_left = -32.0
+offset_top = 256.0
+offset_right = 280.0
+offset_bottom = 312.0
+theme_override_fonts/font = ExtResource("5_sctxg")
+theme_override_font_sizes/font_size = 25
+text = "Miccael Jasper Tayas"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="name2" type="Label" parent="about/members3"]
+auto_translate_mode = 1
+layout_mode = 1
+offset_left = -32.0
+offset_top = 296.0
+offset_right = 280.0
+offset_bottom = 352.0
+theme_override_fonts/font = ExtResource("5_sctxg")
+theme_override_font_sizes/font_size = 25
+text = "Sprite Designer
+Co-Sound Manager"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="members4" type="TextureRect" parent="about"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -600.0
+offset_top = 264.0
+offset_right = -344.0
+offset_bottom = 520.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_c64rv")
+
+[node name="name" type="Label" parent="about/members4"]
+auto_translate_mode = 1
+layout_mode = 1
+offset_left = -32.0
+offset_top = 256.0
+offset_right = 280.0
+offset_bottom = 312.0
+theme_override_fonts/font = ExtResource("5_sctxg")
+theme_override_font_sizes/font_size = 25
+text = "Paulo Edrozo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="name2" type="Label" parent="about/members4"]
+auto_translate_mode = 1
+layout_mode = 1
+offset_left = -32.0
+offset_top = 296.0
+offset_right = 280.0
+offset_bottom = 352.0
+theme_override_fonts/font = ExtResource("5_sctxg")
+theme_override_font_sizes/font_size = 25
+text = "Adviser"
+horizontal_alignment = 1
 
 [connection signal="mouse_entered" from="menu/sound" to="." method="_on_sound_mouse_entered"]
 [connection signal="toggled" from="menu/sound" to="." method="_on_sound_toggled"]
