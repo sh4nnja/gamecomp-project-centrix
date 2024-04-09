@@ -41,6 +41,8 @@ extends Control
 @onready var _win_text: Label = get_node("win_screen/you_win")
 @onready var _death_text: Label = get_node("death_screen/you_died")
 
+@onready var _lore_anim: AnimationPlayer = get_parent().get_parent().get_node("tutorial/anim")
+
 var _scene: Resource = load("res://assets/scenes/main_menu/main_menu.tscn")
 
 # Gets the main game node that has all the details.
@@ -167,7 +169,7 @@ func _pause_animation(_value: bool) -> void:
 
 # The actual pause.
 func _pause() -> void:
-	if Input.is_action_just_pressed("esc") and not _death and not _win:
+	if Input.is_action_just_pressed("esc") and not _death and not _win and not _lore_anim.is_playing():
 		if not get_tree().paused:
 			_pause_animation(true)
 			get_tree().set_deferred("paused", true)
@@ -214,3 +216,6 @@ func _on_to_main_pressed() -> void:
 
 func _on_to_main_mouse_entered() -> void:
 	_fx.play()
+
+func _on_skip_pressed() -> void:
+	_lore_anim.seek(78, true)

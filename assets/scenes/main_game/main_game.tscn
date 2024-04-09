@@ -43,6 +43,18 @@
 [ext_resource type="Environment" uid="uid://cearmu6xhrwog" path="res://assets/global/material/glow.tres" id="18_vxqe6"]
 [ext_resource type="AudioStream" uid="uid://bebd8rkn1skm1" path="res://assets/global/sounds/fx/528561__jummit__soft-ui-button-click.ogg" id="19_oekh0"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8k7y"]
+atlas = ExtResource("18_d76qf")
+region = Rect2(0, 0, 83, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mua3q"]
+atlas = ExtResource("18_d76qf")
+region = Rect2(0, 28, 83, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7cox"]
+atlas = ExtResource("18_d76qf")
+region = Rect2(0, 14, 83, 14)
+
 [sub_resource type="Animation" id="Animation_3lttb"]
 length = 0.001
 tracks/0/type = "value"
@@ -249,6 +261,30 @@ tracks/16/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("skip:modulate")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("skip:mouse_filter")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
 
 [sub_resource type="Animation" id="Animation_ko3bw"]
 resource_name = "cutscene"
@@ -289,7 +325,7 @@ tracks/2/path = NodePath("cutscene:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 78, 78.5),
+"times": PackedFloat32Array(0, 78, 78.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0.0313726, 0.0313726, 0.0313726, 0)]
@@ -486,6 +522,30 @@ tracks/18/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("skip:modulate")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0, 1, 78.1, 78.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("skip:mouse_filter")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0, 0.2, 78.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 0, 2]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3oupt"]
 _data = {
@@ -578,18 +638,6 @@ _data = {
 "RESET": SubResource("Animation_aqm3r"),
 "shield": SubResource("Animation_3ieoc")
 }
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s8k7y"]
-atlas = ExtResource("18_d76qf")
-region = Rect2(0, 0, 83, 14)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mua3q"]
-atlas = ExtResource("18_d76qf")
-region = Rect2(0, 28, 83, 14)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j7cox"]
-atlas = ExtResource("18_d76qf")
-region = Rect2(0, 14, 83, 14)
 
 [sub_resource type="Animation" id="Animation_7i5jl"]
 length = 0.001
@@ -1522,6 +1570,7 @@ process_mode = 3
 layer = 2
 
 [node name="cutscene" type="Control" parent="tutorial"]
+modulate = Color(0.0313726, 0.0313726, 0.0313726, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1730,6 +1779,41 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("18_ji3hi")
+
+[node name="skip" type="TextureButton" parent="tutorial"]
+auto_translate_mode = 1
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -456.0
+offset_top = 64.0
+offset_right = -64.0
+offset_bottom = 128.0
+grow_horizontal = 0
+mouse_filter = 2
+texture_normal = SubResource("AtlasTexture_s8k7y")
+texture_pressed = SubResource("AtlasTexture_mua3q")
+texture_hover = SubResource("AtlasTexture_j7cox")
+stretch_mode = 5
+flip_v = true
+
+[node name="text" type="Label" parent="tutorial/skip"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 58.0
+offset_top = -28.0
+offset_right = 362.0
+offset_bottom = 23.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 40
+text = "Skip
+"
+vertical_alignment = 1
 
 [node name="anim" type="AnimationPlayer" parent="tutorial"]
 libraries = {
@@ -2238,7 +2322,7 @@ offset_left = 64.0
 offset_top = -128.0
 offset_right = 456.0
 offset_bottom = -64.0
-grow_vertical = 0
+grow_horizontal = 0
 mouse_filter = 2
 texture_normal = SubResource("AtlasTexture_s8k7y")
 texture_pressed = SubResource("AtlasTexture_mua3q")
@@ -3062,6 +3146,7 @@ position = Vector2(-622, 1047)
 [node name="byte" parent="objects" instance=ExtResource("5_nj3ef")]
 position = Vector2(-650, 1041)
 
+[connection signal="pressed" from="tutorial/skip" to="user_interface_layer/user" method="_on_skip_pressed"]
 [connection signal="value_changed" from="user_interface_layer/user/stats_panel/life_progress" to="user_interface_layer/user" method="_on_life_progress_value_changed"]
 [connection signal="value_changed" from="user_interface_layer/user/stats_panel/immunity_progress" to="user_interface_layer/user" method="_on_immunity_progress_value_changed"]
 [connection signal="mouse_entered" from="user_interface_layer/user/to_main" to="user_interface_layer/user" method="_on_to_main_mouse_entered"]

@@ -222,3 +222,4 @@ func get_nearest_node(_nodes: Array, _player: Node) -> Array:
 # Pause tree
 func pause(_enabled: bool) -> void:
 	get_tree().set_pause(_enabled)
+
