@@ -194,11 +194,11 @@ func _manage_health() -> void:
 	
 	# Set the colors of all elements
 	if health <= 100 and health >= 66:
-		modulate = Global.slix_colors[0]
+		modulate = global.slix_colors[0]
 	elif health <= 65 and health >= 33:
-		modulate = Global.slix_colors[1]
+		modulate = global.slix_colors[1]
 	elif health <= 32 and health >= 1:
-		modulate = Global.slix_colors[2]
+		modulate = global.slix_colors[2]
 
 # Toxic Lake Deduction.
 func toxic_lake_deduction() -> void:

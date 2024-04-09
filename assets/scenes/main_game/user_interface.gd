@@ -74,11 +74,11 @@ func _set_slix_hp(_value: float) -> void:
 	
 	# Changes Slix icon appearance for UI.
 	if _life_prog.value <= 100 and _life_prog.value >= 66:
-		_slix_icon.modulate = Global.slix_colors[0]
+		_slix_icon.modulate = global.slix_colors[0]
 	elif _life_prog.value <= 65 and _life_prog.value >= 33:
-		_slix_icon.modulate = Global.slix_colors[1]
+		_slix_icon.modulate = global.slix_colors[1]
 	elif _life_prog.value <= 32 and _life_prog.value >= 1:
-		_slix_icon.modulate = Global.slix_colors[2]
+		_slix_icon.modulate = global.slix_colors[2]
 
 # Whenever Slix has immunity granted.
 func _set_slix_immun(_value: float) -> void:
@@ -104,13 +104,13 @@ func _set_slix_immun(_value: float) -> void:
 func _randomize_life_fluctuation() -> void:
 	if _game.byte_connected:
 		_rng.randomize()
-		_byte_broadcast.text = Global.byte_broadcasts[10]
+		_byte_broadcast.text = global.byte_broadcasts[10]
 
 # Whenever there is damage decrease.
 func _randomize_life_min_deduction() -> void:
 	if _game.byte_connected:
 		_rng.randomize()
-		_byte_broadcast.text = Global.byte_broadcasts[11]
+		_byte_broadcast.text = global.byte_broadcasts[11]
 
 # Sets all of Byte's panel whenever connected.
 func _byte_connected() -> void:
@@ -122,13 +122,13 @@ func _byte_connected() -> void:
 				_byte_panel.get_texture().set_region(Rect2(252, 0, 126, 28))
 				_byte_help_panel.get_texture().set_region(Rect2(128, 0, 64, 64))
 			else:
-				_byte_broadcast.text = Global.byte_broadcasts[_rng.randi_range(0, 4)]
+				_byte_broadcast.text = global.byte_broadcasts[_rng.randi_range(0, 4)]
 				_byte_panel.get_texture().set_region(Rect2(0, 0, 126, 28))
 				_byte_help_panel.get_texture().set_region(Rect2(0, 0, 64, 64))
 		_byte_icon.show()
 	else:
 		if _byte_icon.get("visible"):
-			_byte_broadcast.text = Global.byte_broadcasts[_rng.randi_range(5, 9)]
+			_byte_broadcast.text = global.byte_broadcasts[_rng.randi_range(5, 9)]
 			_byte_panel.get_texture().set_region(Rect2(126, 0, 126, 28))
 			_byte_help_panel.get_texture().set_region(Rect2(64, 0, 64, 64))
 		_byte_icon.hide()

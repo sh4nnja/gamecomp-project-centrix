@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://cw1fyp63ld3kf"]
+[gd_scene load_steps=73 format=3 uid="uid://cw1fyp63ld3kf"]
 
 [ext_resource type="PackedScene" uid="uid://djmjrikkun6gd" path="res://assets/objects/player/slix/slix.tscn" id="1_gpnvh"]
 [ext_resource type="Script" path="res://assets/scenes/main_game/main_game.gd" id="1_grsym"]
@@ -26,6 +26,84 @@
 [ext_resource type="Texture2D" uid="uid://c12ye0gdykvrs" path="res://assets/scenes/main_menu/textures/button_about.png" id="18_d76qf"]
 [ext_resource type="Environment" uid="uid://cearmu6xhrwog" path="res://assets/global/material/glow.tres" id="18_vxqe6"]
 [ext_resource type="AudioStream" uid="uid://bebd8rkn1skm1" path="res://assets/global/sounds/fx/528561__jummit__soft-ui-button-click.ogg" id="19_oekh0"]
+
+[sub_resource type="Animation" id="Animation_ko3bw"]
+resource_name = "cutscene"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../user_interface_layer:process_mode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 14.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 14.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"pause"
+}, {
+"args": [false],
+"method": &"pause"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 14.5, 15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0.0313726, 0.0313726, 0.0313726, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3lttb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../user_interface_layer:process_mode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0313726, 0.0313726, 0.0313726, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3oupt"]
+_data = {
+"RESET": SubResource("Animation_3lttb"),
+"cutscene": SubResource("Animation_ko3bw")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gvldv"]
 atlas = ExtResource("2_dthsk")
@@ -967,7 +1045,45 @@ script = ExtResource("1_grsym")
 stream = ExtResource("2_v3gj8")
 volume_db = -10.0
 
+[node name="tutorial" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 2
+
+[node name="darken" type="ColorRect" parent="tutorial"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+
+[node name="text" type="Label" parent="tutorial/darken"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 50
+text = "Cutscene to wait lang WAHAHHAH"
+
+[node name="anim" type="AnimationPlayer" parent="tutorial"]
+root_node = NodePath("../darken")
+libraries = {
+"": SubResource("AnimationLibrary_3oupt")
+}
+autoplay = "cutscene"
+
 [node name="user_interface_layer" type="CanvasLayer" parent="."]
+process_mode = 4
 
 [node name="user" type="Control" parent="user_interface_layer"]
 process_mode = 3

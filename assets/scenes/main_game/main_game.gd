@@ -38,7 +38,7 @@ enum {
 # Enum to know what kind of stone will it spawn, a false stone or an actual resource stone.
 enum {
 	FALSE_RESOURCE = 0,
-	TRUE_RESOURCE = 75,
+	TRUE_RESOURCE = 45,
 }
 
 # Enum for Gooz Spawning.
@@ -83,6 +83,10 @@ func _ready() -> void:
 	_manage_resources() # Spawn resources.
 	_manage_toxic_lake() # Spawn Gooz across toxic lake.
 	_manage_items()
+	
+	# For Debug.
+	print("Items spawned: " + str(_item_count) + " / 100")
+	print("Resources spawned (Fake and Real Resources): " + str(_resource_spots_taken.size()))
 
 func _physics_process(_delta) -> void:
 	_update_byte()
@@ -206,3 +210,7 @@ func get_nearest_node(_nodes: Array, _player: Node) -> Array:
 	
 	_output = [_nearest_node,  _nearest_distance]
 	return _output
+
+# Pause tree
+func pause(_enabled: bool) -> void:
+	get_tree().set_pause(_enabled)

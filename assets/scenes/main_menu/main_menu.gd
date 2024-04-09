@@ -17,7 +17,7 @@
 
 extends Control
 
-var _scene: Resource = load("res://assets/scenes/main_game/main_game.tscn")
+var _scene_path: Resource = load("res://assets/scenes/main_game/main_game.tscn")
 
 # NODES ************************************************************************
 @onready var _anim: AnimationPlayer = get_node("menu/anim")
@@ -28,12 +28,17 @@ func _ready() -> void:
 	# Enable animation.
 	_anim.play("splash")
 	
+	# Enable Sound.
+	_enable_sound()
+
+# CUSTOM ***********************************************************************
+func _enable_sound() -> void:
 	for _bus in AudioServer.bus_count:
 		AudioServer.set_bus_mute(_bus, false)
 
 # SIGNALS **********************************************************************
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_packed(_scene)
+	get_tree().change_scene_to_packed(_scene_path)
 
 func _on_play_mouse_entered() -> void:
 	_fx.play()
