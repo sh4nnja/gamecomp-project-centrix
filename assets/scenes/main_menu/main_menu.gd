@@ -17,6 +17,7 @@
 
 extends Control
 
+# SCENE ************************************************************************
 var _scene_path: Resource = load("res://assets/scenes/main_game/main_game.tscn")
 
 # NODES ************************************************************************
@@ -37,24 +38,28 @@ func _enable_sound() -> void:
 		AudioServer.set_bus_mute(_bus, false)
 
 # SIGNALS **********************************************************************
+# Play button.
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_packed(_scene_path)
 
 func _on_play_mouse_entered() -> void:
 	_fx.play()
 
+# About button.
 func _on_about_pressed() -> void:
 	_anim.play("about")
 
 func _on_about_mouse_entered() -> void:
 	_fx.play()
 
+# Exit Button.
 func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 func _on_exit_mouse_entered() -> void:
 	_fx.play()
 
+# Sound Button.
 func _on_sound_toggled(_toggled_on: bool) -> void:
 	for _bus in AudioServer.bus_count:
 		AudioServer.set_bus_mute(_bus, _toggled_on)
@@ -62,6 +67,7 @@ func _on_sound_toggled(_toggled_on: bool) -> void:
 func _on_sound_mouse_entered() -> void:
 	_fx.play()
 
+# About to Menu back button.
 func _on_back_pressed() -> void:
 	_anim.play_backwards("about")
 

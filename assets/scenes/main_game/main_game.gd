@@ -54,11 +54,17 @@ enum {
 # ITEM *************************************************************************
 var _centennium_collection: Resource = load("res://assets/objects/map/items/centennium_collection.tscn")
 var _item_count: int = 0
+
+# Item spawn chance.
 var _item_chance: int = ITEM
 
+# The items.
 var items: Array = []
 
+# Get the position of the resources.
 var _resource_spots_taken: Array[Vector2i] = []
+
+# Position of the items.
 var _item_spots_taken: Array[Vector2i] = []
 
 # NODES ************************************************************************
@@ -187,15 +193,17 @@ func _damage_toxic_lake(_node: Node) -> void:
 		# Add toxic lake damage.
 		_node.toxic_lake_deduction()
 
+# Get Slix stats.
 func _update_slix_stats() -> void:
 	slix_health = slix.health
 	slix_immunity = slix.reduced_toxicity
 	items_collected = slix.item_collected
 
+# Get Byte if connected.
 func _update_byte() -> void:
 	byte_connected = _byte.connected
 
-# Get the nearest node.
+# Get the nearest node. For Items.
 func get_nearest_node(_nodes: Array, _player: Node) -> Array:
 	var _output: Array
 	var _nearest_node: Node = null

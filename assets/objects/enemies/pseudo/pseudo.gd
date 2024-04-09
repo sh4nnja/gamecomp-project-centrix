@@ -102,6 +102,7 @@ func _manage_animation() -> void:
 		_anim_blend.get("parameters/playback").travel("dead")
 		_anim_blend.set("parameters/dead/blend_position", _vel)
 
+# Set damage look and sound.
 func damage(_multiplier: int = 1) -> void:
 	if not _sound.is_playing():
 		_sound.set_stream(_damage_fx)
@@ -116,6 +117,7 @@ func damage(_multiplier: int = 1) -> void:
 	_texture.modulate = Color.html("ffffff")
 	health -= _hit * _multiplier
 
+# Death animation for alert.
 func die() -> void:
 	_anim_alert.play_backwards("alert")
 	await _anim_alert.animation_finished

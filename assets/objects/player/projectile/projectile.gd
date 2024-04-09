@@ -31,11 +31,12 @@ func _physics_process(_delta: float) -> void:
 func _manage_movement(_delta: float) -> void:
 	position += transform.x * SPEED * _delta
 
-func change_texture(_color: Color):
-	_texture.modulate = _color
-
 func _remove_bullet() -> void:
 	queue_free()
+
+# Set texture based on Slix life.
+func change_texture(_color: Color):
+	_texture.modulate = _color
 
 # SIGNALS **********************************************************************
 func _on_body_entered(_body: Node2D) -> void:

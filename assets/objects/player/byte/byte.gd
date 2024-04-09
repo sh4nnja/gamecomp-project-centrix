@@ -60,6 +60,7 @@ func _manage_movement(_delta: float) -> void:
 func _manage_animation() -> void:
 	_anim_blend.set("parameters/float/blend_position", _vel)
 
+# Provide Slix with buffs whenever near.
 func _provide_assistance(_mode: bool) -> void:
 	if _mode:
 		connected = true

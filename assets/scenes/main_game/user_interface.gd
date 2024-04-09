@@ -48,10 +48,12 @@ var _scene: Resource = load("res://assets/scenes/main_menu/main_menu.tscn")
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-var _score: int = 0
-
+# STATE ************************************************************************
 var _death: bool = false
 var _win: bool = false
+
+var _time_passed: float
+var _score: int = 0
 
 # VIRTUAL **********************************************************************
 func _ready() -> void:
@@ -59,6 +61,8 @@ func _ready() -> void:
 	_byte_connected()
 
 func _physics_process(_delta: float) -> void:
+	_get_time(_delta)
+	
 	_set_slix_hp(_game.slix_health)
 	_set_slix_immun(_game.slix_immunity)
 	_death_animation(_game.slix_health)
@@ -138,6 +142,7 @@ func _byte_connected() -> void:
 			_byte_help_panel.get_texture().set_region(Rect2(64, 0, 64, 64))
 		_byte_icon.hide()
 
+# Play Death animation when Slix is dead.
 func _death_animation(_value: float) -> void:
 	# Dead.
 	if _value <= 0 and not _death:
@@ -145,6 +150,7 @@ func _death_animation(_value: float) -> void:
 		_ui_anim.play("death")
 		_calculate_score()
 
+# Play whenever Slix collects all items.
 func _win_animation(_value: float) -> void:
 	if _value == 100 and not _win:
 		_win = true
@@ -152,12 +158,14 @@ func _win_animation(_value: float) -> void:
 		get_tree().set_deferred("paused", true)
 		_calculate_score()
 
+# Play animation for pause.
 func _pause_animation(_value: bool) -> void:
 	if _value:
 		_ui_anim.play("pause")
 	else:
 		_ui_anim.play_backwards("pause")
 
+# The actual pause.
 func _pause() -> void:
 	if Input.is_action_just_pressed("esc") and not _death and not _win:
 		if not get_tree().paused:
@@ -167,18 +175,30 @@ func _pause() -> void:
 			_pause_animation(false)
 			get_tree().set_deferred("paused", false)
 
+# Locator.
 func _locate_items() -> void:
 	var _nearest_item: Array = _game.get_nearest_node(_game.items, _game.slix)
+	# Rotate to the item.
 	_locator_arrow.set_rotation_degrees(90 + rad_to_deg(_game.slix.get_angle_to(_nearest_item[0].get_global_position())))
+	
+	# Set the Item image and name.
 	_item.get_texture().set_region(Rect2(Vector2i(_nearest_item[0].item_number * 24, 0), Vector2i(24, 24)))
 	_item_name.text = _nearest_item[0].item_name
+	
+	# Item collected number.
 	_item_desc.text = str(round(_nearest_item[1]) / 10).pad_decimals(0) + "m"
 	_item_collected.text = str(_game.items_collected) + "/100"
 
+# Calculate the score.
 func _calculate_score() -> void:
-	_score = _game.slix.devoured_items + (_game.slix.killed_enemies / _game.slix.devoured_resources)
+	_score = (_game.slix.devoured_items / _time_passed) + (_game.slix.devoured_enemies + _game.slix.devoured_resources)
 	_win_text.text += "\n\nScore: " + str(_score)
 	_death_text.text += "\n\nScore: " + str(_score)
+
+# Get time passed for score computation.
+func _get_time(_delta: float) -> void:
+	if not _death:
+		_time_passed += _delta
 
 # SIGNALS **********************************************************************
 func _on_life_progress_value_changed(_value: float) -> void:

@@ -46,7 +46,7 @@ var _enabled_devour: bool = false
 var _enabled_lash: bool = false
 var _enabled_goo: bool = false
 
-var killed_enemies: int = 0
+var devoured_enemies: int = 0
 var devoured_resources: int = 0
 var devoured_items: int = 0
 
@@ -219,6 +219,7 @@ func _toxic_atmosphere_deduction() -> void:
 	else:
 		health -= TOXIC_ATMOSPHERE
 
+# Set the damage sound and look.
 func damage(_damage: float) -> void:
 	if not _sound.is_playing():
 		_sound.set_stream(_damage_fx)
@@ -271,7 +272,7 @@ func devour() -> void:
 				_enemy.queue_free()
 				health += 10
 				_devoured_enemy.erase(_enemy) # Removes the reference.
-				killed_enemies += 50
+				devoured_enemies += 50
 	
 	# Item.
 	if _devoured_item:
@@ -282,15 +283,25 @@ func devour() -> void:
 
 func lash() -> void:
 	health -= lash_energy
+	
+	# Creates the projectile.
 	var _projectile_inst = _projectile.instantiate()
+	
+	# Add to the tree.
 	owner.objects.add_child(_projectile_inst)
+	
+	# Set projectile movement.
 	_projectile_inst.global_position = global_position
 	_projectile_inst.transform = Transform2D(get_angle_to(get_global_mouse_position()), position)
 	_projectile_inst.change_texture(_texture.self_modulate)
 
 func goowave() -> void:
 	health -= goowave_energy
+	
+	# Enable fx.
 	_gfx_goo.set_emitting(true)
+	
+	# Get all enemies in vicinity to damage.
 	for _enemy in _enemies:
 		_enemy.damage(5)
 
