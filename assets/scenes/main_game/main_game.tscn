@@ -1073,7 +1073,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("7_omp1m")
 theme_override_font_sizes/font_size = 50
-text = "Cutscene to wait lang WAHAHHAH"
+text = "Cutscene toh wait lang WAHAHHAH"
 
 [node name="anim" type="AnimationPlayer" parent="tutorial"]
 root_node = NodePath("../darken")

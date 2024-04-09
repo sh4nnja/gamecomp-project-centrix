@@ -44,7 +44,7 @@ func _on_play_mouse_entered() -> void:
 	_fx.play()
 
 func _on_about_pressed() -> void:
-	pass # Replace with function body.
+	_anim.play("about")
 
 func _on_about_mouse_entered() -> void:
 	_fx.play()
@@ -60,4 +60,10 @@ func _on_sound_toggled(_toggled_on: bool) -> void:
 		AudioServer.set_bus_mute(_bus, _toggled_on)
 
 func _on_sound_mouse_entered() -> void:
+	_fx.play()
+
+func _on_back_pressed() -> void:
+	_anim.play_backwards("about")
+
+func _on_back_mouse_entered() -> void:
 	_fx.play()
