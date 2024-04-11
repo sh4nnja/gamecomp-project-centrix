@@ -902,6 +902,7 @@ material = SubResource("CanvasItemMaterial_f3xcj")
 amount = 500
 speed_scale = 0.05
 lifetime_randomness = 1.0
+local_coords = true
 texture = ExtResource("2_rroys")
 emission_shape = 3
 emission_rect_extents = Vector2(1920, 1080)
