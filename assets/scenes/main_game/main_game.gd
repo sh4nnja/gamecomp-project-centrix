@@ -219,7 +219,7 @@ func get_nearest_node(_nodes: Array, _player: Node) -> Array:
 	_output = [_nearest_node,  _nearest_distance]
 	return _output
 
-# Pause tree
+# Pause tree.
 func pause(_enabled: bool) -> void:
 	get_tree().set_pause(_enabled)
 
