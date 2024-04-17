@@ -1,5 +1,5 @@
-                    [ Divide By Zero ] Fonts
-                     http://fonts.tom7.com/
+					[ Divide By Zero ] Fonts
+					 http://fonts.tom7.com/
 
 I am employing a very generous license with these fonts (the way I
 think most software should be) for a number of reasons. Mainly though,
@@ -12,35 +12,35 @@ Here is the license. You are free to download and use these fonts
 without my explicit permission for anything you want, except for the
 following:
 
-     You may NOT* resell the actual font files (without my written
-     permission and without having to give me something in
-     return). This includes but is not limited to selling it on a Font
-     CD (even when the fee involved is a nominal "distribution" or
-     "handling" fee, or some similar thing), or distributing it on a
-     site which charges a fee per font download. (In contrast, a
-     pay-per-hour service such as America Online is free to distribute
-     the fonts.)  You may not misrepresent the creator of the font
-     (pretend you made them) You may not adapt them to different fonts
-     without my permission.  You may not modify the font files for
-     subsequent redistribution.
+	 You may NOT* resell the actual font files (without my written
+	 permission and without having to give me something in
+	 return). This includes but is not limited to selling it on a Font
+	 CD (even when the fee involved is a nominal "distribution" or
+	 "handling" fee, or some similar thing), or distributing it on a
+	 site which charges a fee per font download. (In contrast, a
+	 pay-per-hour service such as America Online is free to distribute
+	 the fonts.)  You may not misrepresent the creator of the font
+	 (pretend you made them) You may not adapt them to different fonts
+	 without my permission.  You may not modify the font files for
+	 subsequent redistribution.
 
 However, you have permission to do the following: 
   Use them to make graphics for your home page, non-profit web page,
-    or commerical web site.
+	or commerical web site.
   Give them to your friends for free. 
   Make them available (for free) on your web page, as long as you make
-    clear where they came from.
+	clear where they came from.
   Use them in design work that you get paid for. 
   Use them in any smalltime publications or fliers or other non
-    mass-produced literature.
+	mass-produced literature.
   Make commercial products like T-shirts or Mugs or Books using the
-    fonts and sell them. In this case, since you are indirectly
-    profiting off of my work, I ask that you send me one of the T-shirts
-    or Mugs or Books free, where reasonable. Obviously some discretion
-    on your part is due; but try to be fair. If it is inappropriate for
-    you to send me one of your product, at least make an attempt to
-    write me an e-mail at imightbetm@aol.com and let me know where the
-    font is being used.
+	fonts and sell them. In this case, since you are indirectly
+	profiting off of my work, I ask that you send me one of the T-shirts
+	or Mugs or Books free, where reasonable. Obviously some discretion
+	on your part is due; but try to be fair. If it is inappropriate for
+	you to send me one of your product, at least make an attempt to
+	write me an e-mail at imightbetm@aol.com and let me know where the
+	font is being used.
 
 * "Not", as in, "Not without my permission". I regularly give
   permission for this sort of thing, so if you want to redistribute
@@ -64,4 +64,4 @@ My e-mail address is: imightbetm(a)aol.com
 
 The full [ Divide By Zero ] collection is always available at:
 
-     http://fonts.tom7.com/
+	 http://fonts.tom7.com/

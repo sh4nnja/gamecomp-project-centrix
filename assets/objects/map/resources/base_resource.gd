@@ -19,7 +19,6 @@ extends CharacterBody2D
 
 # NODES ************************************************************************
 @onready var _texture: AnimatedSprite2D = get_node("texture")
-@onready var _shape: CollisionShape2D = get_node("shape")
 
 # RESOURCE TYPES ***************************************************************
 # High value resource chance.
@@ -28,20 +27,6 @@ var _high_tier_chance: int = 5
 # Type of the resource.
 # A single object that contains all the types of resources are finalized to save time.
 var _type: int = 0
-
-# COLLISION SIZE ***************************************************************
-# Preset collision size and position for the resources.
-var _collision_sizes: Array[Array] = [
-	[Vector2(21, 5), Vector2(-0.5, 9.5)],
-	[Vector2(15, 4), Vector2(-0.5, 8)],
-	[Vector2(16, 3), Vector2(0, 4.5)],
-	[Vector2(17, 4), Vector2(-0.5, 9)],
-	[Vector2(20, 10), Vector2(0, 6)],
-	[Vector2(20, 10), Vector2(0, 6)],
-	[Vector2(20, 10), Vector2(0, 6)],
-	[Vector2(20, 10), Vector2(0, 6)],
-	[Vector2(20, 10), Vector2(0, 6)]
-]
 
 # VIRTUAL **********************************************************************
 func _ready() -> void:
@@ -55,19 +40,22 @@ func _manage_resource_type() -> void:
 	
 	# Sets the texture of that item.
 	_texture.set_frame(_type)
-	_shape.get_shape().set_size(_collision_sizes[_type][0])
-	_shape.set_position(_collision_sizes[_type][1])
 
 # Randomize type for a resource.
 func _randomize_resource() -> int:
 	var _output: int
 	var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	_rng.randomize()
+	_rng.set_seed(_rng.randi())
 	
 	if _rng.randi_range(0, _high_tier_chance) == _high_tier_chance:
-		_output = _rng.randi_range(0, 3)
+		_rng.randomize()
+		_rng.set_seed(_rng.randi())
+		_output = _rng.randi_range(0, 13)
 	else:
-		_output = _rng.randi_range(4, 8)
+		_rng.randomize()
+		_rng.set_seed(_rng.randi())
+		_output = _rng.randi_range(14, 19)
 	
 	return _output
 

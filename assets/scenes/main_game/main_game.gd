@@ -17,6 +17,13 @@
 
 extends Node2D
 
+# HEKARA *******************************************************************
+var _hekara: Resource = load("res://assets/objects/enemies/hekara/hekara.tscn")
+
+enum {
+	HEKARA = 3
+}
+
 # RESOURCE TYPES ***************************************************************
 var _resource: Resource = load("res://assets/objects/map/resources/base_resource.tscn")
 var _false_resource: Resource = load("res://assets/objects/enemies/pseudo/pseudo.tscn")
@@ -38,7 +45,7 @@ enum {
 # Enum to know what kind of stone will it spawn, a false stone or an actual resource stone.
 enum {
 	FALSE_RESOURCE = 0,
-	TRUE_RESOURCE = 45,
+	TRUE_RESOURCE = 35,
 }
 
 # Enum for Gooz Spawning.
@@ -118,9 +125,11 @@ func _check_spawn_valid(_tile_pos: Vector2i) -> bool:
 # Spawns the resources.
 func _spawn_resources(_tile_pos: Vector2i) -> void:
 	_rng.randomize()
+	_rng.set_seed(_rng.randi())
+	var _randomizer: int = _rng.randi_range(0, _resource_spawn_chance)
 	
 	# Spawn resource.
-	if _rng.randi_range(0, _resource_spawn_chance) == TRUE_RESOURCE:
+	if _randomizer == TRUE_RESOURCE:
 		var _res_obj: Object = _resource.instantiate()
 		
 		# Add the resource object to the game.
@@ -131,7 +140,7 @@ func _spawn_resources(_tile_pos: Vector2i) -> void:
 		_resource_spots_taken.append(_tile_pos)
 	
 	# Spawn Pseudo.
-	elif _rng.randi_range(0, _resource_spawn_chance) == FALSE_RESOURCE:
+	elif _randomizer == FALSE_RESOURCE:
 		var _res_obj: Object = _false_resource.instantiate()
 		
 		# Add the resource object to the game.
@@ -140,6 +149,18 @@ func _spawn_resources(_tile_pos: Vector2i) -> void:
 		
 		# Uploads the position to make sure no other items will spawn.
 		_resource_spots_taken.append(_tile_pos)
+
+func _spawn_hekara(_tile_pos: Vector2i) -> void:
+	_rng.randomize()
+	_rng.set_seed(_rng.randi())
+	
+	for _spawn in range(_rng.randi_range(0, HEKARA)):
+		_rng.randomize()
+		_rng.set_seed(_rng.randi())
+		
+		var _inst: Object = _hekara.instantiate()
+		objects.add_child(_inst, true)
+		_inst.set_global_position(to_global(Vector2i(_map.map_to_local(_tile_pos)) + Vector2i(_rng.randi_range(-50, 50), _rng.randi_range(-50, 50))))
 
 # Spawn Gooz on toxic lakes randomly.
 func _manage_toxic_lake() -> void:
@@ -150,6 +171,7 @@ func _manage_toxic_lake() -> void:
 # Spawns the slime.
 func _spawn_gooz(_tile_pos: Vector2i) -> void:
 	_rng.randomize()
+	_rng.set_seed(_rng.randi())
 	
 	# Spawn resource.
 	if _rng.randi_range(0, TOXIC_GOOZ) == TOXIC_GOOZ:
@@ -168,6 +190,7 @@ func _manage_items() -> void:
 # Spawn the 100 items.
 func _spawn_items(_tile_pos: Vector2i) -> void:
 	_rng.randomize()
+	_rng.set_seed(_rng.randi())
 	
 	if _item_count < 100:
 		if _rng.randi_range(0, _item_chance) == ITEM:
@@ -183,6 +206,9 @@ func _spawn_items(_tile_pos: Vector2i) -> void:
 			_item_spots_taken.append(_tile_pos)
 			
 			_item_count += 1
+			
+			# Spawn Hekara.
+			_spawn_hekara(_tile_pos)
 
 # Toxic Lake.
 func _damage_toxic_lake(_node: Node) -> void:

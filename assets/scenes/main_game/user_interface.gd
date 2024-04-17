@@ -218,4 +218,4 @@ func _on_to_main_mouse_entered() -> void:
 	_fx.play()
 
 func _on_skip_pressed() -> void:
-	_lore_anim.seek(78, true)
+	_lore_anim.seek(61, true)

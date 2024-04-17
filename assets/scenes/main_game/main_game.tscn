@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://cw1fyp63ld3kf"]
+[gd_scene load_steps=86 format=3 uid="uid://cw1fyp63ld3kf"]
 
 [ext_resource type="PackedScene" uid="uid://djmjrikkun6gd" path="res://assets/objects/player/slix/slix.tscn" id="1_gpnvh"]
 [ext_resource type="Script" path="res://assets/scenes/main_game/main_game.gd" id="1_grsym"]
@@ -26,22 +26,16 @@
 [ext_resource type="Texture2D" uid="uid://bd2al7hln5nv2" path="res://assets/scenes/main_game/cutscene/lore/6.png" id="8_4lrv8"]
 [ext_resource type="Texture2D" uid="uid://bw6gw4jwa8d1r" path="res://assets/scenes/main_game/cutscene/lore/7.png" id="9_mr450"]
 [ext_resource type="Texture2D" uid="uid://b5c44oov1eq6c" path="res://assets/scenes/main_game/cutscene/lore/8.png" id="10_4aoxl"]
-[ext_resource type="Texture2D" uid="uid://d3mhw3qpy7rvj" path="res://assets/scenes/main_game/cutscene/lore/9.png" id="11_7r5me"]
+[ext_resource type="Texture2D" uid="uid://2kbmm8m00cym" path="res://assets/scenes/main_game/cutscene/lore/9.png" id="11_7r5me"]
 [ext_resource type="Texture2D" uid="uid://b51i8g0ia3jg6" path="res://assets/objects/user_interface/textures/in_game/shield_overlay.png" id="11_58hxk"]
 [ext_resource type="Texture2D" uid="uid://3cs6gvke5w1q" path="res://assets/objects/user_interface/textures/in_game/centennium_collection.png" id="11_xhoer"]
-[ext_resource type="Texture2D" uid="uid://bek208tst2jn7" path="res://assets/scenes/main_game/cutscene/lore/10.png" id="12_301lw"]
-[ext_resource type="Texture2D" uid="uid://ccpspoi03nbh0" path="res://assets/scenes/main_game/cutscene/lore/11.png" id="13_68dpc"]
-[ext_resource type="Texture2D" uid="uid://clhw0dj8qih74" path="res://assets/scenes/main_game/cutscene/lore/12.png" id="14_bye1j"]
-[ext_resource type="Texture2D" uid="uid://bpeqtvm8gdah6" path="res://assets/scenes/main_game/cutscene/lore/13.png" id="15_kynwb"]
 [ext_resource type="Texture2D" uid="uid://cy7cusbp8lcf0" path="res://assets/objects/user_interface/textures/in_game/win_screen.png" id="16_1ke4q"]
-[ext_resource type="Texture2D" uid="uid://cwyd6dpeo5xl8" path="res://assets/scenes/main_game/cutscene/lore/14.png" id="16_veyxg"]
 [ext_resource type="Texture2D" uid="uid://c03j81gmb5rh6" path="res://assets/objects/user_interface/textures/in_game/death_screen.png" id="17_7tv7k"]
-[ext_resource type="Texture2D" uid="uid://i6mcb3nabdp4" path="res://assets/scenes/main_game/cutscene/lore/15.png" id="17_ocjj3"]
 [ext_resource type="Texture2D" uid="uid://b7n41v0ew3sg5" path="res://assets/objects/user_interface/textures/in_game/pause_screen.png" id="18_ce6rx"]
 [ext_resource type="Texture2D" uid="uid://c12ye0gdykvrs" path="res://assets/scenes/main_menu/textures/button_about.png" id="18_d76qf"]
-[ext_resource type="Texture2D" uid="uid://dp6tud15rqa17" path="res://assets/scenes/main_game/cutscene/lore/16.png" id="18_ji3hi"]
 [ext_resource type="Environment" uid="uid://cearmu6xhrwog" path="res://assets/global/material/glow.tres" id="18_vxqe6"]
 [ext_resource type="AudioStream" uid="uid://bebd8rkn1skm1" path="res://assets/global/sounds/fx/528561__jummit__soft-ui-button-click.ogg" id="19_oekh0"]
+[ext_resource type="PackedScene" uid="uid://ccvphxsudl8v" path="res://assets/objects/enemies/hekara/hekara.tscn" id="36_au2wo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s8k7y"]
 atlas = ExtResource("18_d76qf")
@@ -192,7 +186,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("cutscene/11:modulate")
+tracks/11/path = NodePath("skip:modulate")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -204,31 +198,31 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("cutscene/12:modulate")
+tracks/12/path = NodePath("skip:mouse_filter")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
+"update": 1,
+"values": [2]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("cutscene/13:modulate")
+tracks/13/path = NodePath("../env:environment:background_canvas_max_layer")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
+"update": 1,
+"values": [2]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("cutscene/14:modulate")
+tracks/14/path = NodePath("cutscene/1/text_layer/text:modulate")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -240,7 +234,7 @@ tracks/14/keys = {
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("cutscene/15:modulate")
+tracks/15/path = NodePath("cutscene/2/text_layer/text:modulate")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
@@ -252,7 +246,7 @@ tracks/15/keys = {
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("cutscene/16:modulate")
+tracks/16/path = NodePath("cutscene/3/text_layer/text:modulate")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
@@ -264,7 +258,7 @@ tracks/16/keys = {
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("skip:modulate")
+tracks/17/path = NodePath("cutscene/4/text_layer/text:modulate")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
@@ -276,19 +270,79 @@ tracks/17/keys = {
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("skip:mouse_filter")
+tracks/18/path = NodePath("cutscene/5/text_layer/text:modulate")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
+"update": 0,
+"values": [Color(1, 1, 1, 0.0243896)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("cutscene/6/text_layer/text:modulate")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("cutscene/7/text_layer/text:modulate")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("cutscene/8/text_layer/text:modulate")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.0222218)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("cutscene/9/text_layer/text:modulate")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("cutscene/10/text_layer/text:modulate")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ko3bw"]
 resource_name = "cutscene"
-length = 80.0
+length = 61.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -296,7 +350,7 @@ tracks/0/path = NodePath("../user_interface_layer:process_mode")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 78),
+"times": PackedFloat32Array(0.1, 60.025),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [4, 0]
@@ -308,7 +362,7 @@ tracks/1/path = NodePath("..")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 78),
+"times": PackedFloat32Array(0.1, 60.025),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [true],
@@ -325,7 +379,7 @@ tracks/2/path = NodePath("cutscene:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 78, 78.6),
+"times": PackedFloat32Array(0, 60.025, 60.625),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0.0313726, 0.0313726, 0.0313726, 0)]
@@ -453,83 +507,83 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("cutscene/11:modulate")
+tracks/13/path = NodePath("skip:modulate")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(50.2, 51),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1, 59.675, 60.175),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("cutscene/12:modulate")
+tracks/14/path = NodePath("skip:mouse_filter")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(55, 56),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"times": PackedFloat32Array(0, 0.2, 60.075),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 0, 2]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("cutscene/13:modulate")
+tracks/15/path = NodePath("../env:environment:background_canvas_max_layer")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(60.1, 61.1),
+"times": PackedFloat32Array(0, 60.175),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"update": 1,
+"values": [2, 0]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("cutscene/14:modulate")
+tracks/16/path = NodePath("cutscene/1/text_layer/text:modulate")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"times": PackedFloat32Array(65.1, 66),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 1, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("cutscene/15:modulate")
+tracks/17/path = NodePath("cutscene/2/text_layer/text:modulate")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"times": PackedFloat32Array(70, 71.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(5, 6, 8.625, 9.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("cutscene/16:modulate")
+tracks/18/path = NodePath("cutscene/3/text_layer/text:modulate")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"times": PackedFloat32Array(75.1, 75.9),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(9.6, 10.6, 13.975, 15.075),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("skip:modulate")
+tracks/19/path = NodePath("cutscene/4/text_layer/text:modulate")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
-"times": PackedFloat32Array(0, 1, 78.1, 78.6),
+"times": PackedFloat32Array(15.075, 16, 19, 20.025),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -537,14 +591,74 @@ tracks/19/keys = {
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("skip:mouse_filter")
+tracks/20/path = NodePath("cutscene/5/text_layer/text:modulate")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
-"times": PackedFloat32Array(0, 0.2, 78.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [2, 0, 2]
+"times": PackedFloat32Array(20, 21, 23.975, 25.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("cutscene/6/text_layer/text:modulate")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(25.05, 26.025, 30, 31.025),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("cutscene/7/text_layer/text:modulate")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(31.05, 32.025, 35, 36.125),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("cutscene/8/text_layer/text:modulate")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(36.1, 37, 40.1, 41.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("cutscene/9/text_layer/text:modulate")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(41.1, 42.1, 45.2, 46.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("cutscene/10/text_layer/text:modulate")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(46.325, 47.5, 59.7, 60.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3oupt"]
@@ -638,6 +752,18 @@ _data = {
 "RESET": SubResource("Animation_aqm3r"),
 "shield": SubResource("Animation_3ieoc")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plq26"]
+atlas = ExtResource("18_d76qf")
+region = Rect2(0, 0, 83, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8i84"]
+atlas = ExtResource("18_d76qf")
+region = Rect2(0, 28, 83, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_am7ex"]
+atlas = ExtResource("18_d76qf")
+region = Rect2(0, 14, 83, 14)
 
 [sub_resource type="Animation" id="Animation_7i5jl"]
 length = 0.001
@@ -1565,12 +1691,15 @@ script = ExtResource("1_grsym")
 stream = ExtResource("2_v3gj8")
 volume_db = -10.0
 
+[node name="env" type="WorldEnvironment" parent="."]
+environment = ExtResource("18_vxqe6")
+
 [node name="tutorial" type="CanvasLayer" parent="."]
 process_mode = 3
 layer = 2
 
 [node name="cutscene" type="Control" parent="tutorial"]
-modulate = Color(0.0313726, 0.0313726, 0.0313726, 0)
+auto_translate_mode = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1580,6 +1709,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="intro" type="ColorRect" parent="tutorial/cutscene"]
+auto_translate_mode = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1590,6 +1720,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="1" type="TextureRect" parent="tutorial/cutscene"]
+auto_translate_mode = 1
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -1599,6 +1730,51 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("3_tvl4p")
+
+[node name="text_layer" type="CanvasLayer" parent="tutorial/cutscene/1"]
+layer = 3
+
+[node name="text" type="Control" parent="tutorial/cutscene/1/text_layer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="tutorial/cutscene/1/text_layer/text"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 38.0
+offset_right = 549.0
+offset_bottom = 224.0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "Travelling in the deep void of space,"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="tutorial/cutscene/1/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -523.0
+offset_top = -213.0
+offset_right = -22.0
+offset_bottom = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "As time ticks to stop a planetary demise."
+horizontal_alignment = 2
+autowrap_mode = 3
 
 [node name="2" type="TextureRect" parent="tutorial/cutscene"]
 auto_translate_mode = 1
@@ -1612,6 +1788,53 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("4_hnpww")
 
+[node name="text_layer" type="CanvasLayer" parent="tutorial/cutscene/2"]
+layer = 3
+
+[node name="text" type="Control" parent="tutorial/cutscene/2/text_layer"]
+auto_translate_mode = 1
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="tutorial/cutscene/2/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 31.0
+offset_top = 38.0
+offset_right = 549.0
+offset_bottom = 224.0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "Holding its last hope I must undo,"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="tutorial/cutscene/2/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -523.0
+offset_top = -213.0
+offset_right = -22.0
+offset_bottom = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "The things that made my whole world go."
+horizontal_alignment = 2
+autowrap_mode = 3
+
 [node name="3" type="TextureRect" parent="tutorial/cutscene"]
 auto_translate_mode = 1
 modulate = Color(1, 1, 1, 0)
@@ -1623,6 +1846,53 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("5_dc6la")
+
+[node name="text_layer" type="CanvasLayer" parent="tutorial/cutscene/3"]
+layer = 3
+
+[node name="text" type="Control" parent="tutorial/cutscene/3/text_layer"]
+auto_translate_mode = 1
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="tutorial/cutscene/3/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 31.0
+offset_top = 38.0
+offset_right = 549.0
+offset_bottom = 224.0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "Holding the Grand Centennium Collection,"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="tutorial/cutscene/3/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -523.0
+offset_top = -213.0
+offset_right = -22.0
+offset_bottom = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "That is equipped to save my nation."
+horizontal_alignment = 2
+autowrap_mode = 3
 
 [node name="4" type="TextureRect" parent="tutorial/cutscene"]
 auto_translate_mode = 1
@@ -1636,6 +1906,53 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("6_4xcu4")
 
+[node name="text_layer" type="CanvasLayer" parent="tutorial/cutscene/4"]
+layer = 3
+
+[node name="text" type="Control" parent="tutorial/cutscene/4/text_layer"]
+auto_translate_mode = 1
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="tutorial/cutscene/4/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 31.0
+offset_top = 38.0
+offset_right = 549.0
+offset_bottom = 224.0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "I must restore my planet with all of my might, "
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="tutorial/cutscene/4/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -523.0
+offset_top = -274.0
+offset_right = -22.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "I must restore my planet to the point that I will have to fight."
+horizontal_alignment = 2
+autowrap_mode = 3
+
 [node name="5" type="TextureRect" parent="tutorial/cutscene"]
 auto_translate_mode = 1
 modulate = Color(1, 1, 1, 0)
@@ -1647,6 +1964,53 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("7_t6u0r")
+
+[node name="text_layer" type="CanvasLayer" parent="tutorial/cutscene/5"]
+layer = 3
+
+[node name="text" type="Control" parent="tutorial/cutscene/5/text_layer"]
+auto_translate_mode = 1
+modulate = Color(1, 1, 1, 0.0243896)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="tutorial/cutscene/5/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 31.0
+offset_top = 38.0
+offset_right = 549.0
+offset_bottom = 287.0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "With my adrenaline pumped, I am going to fast,"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="tutorial/cutscene/5/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -523.0
+offset_top = -337.0
+offset_right = -22.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "Forgot that there are also bodies that are going incredibly fast."
+horizontal_alignment = 2
+autowrap_mode = 3
 
 [node name="6" type="TextureRect" parent="tutorial/cutscene"]
 auto_translate_mode = 1
@@ -1660,6 +2024,33 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("8_4lrv8")
 
+[node name="text_layer" type="CanvasLayer" parent="tutorial/cutscene/6"]
+layer = 3
+
+[node name="text" type="Control" parent="tutorial/cutscene/6/text_layer"]
+auto_translate_mode = 1
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="tutorial/cutscene/6/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 31.0
+offset_top = 38.0
+offset_right = 549.0
+offset_bottom = 224.0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "Struck by an asteroid with no where to go,"
+autowrap_mode = 3
+
 [node name="7" type="TextureRect" parent="tutorial/cutscene"]
 auto_translate_mode = 1
 modulate = Color(1, 1, 1, 0)
@@ -1671,6 +2062,33 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("9_mr450")
+
+[node name="text_layer" type="CanvasLayer" parent="tutorial/cutscene/7"]
+layer = 3
+
+[node name="text" type="Control" parent="tutorial/cutscene/7/text_layer"]
+auto_translate_mode = 1
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="tutorial/cutscene/7/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 31.0
+offset_top = 38.0
+offset_right = 573.0
+offset_bottom = 224.0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "I must land on this familiar planet to live and go."
+autowrap_mode = 3
 
 [node name="8" type="TextureRect" parent="tutorial/cutscene"]
 auto_translate_mode = 1
@@ -1684,6 +2102,53 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("10_4aoxl")
 
+[node name="text_layer" type="CanvasLayer" parent="tutorial/cutscene/8"]
+layer = 3
+
+[node name="text" type="Control" parent="tutorial/cutscene/8/text_layer"]
+auto_translate_mode = 1
+modulate = Color(1, 1, 1, 0.0222218)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="tutorial/cutscene/8/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 31.0
+offset_top = 38.0
+offset_right = 692.0
+offset_bottom = 287.0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "As a counter measure to mitigate damage, the collection disassembled, "
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="tutorial/cutscene/8/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -612.0
+offset_top = -211.0
+offset_right = -22.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "Having all items scattered around the planet."
+horizontal_alignment = 2
+autowrap_mode = 3
+
 [node name="9" type="TextureRect" parent="tutorial/cutscene"]
 auto_translate_mode = 1
 modulate = Color(1, 1, 1, 0)
@@ -1696,6 +2161,53 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("11_7r5me")
 
+[node name="text_layer" type="CanvasLayer" parent="tutorial/cutscene/9"]
+layer = 3
+
+[node name="text" type="Control" parent="tutorial/cutscene/9/text_layer"]
+auto_translate_mode = 1
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="tutorial/cutscene/9/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 0
+offset_left = 31.0
+offset_top = 38.0
+offset_right = 692.0
+offset_bottom = 224.0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "I must hurry to find the collection and depart,"
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="tutorial/cutscene/9/text_layer/text"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -828.0
+offset_top = -211.0
+offset_right = -22.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 60
+text = "Before the toxic atmosphere and the unknown will tore me apart."
+horizontal_alignment = 2
+autowrap_mode = 3
+
 [node name="10" type="TextureRect" parent="tutorial/cutscene"]
 auto_translate_mode = 1
 modulate = Color(1, 1, 1, 0)
@@ -1706,79 +2218,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("12_301lw")
+texture = ExtResource("4_hnpww")
 
-[node name="11" type="TextureRect" parent="tutorial/cutscene"]
+[node name="text_layer" type="CanvasLayer" parent="tutorial/cutscene/10"]
+layer = 3
+
+[node name="text" type="Control" parent="tutorial/cutscene/10/text_layer"]
 auto_translate_mode = 1
 modulate = Color(1, 1, 1, 0)
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("13_68dpc")
+metadata/_edit_use_anchors_ = true
 
-[node name="12" type="TextureRect" parent="tutorial/cutscene"]
+[node name="task" type="Label" parent="tutorial/cutscene/10/text_layer/text"]
 auto_translate_mode = 1
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("14_bye1j")
+layout_mode = 0
+offset_left = 166.0
+offset_top = 140.0
+offset_right = 1318.0
+offset_bottom = 932.0
+theme_override_fonts/font = ExtResource("7_omp1m")
+theme_override_font_sizes/font_size = 50
+text = "Your task is to find the 100 items scattered in the planet before you die from the toxic atmosphere.
 
-[node name="13" type="TextureRect" parent="tutorial/cutscene"]
-auto_translate_mode = 1
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("15_kynwb")
+You must survive. 
 
-[node name="14" type="TextureRect" parent="tutorial/cutscene"]
-auto_translate_mode = 1
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("16_veyxg")
+Be curious on the enviroment and use them to your advantage.
 
-[node name="15" type="TextureRect" parent="tutorial/cutscene"]
-auto_translate_mode = 1
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("17_ocjj3")
+Locate the items by using the locator on the bottom left side.
 
-[node name="16" type="TextureRect" parent="tutorial/cutscene"]
-auto_translate_mode = 1
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("18_ji3hi")
+Devour the items to collect them. You can also devour other things that you are curious with. Check them if they can be an advantage."
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="skip" type="TextureButton" parent="tutorial"]
 auto_translate_mode = 1
@@ -1821,6 +2297,9 @@ libraries = {
 }
 autoplay = "cutscene"
 
+[node name="env" type="WorldEnvironment" parent="tutorial"]
+environment = ExtResource("18_vxqe6")
+
 [node name="user_interface_layer" type="CanvasLayer" parent="."]
 process_mode = 4
 
@@ -1834,6 +2313,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_5b5w7")
+metadata/_edit_lock_ = true
 
 [node name="stats_panel" type="Control" parent="user_interface_layer/user"]
 layout_mode = 1
@@ -1843,6 +2323,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="slix" type="TextureRect" parent="user_interface_layer/user/stats_panel"]
 layout_mode = 1
@@ -1921,6 +2402,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="item_compass" type="TextureRect" parent="user_interface_layer/user/locator_panel"]
 layout_mode = 1
@@ -2055,6 +2537,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="help_panel" type="TextureRect" parent="user_interface_layer/user/byte_notif_panel"]
 layout_mode = 1
@@ -2190,6 +2673,7 @@ grow_vertical = 2
 texture = ExtResource("11_58hxk")
 expand_mode = 5
 stretch_mode = 4
+metadata/_edit_lock_ = true
 
 [node name="anim" type="AnimationPlayer" parent="user_interface_layer/user/shield_overlay"]
 libraries = {
@@ -2208,6 +2692,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("16_1ke4q")
+metadata/_edit_lock_ = true
 
 [node name="you_win" type="Label" parent="user_interface_layer/user/win_screen"]
 self_modulate = Color(1, 1, 1, 0)
@@ -2239,6 +2724,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("18_ce6rx")
+metadata/_edit_lock_ = true
 
 [node name="continue" type="Label" parent="user_interface_layer/user/pause_screen"]
 self_modulate = Color(1, 1, 1, 0)
@@ -2289,6 +2775,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("17_7tv7k")
+metadata/_edit_lock_ = true
 
 [node name="you_died" type="Label" parent="user_interface_layer/user/death_screen"]
 auto_translate_mode = 1
@@ -2324,11 +2811,12 @@ offset_right = 456.0
 offset_bottom = -64.0
 grow_horizontal = 0
 mouse_filter = 2
-texture_normal = SubResource("AtlasTexture_s8k7y")
-texture_pressed = SubResource("AtlasTexture_mua3q")
-texture_hover = SubResource("AtlasTexture_j7cox")
+texture_normal = SubResource("AtlasTexture_plq26")
+texture_pressed = SubResource("AtlasTexture_e8i84")
+texture_hover = SubResource("AtlasTexture_am7ex")
 stretch_mode = 5
 flip_v = true
+metadata/_edit_lock_ = true
 
 [node name="text" type="Label" parent="user_interface_layer/user/to_main"]
 auto_translate_mode = 1
@@ -2359,9 +2847,6 @@ libraries = {
 "": SubResource("AnimationLibrary_aws1p")
 }
 autoplay = "spawn"
-
-[node name="env" type="WorldEnvironment" parent="."]
-environment = ExtResource("18_vxqe6")
 
 [node name="world" type="Node2D" parent="."]
 
@@ -3145,6 +3630,9 @@ position = Vector2(-622, 1047)
 
 [node name="byte" parent="objects" instance=ExtResource("5_nj3ef")]
 position = Vector2(-650, 1041)
+
+[node name="hekara" parent="objects" instance=ExtResource("36_au2wo")]
+position = Vector2(-441, 484)
 
 [connection signal="pressed" from="tutorial/skip" to="user_interface_layer/user" method="_on_skip_pressed"]
 [connection signal="value_changed" from="user_interface_layer/user/stats_panel/life_progress" to="user_interface_layer/user" method="_on_life_progress_value_changed"]

@@ -41,12 +41,15 @@ var _attack_damage: float = 5.0
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
 @onready var _anim_alert: AnimatedSprite2D = get_node("alert")
 @onready var _texture: AnimatedSprite2D = get_node("texture")
+@onready var _shape: CollisionShape2D = get_node("detection/shape")
 
 @onready var _sound: AudioStreamPlayer2D = get_node("sound")
 
 # VIRTUAL **********************************************************************
 func _ready() -> void:
 	_anim_blend.set_active(true) # Enable animation.
+	_rand_aggro()
+	_rand_stone()
 
 func _physics_process(_delta: float) -> void:
 	_manage_movement(_delta)
@@ -102,6 +105,18 @@ func _manage_animation() -> void:
 		_anim_blend.get("parameters/playback").travel("dead")
 		_anim_blend.set("parameters/dead/blend_position", _vel)
 
+func _rand_aggro() -> void:
+	var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	_rng.randomize()
+	_rng.set_seed(_rng.randi())
+	_shape.get_shape().set_radius(_rng.randi_range(3, 10) * 10)
+
+func _rand_stone() -> void:
+	var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	_rng.randomize()
+	_rng.set_seed(_rng.randi())
+	_texture.set_sprite_frames(load("res://assets/objects/enemies/pseudo/textures/stone/" + str(_rng.randi_range(0, 6)) + ".tres"))
+
 # Set damage look and sound.
 func damage(_multiplier: int = 1) -> void:
 	if not _sound.is_playing():
@@ -140,6 +155,7 @@ func _on_detection_body_exited(_body: Node2D) -> void:
 		set_collision_mask_value(1, false)
 		_detected_enemy = null
 		_anim_alert.play_backwards("alert")
+		_rand_aggro()
 
 # Attack on contact.
 func _on_attack_body_entered(_body: Node2D) -> void:

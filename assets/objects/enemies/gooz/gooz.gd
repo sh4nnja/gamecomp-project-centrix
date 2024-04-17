@@ -38,7 +38,6 @@ var hit: float = 20.0
 # NODES ************************************************************************
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
 @onready var _anim_alert: AnimatedSprite2D = get_node("alert")
-@onready var _texture: AnimatedSprite2D = get_node("texture")
 @onready var _toxic_fx: CPUParticles2D = get_node("toxic_fx")
 
 @onready var _sound: AudioStreamPlayer2D = get_node("sound")
@@ -85,9 +84,9 @@ func damage(_multiplier: int = 1) -> void:
 			_sound.set_stream(_damage_fx)
 			_sound.play()
 	
-	_texture.modulate = Color.html("ff0000")
+	modulate = Color.html("ff0000")
 	await get_tree().create_timer(0.1).timeout
-	_texture.modulate = Color.html("ffffff")
+	modulate = Color.html("ffffff")
 	health -= hit * _multiplier
 
 func die() -> void:
@@ -131,4 +130,6 @@ func _on_attack_body_entered(_body: Node2D) -> void:
 	if _body.is_in_group("Slix"):
 		_explode = true
 		_anim_alert.play_backwards("alert")
+		await _anim_alert.animation_finished
+		_anim_alert.hide()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://bxaoafo5h2lh8"]
+[gd_scene load_steps=82 format=3 uid="uid://bxaoafo5h2lh8"]
 
 [ext_resource type="Texture2D" uid="uid://cwrg53r7b2326" path="res://assets/objects/enemies/gooz/textures/explode_r.png" id="1_3fds7"]
 [ext_resource type="Script" path="res://assets/objects/enemies/gooz/gooz.gd" id="1_i6jm0"]
@@ -7,12 +7,83 @@
 [ext_resource type="AudioStream" uid="uid://cqj3dx31img5l" path="res://assets/global/sounds/fx/530616__lukeo135__slime-2.ogg" id="2_2fy06"]
 [ext_resource type="Texture2D" uid="uid://b15w7h361cpk7" path="res://assets/objects/enemies/gooz/textures/idle_r.png" id="2_306lt"]
 [ext_resource type="Texture2D" uid="uid://dfjn0vdhrhmhl" path="res://assets/global/texture/alert.png" id="6_paso5"]
+[ext_resource type="Texture2D" uid="uid://cqmay02v80wla" path="res://assets/objects/enemies/gooz/textures/explode_radius.png" id="7_bmxrq"]
 [ext_resource type="Texture2D" uid="uid://c0mfxiynspj7t" path="res://assets/global/texture/smoke.png" id="7_xw2vg"]
 [ext_resource type="AudioStream" uid="uid://clm6a2lhryh3m" path="res://assets/global/sounds/fx/681682__pnmcarrierailfan__splat-big-gooshy.mp3" id="8_curpc"]
 [ext_resource type="AudioStream" uid="uid://dmog2d28sxb15" path="res://assets/global/sounds/fx/340794__kuchenanderung1__slime-squish.wav" id="9_qcje3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_thpue"]
 size = Vector2(16, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8f6pf"]
+atlas = ExtResource("7_bmxrq")
+region = Rect2(0, 0, 162, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1npoi"]
+atlas = ExtResource("7_bmxrq")
+region = Rect2(162, 0, 162, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijkl5"]
+atlas = ExtResource("7_bmxrq")
+region = Rect2(324, 0, 162, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_koqlv"]
+atlas = ExtResource("7_bmxrq")
+region = Rect2(486, 0, 162, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg3le"]
+atlas = ExtResource("7_bmxrq")
+region = Rect2(648, 0, 162, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdjk6"]
+atlas = ExtResource("7_bmxrq")
+region = Rect2(810, 0, 162, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2uut"]
+atlas = ExtResource("7_bmxrq")
+region = Rect2(972, 0, 162, 162)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lo1uu"]
+atlas = ExtResource("7_bmxrq")
+region = Rect2(1134, 0, 162, 162)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0npb7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8f6pf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1npoi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijkl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_koqlv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lg3le")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdjk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2uut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lo1uu")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 9.0
+}]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_baoi3"]
 particles_animation = true
@@ -425,6 +496,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("explode_radius:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_v1ymy"]
 resource_name = "explode_l"
@@ -518,6 +601,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("explode_radius:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
 
 [sub_resource type="Animation" id="Animation_iiifm"]
 resource_name = "explode_r"
@@ -610,6 +705,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("explode_radius:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
 [sub_resource type="Animation" id="Animation_s4yl3"]
@@ -775,29 +882,29 @@ _data = {
 "idle_r": SubResource("Animation_y8ajo")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rscqo"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_73j8j"]
 animation = &"explode_l"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1q5ee"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u8pll"]
 animation = &"explode_r"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2dkdb"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_rscqo")
+blend_point_0/node = SubResource("AnimationNodeAnimation_73j8j")
 blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_1q5ee")
+blend_point_1/node = SubResource("AnimationNodeAnimation_u8pll")
 blend_point_1/pos = Vector2(1, 0)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3i2cg"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pknir"]
 animation = &"idle_l"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mbl41"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r5v8a"]
 animation = &"idle_r"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_171r5"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_3i2cg")
+blend_point_0/node = SubResource("AnimationNodeAnimation_pknir")
 blend_point_0/pos = Vector2(-1, 0)
-blend_point_1/node = SubResource("AnimationNodeAnimation_mbl41")
+blend_point_1/node = SubResource("AnimationNodeAnimation_r5v8a")
 blend_point_1/pos = Vector2(1, 0)
 blend_mode = 1
 
@@ -830,6 +937,10 @@ bus = &"Gooz"
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_thpue")
+
+[node name="explode_radius" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.490196)
+sprite_frames = SubResource("SpriteFrames_0npb7")
 
 [node name="toxic_fx" type="CPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_baoi3")

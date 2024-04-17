@@ -213,7 +213,7 @@ collision_layer = 0
 script = ExtResource("1_gfos4")
 
 [node name="texture" type="AnimatedSprite2D" parent="."]
-z_index = 4
+z_index = 6
 z_as_relative = false
 sprite_frames = SubResource("SpriteFrames_0aagb")
 animation = &"float_l"
@@ -255,9 +255,6 @@ libraries = {
 
 [node name="anim_blend" type="AnimationTree" parent="."]
 deterministic = false
-libraries = {
-"": SubResource("AnimationLibrary_tb16g")
-}
 tree_root = SubResource("AnimationNodeStateMachine_lvunh")
 anim_player = NodePath("../anim")
 parameters/float/blend_position = Vector2(0.24594, 0.215827)
