@@ -63,7 +63,8 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g4jqm"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_4u1vv"]
+resource_local_to_scene = true
 radius = 100.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1r47u"]
@@ -1094,7 +1095,7 @@ transitions = ["Start", "stone", SubResource("AnimationNodeStateMachineTransitio
 graph_offset = Vector2(-45, -116)
 
 [node name="pseudo" type="CharacterBody2D" groups=["enemy"]]
-z_index = 3
+z_index = 4
 disable_mode = 2
 collision_mask = 0
 motion_mode = 1
@@ -1114,7 +1115,6 @@ shape = SubResource("RectangleShape2D_hyd6d")
 
 [node name="texture" type="AnimatedSprite2D" parent="."]
 z_index = 2
-z_as_relative = false
 sprite_frames = ExtResource("3_3tt0o")
 animation = &"transform_stone_r"
 
@@ -1131,7 +1131,7 @@ collision_layer = 0
 monitorable = false
 
 [node name="shape" type="CollisionShape2D" parent="detection"]
-shape = SubResource("CircleShape2D_g4jqm")
+shape = SubResource("CircleShape2D_4u1vv")
 
 [node name="attack" type="Area2D" parent="."]
 collision_layer = 0

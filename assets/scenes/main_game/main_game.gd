@@ -160,7 +160,7 @@ func _spawn_hekara(_tile_pos: Vector2i) -> void:
 		
 		var _inst: Object = _hekara.instantiate()
 		objects.add_child(_inst, true)
-		_inst.set_global_position(to_global(Vector2i(_map.map_to_local(_tile_pos)) + Vector2i(_rng.randi_range(-50, 50), _rng.randi_range(-50, 50))))
+		_inst.set_global_position(to_global(Vector2i(_map.map_to_local(_tile_pos)) + Vector2i(_rng.randi_range(-75, 75), _rng.randi_range(-75, 75))))
 
 # Spawn Gooz on toxic lakes randomly.
 func _manage_toxic_lake() -> void:

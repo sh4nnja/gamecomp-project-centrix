@@ -31,8 +31,8 @@ var _vel: Vector2 = Vector2.ZERO # Current velocity.
 var _detected_enemy: CharacterBody2D = null
 var _explode: bool = false
 
-var _attack_damage: float = 35.0
-var health: float = 100.0
+var _attack_damage: float = 15.0
+var health: float = 40.0
 var hit: float = 20.0
 
 # NODES ************************************************************************
@@ -117,13 +117,13 @@ func _damage_by_dist() -> float:
 func _on_detection_body_entered(_body: Node2D) -> void:
 	if _body.is_in_group("Slix"):
 		_detected_enemy = _body
-		set_collision_mask_value(1, true)
+		set_collision_mask_value(2, true)
 		_anim_alert.play("alert")
 
 func _on_detection_body_exited(_body: Node2D) -> void:
 	if _body.is_in_group("Slix"):
 		_detected_enemy = null
-		set_collision_mask_value(1, false)
+		set_collision_mask_value(2, false)
 		_anim_alert.play_backwards("alert")
 
 # Explode on contact.

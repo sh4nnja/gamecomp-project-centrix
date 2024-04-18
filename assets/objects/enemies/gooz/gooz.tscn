@@ -404,7 +404,8 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dbh3w"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ruekq"]
+resource_local_to_scene = true
 radius = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8j3tg"]
@@ -988,7 +989,7 @@ collision_layer = 0
 monitorable = false
 
 [node name="shape" type="CollisionShape2D" parent="detection"]
-shape = SubResource("CircleShape2D_dbh3w")
+shape = SubResource("CircleShape2D_ruekq")
 
 [node name="attack" type="Area2D" parent="."]
 collision_layer = 0

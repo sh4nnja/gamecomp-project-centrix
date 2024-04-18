@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://cw1fyp63ld3kf"]
+[gd_scene load_steps=85 format=3 uid="uid://cw1fyp63ld3kf"]
 
 [ext_resource type="PackedScene" uid="uid://djmjrikkun6gd" path="res://assets/objects/player/slix/slix.tscn" id="1_gpnvh"]
 [ext_resource type="Script" path="res://assets/scenes/main_game/main_game.gd" id="1_grsym"]
@@ -35,7 +35,6 @@
 [ext_resource type="Texture2D" uid="uid://c12ye0gdykvrs" path="res://assets/scenes/main_menu/textures/button_about.png" id="18_d76qf"]
 [ext_resource type="Environment" uid="uid://cearmu6xhrwog" path="res://assets/global/material/glow.tres" id="18_vxqe6"]
 [ext_resource type="AudioStream" uid="uid://bebd8rkn1skm1" path="res://assets/global/sounds/fx/528561__jummit__soft-ui-button-click.ogg" id="19_oekh0"]
-[ext_resource type="PackedScene" uid="uid://ccvphxsudl8v" path="res://assets/objects/enemies/hekara/hekara.tscn" id="36_au2wo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s8k7y"]
 atlas = ExtResource("18_d76qf")
@@ -3630,9 +3629,6 @@ position = Vector2(-622, 1047)
 
 [node name="byte" parent="objects" instance=ExtResource("5_nj3ef")]
 position = Vector2(-650, 1041)
-
-[node name="hekara" parent="objects" instance=ExtResource("36_au2wo")]
-position = Vector2(-441, 484)
 
 [connection signal="pressed" from="tutorial/skip" to="user_interface_layer/user" method="_on_skip_pressed"]
 [connection signal="value_changed" from="user_interface_layer/user/stats_panel/life_progress" to="user_interface_layer/user" method="_on_life_progress_value_changed"]

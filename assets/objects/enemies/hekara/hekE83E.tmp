@@ -6,22 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://c0mfxiynspj7t" path="res://assets/global/texture/smoke.png" id="3_ogxck"]
 [ext_resource type="Texture2D" uid="uid://bp8ojxvle0m2l" path="res://assets/objects/enemies/hekara/texture/idle_r.png" id="4_6lio8"]
 [ext_resource type="Texture2D" uid="uid://dfjn0vdhrhmhl" path="res://assets/global/texture/alert.png" id="8_mfyjl"]
+[ext_resource type="AudioStream" uid="uid://clm6a2lhryh3m" path="res://assets/global/sounds/fx/681682__pnmcarrierailfan__splat-big-gooshy.mp3" id="9_amt7p"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ibudf"]
-blend_mode = 1
 particles_animation = true
 particles_anim_h_frames = 6
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
-[sub_resource type="Curve" id="Curve_ileae"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.269231, 1), 1.4, 0.0, 0, 0, Vector2(0.763736, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-metadata/_snap_count = 4
-
 [sub_resource type="Curve" id="Curve_0uja7"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.313187, 1), 0.0, 0.0, 0, 0, Vector2(0.736641, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0.736641, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_awfjf"]
 radius = 7.64853
@@ -201,8 +196,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_n81x2"]
-resource_local_to_scene = true
+[sub_resource type="CircleShape2D" id="CircleShape2D_dg8g7"]
 radius = 100.0
 
 [sub_resource type="Animation" id="Animation_ilfo8"]
@@ -409,7 +403,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_iiifm"]
 resource_name = "spawn"
-length = 2.1
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -417,36 +411,10 @@ tracks/0/path = NodePath("spawn_radius:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(-0.1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [9, 9, 7, 6, 5, 4, 3, 5, 4, 9]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("spawn_fx:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawn"
-}]
+"values": [9, 4, 3, 4, 5, 6, 7, 9]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hjetr"]
@@ -504,42 +472,43 @@ platform_on_leave = 2
 script = ExtResource("1_4omrw")
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
-bus = &"Hekara"
+stream = ExtResource("9_amt7p")
+volume_db = -5.0
+max_polyphony = 5
+bus = &"Gooz"
 
 [node name="enable_process" type="VisibleOnScreenEnabler2D" parent="."]
 
 [node name="spawn_fx" type="CPUParticles2D" parent="."]
-process_mode = 3
-z_index = 2
+z_index = 1
 material = SubResource("CanvasItemMaterial_ibudf")
 position = Vector2(-0.5, -0.5)
 emitting = false
-amount = 512
-lifetime = 2.0
+amount = 128
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 lifetime_randomness = 1.0
-local_coords = true
 texture = ExtResource("3_ogxck")
 emission_shape = 1
-emission_sphere_radius = 1.0
+emission_sphere_radius = 5.0
 direction = Vector2(0, 0)
 spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 1.0
-initial_velocity_max = 100.0
+initial_velocity_min = 5.0
+initial_velocity_max = 200.0
 angular_velocity_min = -720.0
 angular_velocity_max = 720.0
-orbit_velocity_max = 1.5
-orbit_velocity_curve = SubResource("Curve_ileae")
+orbit_velocity_min = 1.0
+orbit_velocity_max = 2.0
+linear_accel_max = 1.0
+radial_accel_max = 1.0
 angle_min = -720.0
 angle_max = 720.0
 scale_amount_min = 0.15
 scale_amount_max = 0.5
 scale_amount_curve = SubResource("Curve_0uja7")
-color = Color(1, 1, 0, 1)
-anim_offset_max = 1.0
+color = Color(1, 1, 0.333333, 1)
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_awfjf")
@@ -548,9 +517,10 @@ shape = SubResource("CircleShape2D_awfjf")
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_7fhnp")
 animation = &"idle_l"
+frame = 2
 
 [node name="spawn_radius" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 1, 0.921569, 0.392157)
+modulate = Color(1, 1, 0.921569, 0.490196)
 sprite_frames = SubResource("SpriteFrames_34qas")
 frame = 8
 
@@ -567,7 +537,7 @@ collision_layer = 0
 monitorable = false
 
 [node name="shape" type="CollisionShape2D" parent="detection"]
-shape = SubResource("CircleShape2D_n81x2")
+shape = SubResource("CircleShape2D_dg8g7")
 
 [node name="anim" type="AnimationPlayer" parent="."]
 libraries = {
@@ -580,7 +550,7 @@ libraries = {
 "": SubResource("AnimationLibrary_hjetr")
 }
 
-[node name="spawn_duration" type="Timer" parent="."]
+[node name="spawn_duration" type="Timer" parent="spawn_anim"]
 
 [node name="anim_blend" type="AnimationTree" parent="."]
 callback_mode_discrete = 0
@@ -591,4 +561,4 @@ parameters/idle/blend_position = Vector2(-0.00220263, 0.0143886)
 
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]
-[connection signal="timeout" from="spawn_duration" to="." method="_on_spawn_duration_timeout"]
+[connection signal="timeout" from="spawn_anim/spawn_duration" to="." method="_on_spawn_duration_timeout"]

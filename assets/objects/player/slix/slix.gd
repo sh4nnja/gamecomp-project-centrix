@@ -285,10 +285,10 @@ func lash() -> void:
 	health -= lash_energy
 	
 	# Creates the projectile.
-	var _projectile_inst = _projectile.instantiate()
+	var _projectile_inst: Object = _projectile.instantiate()
 	
 	# Add to the tree.
-	owner.objects.add_child(_projectile_inst)
+	get_parent().add_child(_projectile_inst)
 	
 	# Set projectile movement.
 	_projectile_inst.global_position = global_position

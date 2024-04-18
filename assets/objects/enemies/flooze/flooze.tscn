@@ -376,7 +376,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xj0nn"]
 size = Vector2(16, 14)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dg8g7"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1jhif"]
+resource_local_to_scene = true
 radius = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_at12n"]
@@ -894,7 +895,12 @@ states/idle/position = Vector2(371.259, 103.679)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_70j7i"), "idle", "explode", SubResource("AnimationNodeStateMachineTransition_5jxio")]
 graph_offset = Vector2(-143, 0)
 
-[node name="flooze" type="CharacterBody2D"]
+[node name="flooze" type="CharacterBody2D" groups=["enemy"]]
+z_index = 10
+collision_layer = 2
+collision_mask = 2
+motion_mode = 1
+platform_on_leave = 2
 script = ExtResource("1_p557n")
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
@@ -957,7 +963,7 @@ collision_layer = 0
 monitorable = false
 
 [node name="shape" type="CollisionShape2D" parent="detection"]
-shape = SubResource("CircleShape2D_dg8g7")
+shape = SubResource("CircleShape2D_1jhif")
 
 [node name="attack" type="Area2D" parent="."]
 collision_layer = 0

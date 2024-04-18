@@ -20,8 +20,12 @@ extends CharacterBody2D
 # DAMAGE ***********************************************************************
 var _damage_fx: Resource = load("res://assets/global/sounds/fx/385046__mortisblack__damage.ogg")
 
+# FLOOZE ***********************************************************************
+var _flooze: Resource = load("res://assets/objects/enemies/flooze/flooze.tscn")
+
 # SKILLS ***********************************************************************
 var _detected_enemy: CharacterBody2D = null
+var _spawn_dur: int = 5
 
 var health: float = 100.0
 var hit: float = 20.0
@@ -33,10 +37,14 @@ var hit: float = 20.0
 @onready var _sound: AudioStreamPlayer2D = get_node("sound")
 @onready var _shape: CollisionShape2D = get_node("detection/shape")
 
+@onready var _spawn_anim: AnimationPlayer = get_node("spawn_anim")
+@onready var _spawn_timer: Timer = get_node("spawn_duration")
+
 # VIRTUAL **********************************************************************
 func _ready() -> void:
 	# Enable animation.
 	_anim_blend.set_active(true)
+	_rand_aggro() 
 
 func _physics_process(_delta: float) -> void:
 	_manage_animation()
@@ -50,13 +58,39 @@ func _manage_animation() -> void:
 			_anim_blend.set("parameters/idle/blend_position", Vector2(-1, 0) if position > _detected_enemy.position else Vector2(1, 0))
 		else:
 			_anim_blend.get("parameters/playback").travel("dead")
-			_anim_blend.set("parameters/idle/blend_position", Vector2(-1, 0) if position > _detected_enemy.position else Vector2(1, 0))
+			_anim_blend.set("parameters/dead/blend_position", Vector2(-1, 0) if position > _detected_enemy.position else Vector2(1, 0))
 
 func _rand_aggro() -> void:
 	var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	_rng.randomize()
 	_rng.set_seed(_rng.randi())
-	_shape.get_shape().set_radius(_rng.randi_range(3, 10) * 10)
+	_shape.get_shape().set_radius(_rng.randi_range(7, 15) * 10)
+
+func _enable_spawn_flooze(_enable: bool) -> void:
+	if _enable and health > 0:
+		var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
+		_rng.randomize()
+		_rng.set_seed(_rng.randi())
+		_spawn_timer.start(_rng.randi_range(2, _spawn_dur)) 
+	else:
+		_spawn_timer.stop()
+
+func _spawn_flooze():
+	_spawn_anim.play("spawn")
+
+func spawn() -> void:
+	if not get_tree().is_paused():
+		var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
+		_rng.randomize()
+		_rng.set_seed(_rng.randi())
+		
+		for _i in range(_rng.randi_range(1, 3)):
+			# Creates flooze.
+			var _flooze_inst: Object = _flooze.instantiate()
+		
+			# Add to the tree.
+			get_parent().add_child(_flooze_inst)
+			_flooze_inst.global_position = global_position + Vector2(_rng.randi_range(-15, 15), _rng.randi_range(-15, 15))
 
 func damage(_multiplier: int = 1) -> void:
 	if not _sound.is_playing():
@@ -76,6 +110,7 @@ func die() -> void:
 	_anim_alert.play_backwards("alert")
 	await _anim_alert.animation_finished
 	_anim_alert.hide()
+	_spawn_timer.stop()
 	process_mode = Node.PROCESS_MODE_DISABLED
 
 # SIGNALS **********************************************************************
@@ -84,11 +119,15 @@ func _on_detection_body_entered(_body: Node2D) -> void:
 		_detected_enemy = _body
 		set_collision_mask_value(1, true)
 		_anim_alert.play("alert")
+		_enable_spawn_flooze(true)
 
 func _on_detection_body_exited(_body: Node2D) -> void:
 	if _body.is_in_group("Slix"):
 		_detected_enemy = null
 		set_collision_mask_value(1, false)
 		_anim_alert.play_backwards("alert")
+		_enable_spawn_flooze(false)
 		_rand_aggro()
 
+func _on_spawn_duration_timeout() -> void:
+	_spawn_flooze()

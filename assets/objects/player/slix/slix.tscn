@@ -2232,6 +2232,8 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-129, -64)
 
 [node name="slix" type="CharacterBody2D" groups=["Slix"]]
+collision_layer = 3
+collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_56pfa")
 
