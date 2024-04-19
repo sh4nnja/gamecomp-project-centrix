@@ -21,6 +21,8 @@ extends Control
 var _scene_path: Resource = load("res://assets/scenes/main_game/main_game.tscn")
 
 # NODES ************************************************************************
+@onready var _play_btn: Label = get_node("menu/play/text")
+
 @onready var _anim: AnimationPlayer = get_node("menu/anim")
 @onready var _fx: AudioStreamPlayer = get_node("menu/sound2")
 
@@ -40,6 +42,8 @@ func _enable_sound() -> void:
 # SIGNALS **********************************************************************
 # Play button.
 func _on_play_pressed() -> void:
+	_play_btn.set_text("Loading...")
+	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_packed(_scene_path)
 
 func _on_play_mouse_entered() -> void:

@@ -46,3 +46,6 @@ var byte_broadcasts: Array = [
 	# When there is immunity.
 	"Shield Enabled.\nSynthesizing consumed item.\nMinor impact from toxicity.",
 ]
+
+# High score.
+var high_score: int = 0

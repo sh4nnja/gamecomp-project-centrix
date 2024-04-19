@@ -95,8 +95,8 @@ func die() -> void:
 	queue_free()
 
 func explode() -> void:
+	_toxic_fx.set_emitting(true)
 	if _detected_enemy:
-		_toxic_fx.set_emitting(true)
 		_detected_enemy.damage(_damage_by_dist())
 
 # Calculate damage based on distance.

@@ -194,8 +194,11 @@ func _locate_items() -> void:
 # Calculate the score.
 func _calculate_score() -> void:
 	_score = (_game.slix.devoured_items / _time_passed) + (_game.slix.devoured_enemies + _game.slix.devoured_resources)
-	_win_text.text += "\n\nScore: " + str(_score)
-	_death_text.text += "\n\nScore: " + str(_score)
+	if _score > global.high_score:
+		global.high_score = _score
+	
+	_win_text.text += "\n\nScore: " + str(_score) + "\nHigh Score: " + str(global.high_score)
+	_death_text.text += "\n\nScore: " + str(_score) + "\nHigh Score: " + str(global.high_score)
 
 # Get time passed for score computation.
 func _get_time(_delta: float) -> void:

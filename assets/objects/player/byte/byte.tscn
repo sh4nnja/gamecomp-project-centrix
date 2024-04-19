@@ -209,13 +209,12 @@ states/float/position = Vector2(434.666, 99.7778)
 transitions = ["Start", "float", SubResource("AnimationNodeStateMachineTransition_lciya")]
 
 [node name="byte" type="CharacterBody2D"]
-z_index = 6
+z_index = 15
 collision_layer = 0
 script = ExtResource("1_gfos4")
 
 [node name="texture" type="AnimatedSprite2D" parent="."]
 z_index = 6
-z_as_relative = false
 sprite_frames = SubResource("SpriteFrames_0aagb")
 animation = &"float_l"
 
