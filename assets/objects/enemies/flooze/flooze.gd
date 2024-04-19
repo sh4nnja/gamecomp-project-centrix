@@ -32,7 +32,7 @@ var _detected_enemy: CharacterBody2D = null
 var _explode: bool = false
 
 var _attack_damage: float = 15.0
-var health: float = 40.0
+var health: float = 20.0
 var hit: float = 20.0
 
 # NODES ************************************************************************

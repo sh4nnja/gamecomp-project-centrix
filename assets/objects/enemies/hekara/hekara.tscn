@@ -1,7 +1,8 @@
-[gd_scene load_steps=52 format=3 uid="uid://ccvphxsudl8v"]
+[gd_scene load_steps=53 format=3 uid="uid://ccvphxsudl8v"]
 
 [ext_resource type="Script" path="res://assets/objects/enemies/hekara/hekara.gd" id="1_4omrw"]
 [ext_resource type="Texture2D" uid="uid://q35l8o1kaukk" path="res://assets/objects/enemies/hekara/texture/spawn_radius.png" id="1_ucgny"]
+[ext_resource type="AudioStream" uid="uid://bah4qw046qa88" path="res://assets/global/sounds/fx/315930__bevibeldesign__sucked-into-classroom.wav" id="2_0mxbs"]
 [ext_resource type="Texture2D" uid="uid://b2jiuupuyp1np" path="res://assets/objects/enemies/hekara/texture/idle_l.png" id="3_ipfcb"]
 [ext_resource type="Texture2D" uid="uid://c0mfxiynspj7t" path="res://assets/global/texture/smoke.png" id="3_ogxck"]
 [ext_resource type="Texture2D" uid="uid://bp8ojxvle0m2l" path="res://assets/objects/enemies/hekara/texture/idle_r.png" id="4_6lio8"]
@@ -232,88 +233,6 @@ tracks/1/keys = {
 "values": [&"idle_l"]
 }
 
-[sub_resource type="Animation" id="Animation_s4yl3"]
-resource_name = "idle_l"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("texture:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"idle_l"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("texture:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("texture:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_y8ajo"]
-resource_name = "idle_r"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("texture:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"idle_r"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("texture:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("texture:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_ci3j3"]
 resource_name = "dead_l"
 length = 0.5
@@ -398,6 +317,88 @@ tracks/2/keys = {
 "values": [&"idle_r"]
 }
 
+[sub_resource type="Animation" id="Animation_s4yl3"]
+resource_name = "idle_l"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle_l"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("texture:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("texture:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_y8ajo"]
+resource_name = "idle_r"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("texture:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle_r"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("texture:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("texture:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jynsm"]
 _data = {
 "RESET": SubResource("Animation_ilfo8"),
@@ -448,8 +449,33 @@ tracks/2/keys = {
 "method": &"spawn"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sound:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_0mxbs")]
+}
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hjetr"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lm0s0"]
+resource_local_to_scene = true
 _data = {
 "RESET": SubResource("Animation_ilfo8"),
 "spawn": SubResource("Animation_iiifm")
@@ -504,6 +530,8 @@ platform_on_leave = 2
 script = ExtResource("1_4omrw")
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_0mxbs")
+max_polyphony = 5
 bus = &"Hekara"
 
 [node name="enable_process" type="VisibleOnScreenEnabler2D" parent="."]
@@ -548,6 +576,7 @@ shape = SubResource("CircleShape2D_awfjf")
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_7fhnp")
 animation = &"idle_l"
+frame = 1
 
 [node name="spawn_radius" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 0.921569, 0.392157)
@@ -577,7 +606,7 @@ libraries = {
 [node name="spawn_anim" type="AnimationPlayer" parent="."]
 process_mode = 3
 libraries = {
-"": SubResource("AnimationLibrary_hjetr")
+"": SubResource("AnimationLibrary_lm0s0")
 }
 
 [node name="spawn_duration" type="Timer" parent="."]

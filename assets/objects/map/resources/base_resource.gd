@@ -55,7 +55,7 @@ func _randomize_resource() -> int:
 	else:
 		_rng.randomize()
 		_rng.set_seed(_rng.randi())
-		_output = _rng.randi_range(14, 19)
+		_output = _rng.randi_range(14, 31)
 	
 	return _output
 

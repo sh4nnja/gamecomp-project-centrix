@@ -19,6 +19,8 @@ extends CharacterBody2D
 
 # DAMAGE ***********************************************************************
 var _damage_fx: Resource = load("res://assets/global/sounds/fx/385046__mortisblack__damage.ogg")
+var _laugh_fx: Resource = load("res://assets/global/sounds/fx/179924__craiggroshek__laughing-witch-or-old-woman-in-a-rocking-chair.wav")
+var _spawn_fx: Resource = load("res://assets/global/sounds/fx/315930__bevibeldesign__sucked-into-classroom.wav")
 
 # FLOOZE ***********************************************************************
 var _flooze: Resource = load("res://assets/objects/enemies/flooze/flooze.tscn")
@@ -64,14 +66,14 @@ func _rand_aggro() -> void:
 	var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	_rng.randomize()
 	_rng.set_seed(_rng.randi())
-	_shape.get_shape().set_radius(_rng.randi_range(7, 15) * 10)
+	_shape.get_shape().set_radius(_rng.randi_range(9, 15) * 10)
 
 func _enable_spawn_flooze(_enable: bool) -> void:
 	if _enable and health > 0:
 		var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 		_rng.randomize()
 		_rng.set_seed(_rng.randi())
-		_spawn_timer.start(_rng.randi_range(2, _spawn_dur)) 
+		_spawn_timer.start(_rng.randi_range(2, _spawn_dur))
 	else:
 		_spawn_timer.stop()
 
@@ -80,6 +82,10 @@ func _spawn_flooze():
 
 func spawn() -> void:
 	if not get_tree().is_paused():
+		
+		_sound.set_stream(_spawn_fx)
+		_sound.play()
+		
 		var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 		_rng.randomize()
 		_rng.set_seed(_rng.randi())
@@ -119,6 +125,8 @@ func _on_detection_body_entered(_body: Node2D) -> void:
 		_detected_enemy = _body
 		set_collision_mask_value(1, true)
 		_anim_alert.play("alert")
+		_sound.set_stream(_laugh_fx)
+		_sound.play()
 		_enable_spawn_flooze(true)
 
 func _on_detection_body_exited(_body: Node2D) -> void:

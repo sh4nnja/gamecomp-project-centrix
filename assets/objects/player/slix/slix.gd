@@ -257,7 +257,7 @@ func devour() -> void:
 		# Gets the value of that item.
 		var _res_type: int = _devoured.recover() 
 		if _res_type > 13:
-			reduced_toxicity += 3
+			reduced_toxicity += 35
 		else:
 			health += 10
 			reduced_toxicity = 150
