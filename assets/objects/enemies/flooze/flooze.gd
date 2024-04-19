@@ -40,6 +40,7 @@ var hit: float = 20.0
 @onready var _anim_alert: AnimatedSprite2D = get_node("alert")
 @onready var _texture: AnimatedSprite2D = get_node("texture")
 @onready var _toxic_fx: CPUParticles2D = get_node("toxic_fx")
+@onready var _shape: CollisionShape2D = get_node("shape")
 
 @onready var _sound: AudioStreamPlayer2D = get_node("sound")
 
@@ -73,6 +74,7 @@ func _manage_animation() -> void:
 		
 		_explode = health <= 0
 	else:
+		_shape.set_disabled(true)
 		_anim_blend.get("parameters/playback").travel("explode")
 		_anim_blend.set("parameters/explode/blend_position", _vel)
 
@@ -96,8 +98,8 @@ func die() -> void:
 	queue_free()
 
 func explode() -> void:
+	_toxic_fx.set_emitting(true)
 	if _detected_enemy:
-		_toxic_fx.set_emitting(true)
 		_detected_enemy.damage(_damage_by_dist())
 
 # Calculate damage based on distance.

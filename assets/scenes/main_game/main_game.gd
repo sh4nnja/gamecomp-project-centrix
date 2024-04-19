@@ -21,7 +21,7 @@ extends Node2D
 var _hekara: Resource = load("res://assets/objects/enemies/hekara/hekara.tscn")
 
 enum {
-	HEKARA = 3
+	HEKARA = 2
 }
 
 # RESOURCE TYPES ***************************************************************

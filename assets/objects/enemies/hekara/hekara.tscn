@@ -531,6 +531,7 @@ script = ExtResource("1_4omrw")
 
 [node name="sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_0mxbs")
+volume_db = -10.0
 max_polyphony = 5
 bus = &"Hekara"
 
@@ -538,7 +539,7 @@ bus = &"Hekara"
 
 [node name="spawn_fx" type="CPUParticles2D" parent="."]
 process_mode = 3
-z_index = 2
+z_index = 5
 material = SubResource("CanvasItemMaterial_ibudf")
 position = Vector2(-0.5, -0.5)
 emitting = false
@@ -576,7 +577,7 @@ shape = SubResource("CircleShape2D_awfjf")
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_7fhnp")
 animation = &"idle_l"
-frame = 1
+frame = 2
 
 [node name="spawn_radius" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 0.921569, 0.392157)

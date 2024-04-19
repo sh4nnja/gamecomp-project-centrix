@@ -66,7 +66,7 @@ func _rand_aggro() -> void:
 	var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	_rng.randomize()
 	_rng.set_seed(_rng.randi())
-	_shape.get_shape().set_radius(_rng.randi_range(9, 15) * 10)
+	_shape.get_shape().set_radius(_rng.randi_range(10, 25) * 10)
 
 func _enable_spawn_flooze(_enable: bool) -> void:
 	if _enable and health > 0:
@@ -90,7 +90,7 @@ func spawn() -> void:
 		_rng.randomize()
 		_rng.set_seed(_rng.randi())
 		
-		for _i in range(_rng.randi_range(1, 3)):
+		for _i in range(_rng.randi_range(1, 2)):
 			# Creates flooze.
 			var _flooze_inst: Object = _flooze.instantiate()
 		
