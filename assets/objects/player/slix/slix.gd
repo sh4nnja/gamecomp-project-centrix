@@ -52,15 +52,15 @@ var devoured_items: int = 0
 
 # HEALTH ***********************************************************************
 # Deduction happens per physics frame.
-const TOXIC_ATMOSPHERE: float = 0.005
+const TOXIC_ATMOSPHERE: float = 0.01
 const TOXIC_LAKE: float = 1
 const TOXIC_DEDUCTION_REDUCER: float = 0.01
 const IMMUNITY_DURATION: float = 0.25
 
 # Deduction happens on a specific physics frame of the animation.
-var rollout_energy: float = 1.25
-var lash_energy: float = 2.00
-var goowave_energy: float = 20.00
+var rollout_energy: float = 0.75
+var lash_energy: float = 1.00
+var goowave_energy: float = 10.00
 
 var health: float = 100.0
 
@@ -232,18 +232,23 @@ func damage(_damage: float) -> void:
 	_texture.modulate = Color.html("ff0000")
 	await get_tree().create_timer(0.1).timeout
 	_texture.modulate = Color.html("ffffff")
-	health -= _damage
+	
+	if reduced_toxicity > 0 and reduced_toxicity > _damage:
+		health -= _damage / 2
+		reduced_toxicity -= _damage * 2
+	else:
+		health -= _damage
 
 # Lowers the energy usage when attacking or doing things
 func lower_energy_usage(_mode: bool) -> void:
 	if _mode:
-		rollout_energy = 0.625
+		rollout_energy = 0.375
+		lash_energy = 0.50
+		goowave_energy = 5.00
+	else:
+		rollout_energy = 0.75
 		lash_energy = 1.00
 		goowave_energy = 10.00
-	else:
-		rollout_energy = 1.25
-		lash_energy = 2.00
-		goowave_energy = 20.00
 
 # The execution of the actions below are located in the animations of Slix.
 # The code enable_lash in code are for animation.
@@ -259,7 +264,7 @@ func devour() -> void:
 		if _res_type > 13:
 			reduced_toxicity += 35
 		else:
-			health += 10
+			health += 15
 			reduced_toxicity = 150
 		_devoured = null
 		devoured_resources += 10
@@ -270,14 +275,15 @@ func devour() -> void:
 			# Only devour enemy when dead.
 			if _enemy.health <= 0:
 				_enemy.queue_free()
-				health += 10
+				health += 15
 				_devoured_enemy.erase(_enemy) # Removes the reference.
 				devoured_enemies += 50
 	
 	# Item.
 	if _devoured_item:
-		item_collected += 1
-		health += 5
+		if _devoured_item.item_number != 100:
+			item_collected += 1
+		health += 10
 		_devoured_item.recover()
 		devoured_items += 100 
 

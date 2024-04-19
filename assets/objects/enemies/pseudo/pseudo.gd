@@ -21,7 +21,7 @@ extends CharacterBody2D
 var _damage_fx: Resource = load("res://assets/global/sounds/fx/385046__mortisblack__damage.ogg")
 
 # PHYSICS **********************************************************************
-const SPEED: float = 65.0
+const SPEED: float = 55.0
 
 var _chase_threshold: int = 20 # Distance before follow Slix.
 
@@ -35,7 +35,7 @@ var _attacking: bool = false
 
 var health: float = 100.0
 var _hit: float = 25.0
-var _attack_damage: float = 5.0
+var _attack_damage: float = 10.0
 
 # NODES ************************************************************************
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
@@ -48,7 +48,7 @@ var _attack_damage: float = 5.0
 # VIRTUAL **********************************************************************
 func _ready() -> void:
 	_anim_blend.set_active(true) # Enable animation.
-	_rand_aggro()
+	_rand_aggro(3, 5)
 	_rand_stone()
 
 func _physics_process(_delta: float) -> void:
@@ -105,11 +105,11 @@ func _manage_animation() -> void:
 		_anim_blend.get("parameters/playback").travel("dead")
 		_anim_blend.set("parameters/dead/blend_position", _vel)
 
-func _rand_aggro() -> void:
+func _rand_aggro(_min: int, _max: int) -> void:
 	var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	_rng.randomize()
 	_rng.set_seed(_rng.randi())
-	_shape.get_shape().set_radius(_rng.randi_range(3, 10) * 10)
+	_shape.get_shape().set_radius(_rng.randi_range(_min, _max) * 10)
 
 func _rand_stone() -> void:
 	var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -149,13 +149,14 @@ func _on_detection_body_entered(_body: Node2D) -> void:
 		set_collision_mask_value(1, true)
 		_detected_enemy = _body
 		_anim_alert.play("alert")
+		_rand_aggro(15, 25)
 
 func _on_detection_body_exited(_body: Node2D) -> void:
 	if _body.is_in_group("Slix"):
 		set_collision_mask_value(1, false)
 		_detected_enemy = null
 		_anim_alert.play_backwards("alert")
-		_rand_aggro()
+		_rand_aggro(3, 5)
 
 # Attack on contact.
 func _on_attack_body_entered(_body: Node2D) -> void:

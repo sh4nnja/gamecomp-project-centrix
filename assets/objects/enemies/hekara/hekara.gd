@@ -27,7 +27,7 @@ var _flooze: Resource = load("res://assets/objects/enemies/flooze/flooze.tscn")
 
 # SKILLS ***********************************************************************
 var _detected_enemy: CharacterBody2D = null
-var _spawn_dur: int = 5
+var _spawn_dur: int = 6
 
 var health: float = 100.0
 var hit: float = 20.0
@@ -73,7 +73,7 @@ func _enable_spawn_flooze(_enable: bool) -> void:
 		var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 		_rng.randomize()
 		_rng.set_seed(_rng.randi())
-		_spawn_timer.start(_rng.randi_range(2, _spawn_dur))
+		_spawn_timer.start(_rng.randi_range(3, _spawn_dur))
 	else:
 		_spawn_timer.stop()
 
@@ -90,13 +90,12 @@ func spawn() -> void:
 		_rng.randomize()
 		_rng.set_seed(_rng.randi())
 		
-		for _i in range(_rng.randi_range(1, 2)):
-			# Creates flooze.
-			var _flooze_inst: Object = _flooze.instantiate()
+		# Creates flooze.
+		var _flooze_inst: Object = _flooze.instantiate()
 		
-			# Add to the tree.
-			get_parent().add_child(_flooze_inst)
-			_flooze_inst.global_position = global_position + Vector2(_rng.randi_range(-15, 15), _rng.randi_range(-15, 15))
+		# Add to the tree.
+		get_parent().add_child(_flooze_inst)
+		_flooze_inst.global_position = global_position 
 
 func damage(_multiplier: int = 1) -> void:
 	if not _sound.is_playing():

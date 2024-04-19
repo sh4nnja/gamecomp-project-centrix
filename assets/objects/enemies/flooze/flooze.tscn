@@ -896,7 +896,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-143, 0)
 
 [node name="flooze" type="CharacterBody2D" groups=["enemy"]]
-z_index = 10
+z_index = 12
 collision_layer = 2
 collision_mask = 2
 motion_mode = 1

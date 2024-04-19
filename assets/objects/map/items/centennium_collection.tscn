@@ -1,7 +1,8 @@
-[gd_scene load_steps=105 format=3 uid="uid://ila5s0khiajw"]
+[gd_scene load_steps=107 format=3 uid="uid://ila5s0khiajw"]
 
 [ext_resource type="Script" path="res://assets/objects/map/items/centennium_collection.gd" id="1_fq5ps"]
 [ext_resource type="Texture2D" uid="uid://bvpv3avc0j2jd" path="res://assets/objects/map/items/texture/centennium_collection.png" id="2_6bb47"]
+[ext_resource type="Texture2D" uid="uid://7wl6wcbgguqe" path="res://assets/objects/easteregg/texture/idle_r.png" id="3_xr2e5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vt2ut"]
 atlas = ExtResource("2_6bb47")
@@ -403,6 +404,10 @@ region = Rect2(192, 216, 24, 24)
 atlas = ExtResource("2_6bb47")
 region = Rect2(216, 216, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2ehi"]
+atlas = ExtResource("3_xr2e5")
+region = Rect2(0, 0, 24, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_idoav"]
 animations = [{
 "frames": [{
@@ -705,6 +710,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8wnw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2ehi")
 }],
 "loop": false,
 "name": &"items",
@@ -714,6 +722,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_av2fv"]
 
 [node name="centennium_collection" type="CharacterBody2D" groups=["Items"]]
+z_index = 10
 collision_mask = 0
 motion_mode = 1
 platform_on_leave = 2

@@ -43,7 +43,8 @@ extends Control
 
 @onready var _lore_anim: AnimationPlayer = get_parent().get_parent().get_node("tutorial/anim")
 
-var _scene: Resource = load("res://assets/scenes/main_menu/main_menu.tscn")
+var _main_menu_scn: Resource = load("res://assets/scenes/main_menu/main_menu.tscn")
+var _main_game_scn: Resource = load("res://assets/scenes/main_game/main_game.tscn")
 
 # Gets the main game node that has all the details.
 @onready var _game: Node2D = get_parent().get_parent()
@@ -59,7 +60,6 @@ var _score: int = 0
 
 # VIRTUAL **********************************************************************
 func _ready() -> void:
-	_set_cursor()
 	_byte_connected()
 
 func _physics_process(_delta: float) -> void:
@@ -75,10 +75,6 @@ func _physics_process(_delta: float) -> void:
 	_byte_connected()
 
 # CUSTOM ***********************************************************************
-# Set custom cursor.
-func _set_cursor() -> void:
-	Input.set_custom_mouse_cursor(load("res://assets/objects/user_interface/textures/in_game/cursor.png"))
-
 # Set up Slix's health to UI
 func _set_slix_hp(_value: float) -> void:
 	_life_prog.value = _value
@@ -215,10 +211,16 @@ func _on_immunity_progress_value_changed(_value: float) -> void:
 func _on_to_main_pressed() -> void:
 	if get_tree().paused:
 		get_tree().paused = false
-	get_tree().change_scene_to_packed(_scene)
+	get_tree().change_scene_to_packed(_main_menu_scn)
 
 func _on_to_main_mouse_entered() -> void:
 	_fx.play()
 
 func _on_skip_pressed() -> void:
 	_lore_anim.seek(61, true)
+
+func _on_restart_pressed() -> void:
+	get_tree().change_scene_to_packed(_main_game_scn)
+
+func _on_restart_mouse_entered() -> void:
+	_fx.play()

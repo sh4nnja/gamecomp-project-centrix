@@ -61,7 +61,7 @@ colors = PackedColorArray(0.0862745, 0.294118, 0.443137, 1, 0.678431, 0.819608, 
 radius = 50.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3at1f"]
-radius = 16.0
+radius = 12.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f146n"]
 atlas = ExtResource("3_lo21s")
@@ -2229,7 +2229,7 @@ states/rolling/position = Vector2(347.074, -59.6667)
 states/running/node = SubResource("AnimationNodeBlendSpace2D_8t528")
 states/running/position = Vector2(688.082, 117.519)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_glo71"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_b1fwa"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_a7din"), "rolling", "roll_to_idle", SubResource("AnimationNodeStateMachineTransition_yilfe"), "roll_to_idle", "idle", SubResource("AnimationNodeStateMachineTransition_5kflg"), "idle", "idle_to_roll", SubResource("AnimationNodeStateMachineTransition_5i35g"), "idle_to_roll", "rolling", SubResource("AnimationNodeStateMachineTransition_2nnwt"), "idle", "devour", SubResource("AnimationNodeStateMachineTransition_u6q2t"), "devour", "idle", SubResource("AnimationNodeStateMachineTransition_n2nik"), "running", "devour", SubResource("AnimationNodeStateMachineTransition_ora43"), "idle", "lash", SubResource("AnimationNodeStateMachineTransition_6rqgr"), "lash", "idle", SubResource("AnimationNodeStateMachineTransition_rh8is"), "running", "lash", SubResource("AnimationNodeStateMachineTransition_ndu5h"), "idle", "goowave", SubResource("AnimationNodeStateMachineTransition_qnxw7"), "goowave", "idle", SubResource("AnimationNodeStateMachineTransition_gy5pa"), "running", "goowave", SubResource("AnimationNodeStateMachineTransition_sjexv"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_e7nvo"), "running", "death", SubResource("AnimationNodeStateMachineTransition_3ko5h"), "lash", "death", SubResource("AnimationNodeStateMachineTransition_rud45"), "goowave", "death", SubResource("AnimationNodeStateMachineTransition_fhmb8"), "devour", "death", SubResource("AnimationNodeStateMachineTransition_emuc2"), "rolling", "death", SubResource("AnimationNodeStateMachineTransition_o8lje")]
-graph_offset = Vector2(-129, -64)
+graph_offset = Vector2(-268, -61)
 
 [node name="slix" type="CharacterBody2D" groups=["Slix"]]
 collision_layer = 3

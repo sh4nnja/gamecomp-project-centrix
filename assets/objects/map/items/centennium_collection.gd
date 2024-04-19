@@ -124,7 +124,8 @@ var _item_name_collection: Array = [
 	"Underground Shelter Construction Plans",
 	"Freshwater Reservoir Expansion Plans",
 	"Marine Debris Cleanup Equipment",
-	"Mangrove Reforestation Initiatives"
+	"Mangrove Reforestation Initiatives",
+	"Unknown Item(?)... Vital Signs Detected?."
 ]
 
 # CUSTOM ***********************************************************************

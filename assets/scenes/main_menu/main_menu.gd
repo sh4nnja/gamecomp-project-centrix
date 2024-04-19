@@ -42,6 +42,7 @@ func _enable_sound() -> void:
 # SIGNALS **********************************************************************
 # Play button.
 func _on_play_pressed() -> void:
+	_play_btn.get_parent().set_disabled(true)
 	_play_btn.set_text("Loading...")
 	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_packed(_scene_path)

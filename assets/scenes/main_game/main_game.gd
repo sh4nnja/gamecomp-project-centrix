@@ -192,7 +192,7 @@ func _spawn_items(_tile_pos: Vector2i) -> void:
 	_rng.randomize()
 	_rng.set_seed(_rng.randi())
 	
-	if _item_count < 100:
+	if _item_count < 101:
 		if _rng.randi_range(0, _item_chance) == ITEM:
 			var _item_obj: Object = _centennium_collection.instantiate()
 			
@@ -248,4 +248,3 @@ func get_nearest_node(_nodes: Array, _player: Node) -> Array:
 # Pause tree.
 func pause(_enabled: bool) -> void:
 	get_tree().set_pause(_enabled)
-

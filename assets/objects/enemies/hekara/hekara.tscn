@@ -539,7 +539,7 @@ bus = &"Hekara"
 
 [node name="spawn_fx" type="CPUParticles2D" parent="."]
 process_mode = 3
-z_index = 5
+z_index = 10
 material = SubResource("CanvasItemMaterial_ibudf")
 position = Vector2(-0.5, -0.5)
 emitting = false
@@ -577,7 +577,7 @@ shape = SubResource("CircleShape2D_awfjf")
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_7fhnp")
 animation = &"idle_l"
-frame = 2
+frame = 1
 
 [node name="spawn_radius" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 0.921569, 0.392157)
