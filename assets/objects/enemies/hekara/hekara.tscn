@@ -577,7 +577,7 @@ shape = SubResource("CircleShape2D_awfjf")
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_7fhnp")
 animation = &"idle_l"
-frame = 1
+frame = 2
 
 [node name="spawn_radius" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 0.921569, 0.392157)

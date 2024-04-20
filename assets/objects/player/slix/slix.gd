@@ -147,7 +147,7 @@ func _manage_movement_anim() -> void:
 		_anim_blend.get("parameters/playback").travel("rolling")
 	
 	# Death.
-	if health == 0:
+	if health <= 0:
 		_anim_blend.get("parameters/playback").travel("death")
 	
 	# ******************************************************************************
@@ -188,8 +188,6 @@ func _manage_effects() -> void:
 func _manage_health() -> void:
 	if health > 100:
 		health = 100
-	elif health < 0:
-		health = 0
 	
 	if reduced_toxicity > 150:
 		reduced_toxicity = 150
@@ -201,7 +199,7 @@ func _manage_health() -> void:
 		modulate = global.slix_colors[0]
 	elif health <= 65 and health >= 33:
 		modulate = global.slix_colors[1]
-	elif health <= 32 and health >= 1:
+	elif health <= 32:
 		modulate = global.slix_colors[2]
 
 # Toxic Lake Deduction.
@@ -244,11 +242,11 @@ func lower_energy_usage(_mode: bool) -> void:
 	if _mode:
 		rollout_energy = 0.375
 		lash_energy = 0.50
-		goowave_energy = 5.00
+		goowave_energy = 10.00
 	else:
 		rollout_energy = 0.75
 		lash_energy = 1.00
-		goowave_energy = 10.00
+		goowave_energy = 25.00
 
 # The execution of the actions below are located in the animations of Slix.
 # The code enable_lash in code are for animation.
@@ -264,7 +262,7 @@ func devour() -> void:
 		if _res_type > 13:
 			reduced_toxicity += 35
 		else:
-			health += 15
+			health += 5
 			reduced_toxicity = 150
 		_devoured = null
 		devoured_resources += 10
@@ -283,7 +281,6 @@ func devour() -> void:
 	if _devoured_item:
 		if _devoured_item.item_number != 100:
 			item_collected += 1
-		health += 10
 		_devoured_item.recover()
 		devoured_items += 100 
 

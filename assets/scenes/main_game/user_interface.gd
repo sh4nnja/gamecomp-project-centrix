@@ -84,7 +84,7 @@ func _set_slix_hp(_value: float) -> void:
 		_slix_icon.modulate = global.slix_colors[0]
 	elif _life_prog.value <= 65 and _life_prog.value >= 33:
 		_slix_icon.modulate = global.slix_colors[1]
-	elif _life_prog.value <= 32 and _life_prog.value >= 1:
+	elif _life_prog.value <= 32:
 		_slix_icon.modulate = global.slix_colors[2]
 
 # Whenever Slix has immunity granted.
@@ -175,30 +175,46 @@ func _pause() -> void:
 
 # Locator.
 func _locate_items() -> void:
-	var _nearest_item: Array = _game.get_nearest_node(_game.items, _game.slix)
-	# Rotate to the item.
-	_locator_arrow.set_rotation_degrees(90 + rad_to_deg(_game.slix.get_angle_to(_nearest_item[0].get_global_position())))
+	if not _win:
+		var _nearest_item: Array = _game.get_nearest_node(_game.items, _game.slix)
+		# Rotate to the item.
+		if _nearest_item.size() > 0:
+			_locator_arrow.set_rotation_degrees(90 + rad_to_deg(_game.slix.get_angle_to(_nearest_item[0].get_global_position())))
 	
-	# Set the Item image and name.
-	_item.get_texture().set_region(Rect2(Vector2i(_nearest_item[0].item_number * 24, 0), Vector2i(24, 24)))
-	_item_name.text = _nearest_item[0].item_name
+		# Set the Item image and name.
+		_item.get_texture().set_region(Rect2(Vector2i(_nearest_item[0].item_number * 24, 0), Vector2i(24, 24)))
+		_item_name.text = _nearest_item[0].item_name
 	
-	# Item collected number.
-	_item_desc.text = str(round(_nearest_item[1]) / 10).pad_decimals(0) + "m"
-	_item_collected.text = str(_game.items_collected) + "/100"
+		# Item collected number.
+		_item_desc.text = str(round(_nearest_item[1]) / 10).pad_decimals(0) + "m"
+		_item_collected.text = str(_game.items_collected) + "/100"
 
 # Calculate the score.
 func _calculate_score() -> void:
-	_score = (_game.slix.devoured_items / _time_passed) + (_game.slix.devoured_enemies + _game.slix.devoured_resources)
+	if _game.slix.devoured_items >= 10000:
+		_score = (_game.slix.devoured_items + _game.slix.devoured_enemies + _game.slix.devoured_resources) / (round(_time_passed) / 3600)
+		
+		# Debug
+		print("\nAll items delivered.")
+	else:
+		_score = ((_game.slix.devoured_items / 10) + _game.slix.devoured_enemies + _game.slix.devoured_resources) / (round(_time_passed) / 3600)
+	
+		# Debug
+		print("Incomplete items delivered.")
+	
 	if _score > global.high_score:
 		global.high_score = _score
 	
 	_win_text.text += "\n\nScore: " + str(_score) + "\nHigh Score: " + str(global.high_score)
 	_death_text.text += "\n\nScore: " + str(_score) + "\nHigh Score: " + str(global.high_score)
+	
+	# Debug
+	print("\nItem: " + str(_game.slix.devoured_items) + "\nEnemies: " + str(_game.slix.devoured_enemies) + "\nResources: " + str(_game.slix.devoured_resources) + "\nTime passed: " + str(round(_time_passed)) + " seconds\nScore: " + str(_score))
+
 
 # Get time passed for score computation.
 func _get_time(_delta: float) -> void:
-	if not _death:
+	if not _death and not _win:
 		_time_passed += _delta
 
 # SIGNALS **********************************************************************

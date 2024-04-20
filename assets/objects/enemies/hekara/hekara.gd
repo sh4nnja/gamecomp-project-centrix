@@ -32,6 +32,8 @@ var _spawn_dur: int = 6
 var health: float = 100.0
 var hit: float = 20.0
 
+var _last_vel: Vector2
+
 # NODES ************************************************************************
 @onready var _anim_blend: AnimationTree = get_node("anim_blend")
 @onready var _anim_alert: AnimatedSprite2D = get_node("alert")
@@ -55,12 +57,14 @@ func _physics_process(_delta: float) -> void:
 # Animation handler.
 func _manage_animation() -> void:
 	if _detected_enemy:
-		if health > 0:
-			_anim_blend.get("parameters/playback").travel("idle")
-			_anim_blend.set("parameters/idle/blend_position", Vector2(-1, 0) if position > _detected_enemy.position else Vector2(1, 0))
-		else:
+		if health <= 0:
 			_anim_blend.get("parameters/playback").travel("dead")
-			_anim_blend.set("parameters/dead/blend_position", Vector2(-1, 0) if position > _detected_enemy.position else Vector2(1, 0))
+			_anim_blend.set("parameters/dead/blend_position", _last_vel)
+		else:
+			_last_vel = Vector2(-1, 0) if position > _detected_enemy.position else Vector2(1, 0)
+			
+			_anim_blend.get("parameters/playback").travel("idle")
+			_anim_blend.set("parameters/idle/blend_position", _last_vel) 
 
 func _rand_aggro() -> void:
 	var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
@@ -69,7 +73,7 @@ func _rand_aggro() -> void:
 	_shape.get_shape().set_radius(_rng.randi_range(10, 25) * 10)
 
 func _enable_spawn_flooze(_enable: bool) -> void:
-	if _enable and health > 0:
+	if _enable:
 		var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 		_rng.randomize()
 		_rng.set_seed(_rng.randi())
@@ -78,7 +82,8 @@ func _enable_spawn_flooze(_enable: bool) -> void:
 		_spawn_timer.stop()
 
 func _spawn_flooze():
-	_spawn_anim.play("spawn")
+	if health > 0:
+		_spawn_anim.play("spawn")
 
 func spawn() -> void:
 	if not get_tree().is_paused():
