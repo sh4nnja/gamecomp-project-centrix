@@ -197,7 +197,7 @@ func _calculate_score() -> void:
 		# Debug
 		print("\nAll items delivered.")
 	else:
-		_score = ((_game.slix.devoured_items / 10) + _game.slix.devoured_enemies + _game.slix.devoured_resources) / (round(_time_passed) / 3600)
+		_score = (_game.slix.devoured_items / 10) + _game.slix.devoured_enemies + _game.slix.devoured_resources
 	
 		# Debug
 		print("Incomplete items delivered.")
